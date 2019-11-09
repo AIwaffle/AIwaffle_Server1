@@ -1,0 +1,7 @@
+click
+flask
+sqlalchemy
+pytest
+requests
+coverage
+numpy

@@ -1,0 +1,44 @@
+# API Documentation
+## User login
+ - POST **/api/auth/register**
+   - Register a new user
+   - Form data
+     - username
+     - password
+   - Response
+     - success
+     - (when success) uuid
+     - (when not success) reason
+ - POST **/api/auth/login**
+   - Login the user
+   - Form data
+     - username
+     - password
+   - Response
+     - (when valid) uuid
+     - (when valid) expires
+     - (when valid) token
+     - (when not valid) 400
+## Model
+  - GET **/api/model/params**
+    - Gets the hyper parameters
+    - Response
+      - inputSize
+      - learningRate
+  - POST **/api/model/params**
+    - Adjusts the hyper parameters
+    - Form data
+      - (optional) inputSize
+      - (optional) learningRate
+    - Response
+      - success
+  - POST **/api/model/forward**
+    - Forward the model
+    - Form data
+      - X: input data
+    - Response
+      - A: output data
+  - GET **/api/model/output**
+    - Gets the output
+    - Response
+      - A: output

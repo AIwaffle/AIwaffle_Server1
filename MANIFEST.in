@@ -1,0 +1,3 @@
+graft server1/static
+graft server1/templates
+global-exclude *.pyc
