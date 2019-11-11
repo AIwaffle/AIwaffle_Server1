@@ -23,22 +23,33 @@
   - GET **/api/model/params**
     - Gets the hyper parameters
     - Response
-      - inputSize
-      - learningRate
+      - (int) inputSize
+      - (int) learningRate
   - POST **/api/model/params**
     - Adjusts the hyper parameters
     - Form data
-      - (optional) inputSize
-      - (optional) learningRate
+      - (optional) (int) inputSize
+      - (optional) (int) learningRate
     - Response
-      - success
+      - (bool) success
   - POST **/api/model/forward**
     - Forward the model
     - Form data
-      - X: input data
+      - (int[]) X: input data
     - Response
-      - A: output data
+      - (int) A: output data
+  - GET **/api/model/backward**
+    - Backward the model
+    - Form data
+      - (int[]) X: input data
+    - Response
+      - (int) A: output data
   - GET **/api/model/output**
     - Gets the output
     - Response
-      - A: output
+      - (int) A: output
+  - GET **/api/model/model**
+    - Gets the model
+    - Response
+      - (int[][]) W: weights matrix
+      - (int[][]) B: biases matrix
