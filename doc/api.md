@@ -40,8 +40,6 @@
       - (int) A: output data
   - GET **/api/model/backward**
     - Backward the model
-    - Form data
-      - (int[]) X: input data
     - Response
       - (int) A: output data
   - GET **/api/model/output**
