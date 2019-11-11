@@ -35,4 +35,4 @@ Sending and receiving JSON objects
 ## License and copyright
 Licensed under the MIT license
 
-Copyright 2019 Jimmy
+Copyright 2019 <jimmy-zx, DanielDAIDLaw>
