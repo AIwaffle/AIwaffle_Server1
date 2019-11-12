@@ -25,8 +25,7 @@
     Gets the hyper parameters
     - Response
     
-      JSON: \[int, int]
-      - (int) inputSize
+      JSON: int
       - (int) learningRate
   - POST **/api/model/params**
   
@@ -65,13 +64,13 @@
     - Optimizes the model
     - Response
     
-      JSON: [int[][], int[][]]
+      JSON: [int[][], int]
       - (int[][]) dW: gradient of W
-      - (int[][]) dB: gradient of B
+      - (int) dB: gradient of B
   - GET **/api/model/model**
     - Gets the model
     - Response
     
-      JSON: [int[][], int[][]]
+      JSON: [int[][], int]
       - (int[][]) W: weights matrix
-      - (int[][]) B: biases matrix
+      - (int) B: bias

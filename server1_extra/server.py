@@ -1,7 +1,8 @@
-import numpy as np
 import json
 import logging
 import socketserver
+
+import numpy as np
 
 from AIwaffle.MLsource.LogisticRegressionModel.source import LogisticRegressionModel as Model
 
@@ -17,12 +18,31 @@ class Handler(socketserver.StreamRequestHandler):
         self.wfile.write(res.encode())
         self.server.logger.debug("Data sent: {}".format(res))
 
-    def get_model_data(self) -> str:
-        pass
-
     def from_user_input(self, data: str) -> str:
-        data = json.loads(data)
-        self.server.model.load_data(np.array([1, 2], 1))
+        assert isinstance(self.server.model, Model)
+        args, kw = json.loads(data)
+        print(args, kw)
+        if len(args) == 0:
+            return ""
+        if args[0] == "model":
+            return json.dumps([list(self.server.model.W), [self.server.model.b]])
+        elif args[0] == "params":
+            if "learning_rate" in kw:
+                self.server.model.learningRate = float(kw["learning_rate"])
+            return json.dumps(self.server.model.learningRate)
+        elif args[0] == "forward":
+            if "X" not in kw:
+                return ""
+            x = np.array(kw["X"])
+            return json.dumps(self.server.model.forward(x))
+        elif args[0] == "backward":
+            self.server.model.backward()
+            return json.dumps(list(self.server.model.X))
+        elif args[0] == "output":
+            return json.dumps(self.server.model.A)
+        elif args[0] == "optimize":
+            self.server.model.optimize()
+            return ""
 
 
 class Server(socketserver.UnixStreamServer):

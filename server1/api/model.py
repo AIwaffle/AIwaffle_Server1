@@ -9,7 +9,6 @@ def model(*args, **kw):
         rfile = sock.makefile("rb", -1)
         wfile = sock.makefile("wb", 1024)
         data = json.dumps((args, kw))
-        print(data)
         wfile.write(data.encode() + b'\n')
         wfile.flush()
         res = rfile.readline().strip()
