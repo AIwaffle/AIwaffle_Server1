@@ -37,7 +37,7 @@ class Handler(socketserver.StreamRequestHandler):
             return json.dumps(self.server.model.forward(x))
         elif args[0] == "backward":
             self.server.model.backward()
-            return json.dumps(list(self.server.model.X))
+            return json.dumps(self.server.model.A)
         elif args[0] == "output":
             return json.dumps(self.server.model.A)
         elif args[0] == "optimize":

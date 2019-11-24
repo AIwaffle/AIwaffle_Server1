@@ -20,10 +20,9 @@ def params():
     return server1.api.model.model("params")
 
 
-@bp.route("/forward", methods=("POST",))
-def forward():
-    data = flask.request.get_json()
-    x = data.get("X", None)
+@bp.route("/forward/<x>", methods=("POST", "GET"))
+def forward(x):
+    x = list(map(int, x.split("|")))
     if not x:
         flask.abort(400)
     return server1.api.model.model("forward", X=x)
