@@ -223,3 +223,4 @@ pip-selfcheck.json
 
 *.pdf
 *.tex
+*.el
