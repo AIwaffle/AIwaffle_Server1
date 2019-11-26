@@ -1,0 +1,176 @@
+% Created 2019-11-26 Tue 08:02
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\author{Jimmy Z}
+\date{\today}
+\title{}
+\hypersetup{
+ pdfauthor={Jimmy Z},
+ pdftitle={},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 26.1 (Org mode 9.2.6)}, 
+ pdflang={English}}
+\begin{document}
+
+\tableofcontents
+
+\section{API Documentation}
+\label{sec:orgaa3e908}
+For each API, we use POST to deliver form data, and use json for passing of
+data structures. The response is a json string.
+\subsection{User}
+\label{sec:org6b7eb8c}
+\subsubsection{Register}
+\label{sec:org649a170}
+POST /api/auth/register
+\begin{enumerate}
+\item Form data
+\label{sec:org0bfd702}
+\begin{center}
+\begin{tabular}{lll}
+Name & Format & Description\\
+\hline
+username & string & The username of the user\\
+password & string & The password of the user (or hash of the password)\\
+\end{tabular}
+\end{center}
+\item Response
+\label{sec:org9f2bd78}
+\begin{center}
+\begin{tabular}{lll}
+Name & Format & Description\\
+\hline
+success & bool & Whether the register is success\\
+uuid & string & The uuid of the user (only when success)\\
+reason & string & Human readable reason of failure (when fail)\\
+\end{tabular}
+\end{center}
+\end{enumerate}
+\subsubsection{Login}
+\label{sec:org38b7ee0}
+POST /api/auth/login
+\begin{enumerate}
+\item Form data
+\label{sec:org3445e95}
+See POST /api/auth/register
+\item Response
+\label{sec:org4251e91}
+400 error when the username and/or password is not valid.
+\begin{center}
+\begin{tabular}{lll}
+Name & Format & Description\\
+\hline
+uuid & string & The uuid of the user\\
+expires & float & The timestamp when the session expires\\
+token & string & The token of the session\\
+\end{tabular}
+\end{center}
+\end{enumerate}
+\subsection{Model}
+\label{sec:org92f6d09}
+\subsubsection{Parameters}
+\label{sec:orgda8113a}
+POST /api/model/params
+\begin{enumerate}
+\item Form data
+\label{sec:orgb9ff69c}
+\begin{center}
+\begin{tabular}{lll}
+Name & Format & Description\\
+\hline
+learning\_rate & float & The target learning rate\\
+\end{tabular}
+\end{center}
+\item Response
+\label{sec:orgeb7ee58}
+ See GET
+GET /api/model/params
+\item Response
+\label{sec:org423af3d}
+\begin{center}
+\begin{tabular}{lll}
+Name & Format & Description\\
+\hline
+learning\_rate & float & The changed (POST) or original (GET) learning rate\\
+\end{tabular}
+\end{center}
+\end{enumerate}
+\subsubsection{Forward}
+\label{sec:org18b287f}
+POST /api/model/forward
+\begin{enumerate}
+\item Form data
+\label{sec:org2081c90}
+\begin{center}
+\begin{tabular}{lll}
+Name & Format & Description\\
+\hline
+x & int[] & The input data\\
+\end{tabular}
+\end{center}
+\item Response
+\label{sec:orgab97dea}
+See GET /api/model/output
+\end{enumerate}
+\subsubsection{Backward}
+\label{sec:orgfec1eb9}
+GET /api/model/backward
+\begin{enumerate}
+\item Response
+\label{sec:org2118e74}
+See GET /api/model/output
+\end{enumerate}
+\subsubsection{Output}
+\label{sec:orga08bd35}
+GET /api/model/output
+\begin{enumerate}
+\item Response
+\label{sec:orgdaca863}
+\begin{center}
+\begin{tabular}{lll}
+Name & Format & Description\\
+\hline
+A & int & The output data\\
+\end{tabular}
+\end{center}
+\end{enumerate}
+\subsubsection{Optimize}
+\label{sec:org5ba6b08}
+GET /api/model/optimize
+\begin{center}
+\begin{tabular}{lll}
+Name & Format & Description\\
+dW & int[][] & The gradient of W\\
+dB & int & The gradient of B\\
+\end{tabular}
+\end{center}
+\subsubsection{Model}
+\label{sec:org0380756}
+GET /api/model/model
+\begin{enumerate}
+\item Response
+\label{sec:org1103382}
+\begin{center}
+\begin{tabular}{lll}
+Name & Format & Description\\
+\hline
+W & int[][] & The weights matrix\\
+B & int & The bias\\
+\end{tabular}
+\end{center}
+\end{enumerate}
+\end{document}

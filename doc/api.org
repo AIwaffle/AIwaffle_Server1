@@ -1,0 +1,72 @@
+* API Documentation
+  For each API, we use POST to deliver form data, and use json for passing of
+  data structures. The response is a json string.
+** User
+*** Register
+    POST /api/auth/register
+**** Form data
+| Name     | Format | Description                                        |
+|----------+--------+----------------------------------------------------|
+| username | string | The username of the user                           |
+| password | string | The password of the user (or hash of the password) |
+**** Response
+| Name    | Format | Description                                  |
+|---------+--------+----------------------------------------------|
+| success | bool   | Whether the register is success              |
+| uuid    | string | The uuid of the user (only when success)     |
+| reason  | string | Human readable reason of failure (when fail) |
+*** Login
+    POST /api/auth/login
+**** Form data
+     See POST /api/auth/register
+**** Response
+     400 error when the username and/or password is not valid.
+| Name    | Format | Description                            |
+|---------+--------+----------------------------------------|
+| uuid    | string | The uuid of the user                   |
+| expires | float  | The timestamp when the session expires |
+| token   | string | The token of the session              |
+** Model
+*** Parameters
+    POST /api/model/params
+**** Form data
+| Name          | Format | Description              |
+|---------------+--------+--------------------------|
+| learning\under{}rate | float  | The target learning rate |
+**** Response
+     See GET
+    GET /api/model/params
+**** Response
+| Name          | Format | Description                                        |
+|---------------+--------+----------------------------------------------------|
+| learning\under{}rate | float  | The changed (POST) or original (GET) learning rate |
+*** Forward
+    POST /api/model/forward
+**** Form data
+| Name | Format | Description    |
+|------+--------+----------------|
+| x    | int[]  | The input data |
+**** Response
+     See GET /api/model/output
+*** Backward
+    GET /api/model/backward
+**** Response
+     See GET /api/model/output
+*** Output
+    GET /api/model/output
+**** Response
+| Name | Format | Description     |
+|------+--------+-----------------|
+| A    | int    | The output data |
+*** Optimize
+    GET /api/model/optimize
+| Name | Format  | Description       |
+| dW   | int[][] | The gradient of W |
+| dB   | int     | The gradient of B |
+*** Model
+    GET /api/model/model
+**** Response
+| Name | Format  | Description        |
+|------+---------+--------------------|
+| W    | int[][] | The weights matrix |
+| B    | int     | The bias           |
