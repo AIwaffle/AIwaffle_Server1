@@ -2,7 +2,7 @@
   For each API, we use POST to deliver form data, and use json for passing of
   data structures. The response is a json string.
 ** User
-*** Register
+*** Register a new user
     POST /api/auth/register
 **** Form data
 | Name     | Format | Description                                        |
@@ -15,7 +15,7 @@
 | success | bool   | Whether the register is success              |
 | uuid    | string | The uuid of the user (only when success)     |
 | reason  | string | Human readable reason of failure (when fail) |
-*** Login
+*** Login an existing user
     POST /api/auth/login
 **** Form data
      See POST /api/auth/register
@@ -27,7 +27,7 @@
 | expires | float  | The timestamp when the session expires |
 | token   | string | The token of the session              |
 ** Model
-*** Parameters
+*** Get or modify the parameters
 **** Change
      POST /api/model/params
 ***** Form data
@@ -43,7 +43,7 @@
 | Name          | Format | Description                                        |
 |---------------+--------+----------------------------------------------------|
 | learning\under{}rate | float  | The changed (POST) or original (GET) learning rate |
-*** Forward
+*** Forward the model
     POST /api/model/forward
 **** Form data
 | Name | Format | Description    |
@@ -51,22 +51,22 @@
 | x    | int[]  | The input data |
 **** Response
      See GET /api/model/output
-*** Backward
+*** Backward the model
     GET /api/model/backward
 **** Response
      See GET /api/model/output
-*** Output
+*** Get the output of the model
     GET /api/model/output
 **** Response
 | Name | Format | Description     |
 |------+--------+-----------------|
 | A    | int    | The output data |
-*** Optimize
+*** Optimize the model
     GET /api/model/optimize
 | Name | Format  | Description       |
 | dW   | int[][] | The gradient of W |
 | dB   | int     | The gradient of B |
-*** Model
+*** Get the model
     GET /api/model/model
 **** Response
 | Name | Format  | Description        |

@@ -1,4 +1,4 @@
-% Created 2019-11-26 Tue 08:10
+% Created 2019-11-26 Tue 08:14
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -29,17 +29,17 @@
 \tableofcontents
 
 \section{API Documentation}
-\label{sec:orgf1d93eb}
+\label{sec:org7e75f92}
 For each API, we use POST to deliver form data, and use json for passing of
 data structures. The response is a json string.
 \subsection{User}
-\label{sec:org3a1d720}
-\subsubsection{Register}
-\label{sec:orgbf32299}
+\label{sec:org212e285}
+\subsubsection{Register a new user}
+\label{sec:org08d5444}
 POST /api/auth/register
 \begin{enumerate}
 \item Form data
-\label{sec:org8852a24}
+\label{sec:orge56f84a}
 \begin{center}
 \begin{tabular}{lll}
 Name & Format & Description\\
@@ -49,7 +49,7 @@ password & string & The password of the user (or hash of the password)\\
 \end{tabular}
 \end{center}
 \item Response
-\label{sec:org123a97a}
+\label{sec:org9eda3b0}
 \begin{center}
 \begin{tabular}{lll}
 Name & Format & Description\\
@@ -60,15 +60,15 @@ reason & string & Human readable reason of failure (when fail)\\
 \end{tabular}
 \end{center}
 \end{enumerate}
-\subsubsection{Login}
-\label{sec:org477a42b}
+\subsubsection{Login an existing user}
+\label{sec:org8e0696c}
 POST /api/auth/login
 \begin{enumerate}
 \item Form data
-\label{sec:org62ed299}
+\label{sec:org253f954}
 See POST /api/auth/register
 \item Response
-\label{sec:org5c2d377}
+\label{sec:org50b6cc9}
 400 error when the username and/or password is not valid.
 \begin{center}
 \begin{tabular}{lll}
@@ -81,16 +81,16 @@ token & string & The token of the session\\
 \end{center}
 \end{enumerate}
 \subsection{Model}
-\label{sec:org1e08338}
-\subsubsection{Parameters}
-\label{sec:org08a734b}
+\label{sec:org79041a1}
+\subsubsection{Get or modify the parameters}
+\label{sec:org806c4db}
 \begin{enumerate}
 \item Change
-\label{sec:org207bd47}
+\label{sec:org49c27e7}
 POST /api/model/params
 \begin{enumerate}
 \item Form data
-\label{sec:orgbcf20a3}
+\label{sec:org5265526}
 \begin{center}
 \begin{tabular}{lll}
 Name & Format & Description\\
@@ -99,16 +99,16 @@ learning\_rate & float & The target learning rate\\
 \end{tabular}
 \end{center}
 \item Response
-\label{sec:org39cd272}
+\label{sec:orgc14215a}
 See GET /api/model/params
 \end{enumerate}
 
 \item Get
-\label{sec:org763c23c}
+\label{sec:orgc377ffd}
 GET /api/model/params
 \begin{enumerate}
 \item Response
-\label{sec:org682b186}
+\label{sec:org4ca6f7d}
 \begin{center}
 \begin{tabular}{lll}
 Name & Format & Description\\
@@ -118,12 +118,12 @@ learning\_rate & float & The changed (POST) or original (GET) learning rate\\
 \end{center}
 \end{enumerate}
 \end{enumerate}
-\subsubsection{Forward}
-\label{sec:org979a01e}
+\subsubsection{Forward the model}
+\label{sec:orgcf08aeb}
 POST /api/model/forward
 \begin{enumerate}
 \item Form data
-\label{sec:orgfb92061}
+\label{sec:orgc49db25}
 \begin{center}
 \begin{tabular}{lll}
 Name & Format & Description\\
@@ -132,23 +132,23 @@ x & int[] & The input data\\
 \end{tabular}
 \end{center}
 \item Response
-\label{sec:org7249e48}
+\label{sec:orga87a324}
 See GET /api/model/output
 \end{enumerate}
-\subsubsection{Backward}
-\label{sec:org7650fcb}
+\subsubsection{Backward the model}
+\label{sec:org37d6cdd}
 GET /api/model/backward
 \begin{enumerate}
 \item Response
-\label{sec:orga3d67dc}
+\label{sec:orgb191206}
 See GET /api/model/output
 \end{enumerate}
-\subsubsection{Output}
-\label{sec:orgf4739aa}
+\subsubsection{Get the output of the model}
+\label{sec:orgcd52544}
 GET /api/model/output
 \begin{enumerate}
 \item Response
-\label{sec:orgcb51652}
+\label{sec:org509b09b}
 \begin{center}
 \begin{tabular}{lll}
 Name & Format & Description\\
@@ -157,8 +157,8 @@ A & int & The output data\\
 \end{tabular}
 \end{center}
 \end{enumerate}
-\subsubsection{Optimize}
-\label{sec:orgdb45025}
+\subsubsection{Optimize the model}
+\label{sec:org4572f28}
 GET /api/model/optimize
 \begin{center}
 \begin{tabular}{lll}
@@ -167,12 +167,12 @@ dW & int[][] & The gradient of W\\
 dB & int & The gradient of B\\
 \end{tabular}
 \end{center}
-\subsubsection{Model}
-\label{sec:org66ca10e}
+\subsubsection{Get the model}
+\label{sec:org27d0729}
 GET /api/model/model
 \begin{enumerate}
 \item Response
-\label{sec:org959579a}
+\label{sec:org5e5420a}
 \begin{center}
 \begin{tabular}{lll}
 Name & Format & Description\\
