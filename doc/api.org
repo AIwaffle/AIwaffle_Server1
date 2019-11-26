@@ -28,15 +28,18 @@
 | token   | string | The token of the session              |
 ** Model
 *** Parameters
-    POST /api/model/params
-**** Form data
+**** Change
+     POST /api/model/params
+***** Form data
 | Name          | Format | Description              |
 |---------------+--------+--------------------------|
 | learning\under{}rate | float  | The target learning rate |
-**** Response
-     See GET
-    GET /api/model/params
-**** Response
+***** Response
+     See GET /api/model/params
+
+**** Get
+     GET /api/model/params
+***** Response
 | Name          | Format | Description                                        |
 |---------------+--------+----------------------------------------------------|
 | learning\under{}rate | float  | The changed (POST) or original (GET) learning rate |
