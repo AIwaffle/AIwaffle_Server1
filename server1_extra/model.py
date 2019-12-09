@@ -30,7 +30,7 @@ class Model:
         return m_model.evaluate(self.X, self.W, self.Y)
 
     def get_data(self) -> dict:
-        attrs = ["data", "X", "Y", "n", "m", "W", "X", "A"]
+        attrs = ["data", "X", "Y", "n", "m", "W", "A"]
         res = dict()
         for attr in attrs:
             val = self.__getattribute__(attr)

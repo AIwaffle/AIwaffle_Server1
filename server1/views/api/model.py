@@ -5,27 +5,9 @@ import server1.api.model
 bp = flask.Blueprint("api_model", __name__, url_prefix="/api/model")
 
 
-@bp.route("/model", methods=("GET",))
-def model():
-    return server1.api.model.model("model")
-
-
-@bp.route("/params", methods=("GET", "POST"))
-def params():
-    if flask.request.method == "POST":
-        data = flask.request.get_json()
-        learning_rate = data.get("learningRate", None)
-        if learning_rate:
-            return server1.api.model.model("params", learning_rate=learning_rate)
-    return server1.api.model.model("params")
-
-
-@bp.route("/forward/<x>", methods=("POST", "GET"))
-def forward(x):
-    x = list(map(int, x.split("|")))
-    if not x:
-        flask.abort(400)
-    return server1.api.model.model("forward", X=x)
+@bp.route("/forward", methods=("GET",))
+def forward():
+    return server1.api.model.model("forward")
 
 
 @bp.route("/backward", methods=("GET",))
@@ -33,12 +15,16 @@ def backward():
     return server1.api.model.model("backward")
 
 
-@bp.route("/output", methods=("GET",))
-def output():
-    return server1.api.model.model("output")
+@bp.route("/evaluate", methods=("GET",))
+def evaluate():
+    return server1.api.model.model("evaluate")
 
 
-@bp.route("/optimize", methods=("GET",))
-def optimize():
-    server1.api.model.model("optimize")
-    return ""
+@bp.route("/loss", methods=("GET",))
+def loss():
+    return server1.api.model.model("loss")
+
+
+@bp.route("/model", methods=("GET",))
+def model():
+    return server1.api.model.model("data")

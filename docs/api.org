@@ -27,49 +27,39 @@
 | expires | float  | The timestamp when the session expires |
 | token   | string | The token of the session              |
 ** Model
-*** Get or modify the parameters
-**** Change
-     POST /api/model/params
-***** Form data
-| Name          | Format | Description              |
-|---------------+--------+--------------------------|
-| learning\under{}rate | float  | The target learning rate |
-***** Response
-     See GET /api/model/params
-
-**** Get
-     GET /api/model/params
-***** Response
-| Name          | Format | Description                                        |
-|---------------+--------+----------------------------------------------------|
-| learning\under{}rate | float  | The changed (POST) or original (GET) learning rate |
 *** Forward the model
-    POST /api/model/forward
-**** Form data
-| Name | Format | Description    |
-|------+--------+----------------|
-| x    | int[]  | The input data |
+    GET /api/model/forward
 **** Response
-     See GET /api/model/output
+| Name | Format  | Description     |
+|------+---------+-----------------|
+|      | int[][] | Predicted value |
 *** Backward the model
     GET /api/model/backward
 **** Response
-     See GET /api/model/output
-*** Get the output of the model
-    GET /api/model/output
+| Name | Format | Description       |
+|------+--------+-------------------|
+|      | int[][]  | The weight matrix |
+*** Evaluate the model
+    GET /api/model/evaluate
 **** Response
-| Name | Format | Description     |
-|------+--------+-----------------|
-| A    | int    | The output data |
-*** Optimize the model
-    GET /api/model/optimize
-| Name | Format  | Description       |
-| dW   | int[][] | The gradient of W |
-| dB   | int     | The gradient of B |
+| Name | Format | Description              |
+|------+--------+--------------------------|
+|      | int    | The result of evaluation |
+*** Get the loss of the model
+    GET /api/model/loss
+**** Response
+| Name | Format | Description           |
+|------+--------+-----------------------|
+|      | int    | The loss of the model |
 *** Get the model
     GET /api/model/model
 **** Response
-| Name | Format  | Description        |
-|------+---------+--------------------|
-| W    | int[][] | The weights matrix |
-| B    | int     | The bias           |
+| Name | Format  | Description               |
+|------+---------+---------------------------|
+| data | int[][] | The random generated data |
+| X    | int[][] | The input                 |
+| Y    | int[][] | The output                |
+| n    | int     | X.shape[0]                |
+| m    | int     | X.shape[1]                |
+| W    | int[][] | The weight matrix         |
+| A    | int[][] | The predicted value       |
