@@ -1,6 +1,3 @@
-[submodule "AIwaffle"]
-	path = AIwaffle
-	url = https://github.com/IDl0T/AIwaffle.git
 [submodule "elm-neural-net"]
 	path = elm-neural-net
 	url = https://github.com/AlienKevin/elm-neural-net.git

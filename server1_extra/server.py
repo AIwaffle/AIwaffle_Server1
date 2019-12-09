@@ -4,7 +4,7 @@ import socketserver
 
 import numpy as np
 
-from AIwaffle.MLsource.LogisticRegressionModel.source import LogisticRegressionModel as Model
+import server1_extra.model as model
 
 
 class Handler(socketserver.StreamRequestHandler):
@@ -52,6 +52,6 @@ class Server(socketserver.UnixStreamServer):
         Initializes the server
         """
         self.logger = logging.getLogger("server1_model1")
-        self.model = Model()
+        self.model = model.Model()
         self.logger.debug("Activated server")
         super(Server, self).server_activate()
