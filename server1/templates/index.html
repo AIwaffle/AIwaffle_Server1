@@ -1,19 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Nueral Network Visualization</title>
-</head>
-<body>
-    <script src="https://unpkg.com/elm-canvas@2.2/elm-canvas.js"></script>
-    <script src="/static/main.js"></script>
-    <div id="app"></div>
-    <script>
-      var app = Elm.Main.init({
-        node: document.getElementById("app")
-      });
-    </script>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Server1{% endblock %}</h1>
+{% endblock %}
