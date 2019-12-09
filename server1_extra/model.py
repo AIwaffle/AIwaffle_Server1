@@ -1,6 +1,6 @@
 import numpy as np
 
-import AIwaffle.MLsource.LogisticRegressionModel.functional as mmodel
+import AIwaffle.MLsource.LogisticRegressionModel.functional as m_model
 
 
 class Model:
@@ -15,16 +15,26 @@ class Model:
         self.X = np.vstack((np.ones((1, self.m)), self.X))
         self.A = None
 
-    def forward(self):
-        self.A = mmodel.forward(self.X, self.W)
-        return self.A
+    def forward(self) -> list:
+        self.A = m_model.forward(self.X, self.W)
+        return self.A.tolist()
 
-    def backward(self):
-        self.W, _ = mmodel.backward(self.W, self.A, self.Y, 0.01)
-        return self.W
+    def backward(self) -> list:
+        self.W, _ = m_model.backward(self.W, self.A, self.Y, self.X, 0.01)
+        return self.W.tolist()
 
-    def loss(self):
-        return mmodel.compute_loss(self.A, self.Y)
+    def loss(self) -> int:
+        return m_model.compute_loss(self.A, self.Y)
 
-    def evaluate(self):
-        return mmodel.evaluate(self.X, self.W, self.Y)
+    def evaluate(self) -> int:
+        return m_model.evaluate(self.X, self.W, self.Y)
+
+    def get_data(self) -> dict:
+        attrs = ["data", "X", "Y", "n", "m", "W", "X", "A"]
+        res = dict()
+        for attr in attrs:
+            val = self.__getattribute__(attr)
+            if isinstance(val, np.ndarray):
+                val = val.tolist()
+            res.update({attr: val})
+        return res

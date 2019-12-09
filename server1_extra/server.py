@@ -2,9 +2,8 @@ import json
 import logging
 import socketserver
 
-import numpy as np
-
 import server1_extra.model as model
+import AIwaffle.MLsource.LogisticRegressionModel.DataGenerator as data_gen
 
 
 class Handler(socketserver.StreamRequestHandler):
@@ -14,35 +13,28 @@ class Handler(socketserver.StreamRequestHandler):
         """
         data = self.rfile.readline().strip()
         self.server.logger.debug("Data received: {}".format(data))
-        res = self.from_user_input(data.decode())
+        res = self.parse(data.decode())
         self.wfile.write(res.encode())
         self.server.logger.debug("Data sent: {}".format(res))
 
-    def from_user_input(self, data: str) -> str:
-        assert isinstance(self.server.model, Model)
+    def parse(self, data: str) -> str:
+        assert isinstance(self.server.model, model.Model)
         args, kw = json.loads(data)
         print(args, kw)
         if len(args) == 0:
             return ""
-        if args[0] == "model":
-            return json.dumps([list(self.server.model.W), [self.server.model.b]])
-        elif args[0] == "params":
-            if "learning_rate" in kw:
-                self.server.model.learningRate = float(kw["learning_rate"])
-            return json.dumps(self.server.model.learningRate)
-        elif args[0] == "forward":
-            if "X" not in kw:
-                return ""
-            x = np.array(kw["X"])
-            return json.dumps(self.server.model.forward(x))
-        elif args[0] == "backward":
-            self.server.model.backward()
-            return json.dumps(self.server.model.A)
-        elif args[0] == "output":
-            return json.dumps(self.server.model.A)
-        elif args[0] == "optimize":
-            self.server.model.optimize()
-            return ""
+        command = args[0]
+        if command == "forward":
+            return json.dumps(self.server.model.forward())
+        elif command == "backward":
+            return json.dumps(self.server.model.backward())
+        elif command == "loss":
+            return json.dumps(self.server.model.loss())
+        elif command == "evaluate":
+            return json.dumps(self.server.model.evaluate())
+        elif command == "data":
+            return json.dumps(self.server.model.get_data())
+        return ""
 
 
 class Server(socketserver.UnixStreamServer):
@@ -52,6 +44,7 @@ class Server(socketserver.UnixStreamServer):
         Initializes the server
         """
         self.logger = logging.getLogger("server1_model1")
-        self.model = model.Model()
+        data = data_gen.generate_data(100, 1, 0, noise=0.2)
+        self.model = model.Model(data)
         self.logger.debug("Activated server")
         super(Server, self).server_activate()
