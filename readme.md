@@ -36,3 +36,9 @@ Sending and receiving JSON objects
 Licensed under the MIT license
 
 Copyright 2019 <jimmy-zx, DanielDAIDLaw>
+### Model
+ - [jimmy-zx/AIwaffle](https://github.com/jimmy-zx/AIwaffle)
+forked from [IDl0T/AIwaffle](https://github.com/IDl0T/AIwaffle)
+### Front end
+ - [AlienKevin/elm-neural-net](https://github.com/AlienKevin/elm-neural-net)
+ - [Flask example](https://github.com/pallets/flask)
