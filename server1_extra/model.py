@@ -13,15 +13,16 @@ class Model:
         self.m = self.X.shape[1]
         self.W = np.random.randn(1, self.n + 1)
         self.X = np.vstack((np.ones((1, self.m)), self.X))
+        self.dW = None
         self.A = None
 
     def forward(self) -> list:
         self.A = m_model.forward(self.X, self.W)
         return self.A.tolist()
 
-    def backward(self) -> list:
-        self.W, _ = m_model.backward(self.W, self.A, self.Y, self.X, 0.01)
-        return self.W.tolist()
+    def backward(self) -> tuple:
+        self.W, self.dW = m_model.backward(self.W, self.A, self.Y, self.X, 0.01)
+        return self.W.tolist(), self.dW.tolist()
 
     def loss(self) -> int:
         return m_model.compute_loss(self.A, self.Y)

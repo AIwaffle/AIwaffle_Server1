@@ -36,9 +36,10 @@
 *** Backward the model
     GET /api/model/backward
 **** Response
-| Name | Format | Description       |
-|------+--------+-------------------|
-|      | int[][]  | The weight matrix |
+| Name | Format  | Description         |
+|------+---------+---------------------|
+|      | int[][] | The weight matrix   |
+|      | int[][] | The gradient matrix |
 *** Evaluate the model
     GET /api/model/evaluate
 **** Response

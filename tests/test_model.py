@@ -14,7 +14,7 @@ def test_forward(client):
 def test_backward(client):
     response = client.get("/api/model/backward")
     assert response.status_code == 200
-    json.loads(response.data)
+    assert len(json.loads(response.data)) == 2
 
 def test_loss(client):
     response = client.get("/api/model/loss")
