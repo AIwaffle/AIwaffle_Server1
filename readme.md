@@ -16,7 +16,7 @@ Models
  - **/auth/logout** logout for user
  - **/model/** the model view (TODO)
 #### API
-See [doc/api.md](/doc/api.md) for details
+See [docs/api.md](docs/api.md) for details
 #### Other routes
  - **/static** static files
 ### Extra server
@@ -29,8 +29,8 @@ Sending and receiving JSON objects
  - A numpy model
 ## Development notes
 ### TODOs
- - [ ] TODO: Implement model api
- - [ ] TODO: Complete model tests
+ - [x] TODO: Implement model api
+ - [x] TODO: Complete model tests
  - [x] TODO: Complete general tests
 ## License and copyright
 Licensed under the MIT license
