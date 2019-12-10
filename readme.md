@@ -32,6 +32,8 @@ Sending and receiving JSON objects
  - [x] TODO: Implement model api
  - [x] TODO: Complete model tests
  - [x] TODO: Complete general tests
+ - [x] TODO: Complete login for model API
+ - [ ] TODO: Complete test api auth
 ## License and copyright
 Licensed under the MIT license
 

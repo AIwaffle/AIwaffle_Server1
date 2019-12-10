@@ -51,6 +51,11 @@ class AuthActions:
         return self._client.get("/auth/logout")
 
 
+class APIAuthActions:
+    # TODO: Complete APIAuthActions
+    pass
+
+
 @pytest.fixture
 def auth(client):
     return AuthActions(client)

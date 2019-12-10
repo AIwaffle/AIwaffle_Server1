@@ -1,3 +1,5 @@
+import functools
+
 import flask
 
 import server1.api.auth
@@ -42,3 +44,27 @@ def login():
         flask.abort(400)
     else:
         return res
+
+
+@bp.before_app_request
+def load_logged_in_user():
+    db = server1.db.get_db()
+    c_uuid = flask.request.form.get("uuid", None)
+    expires = flask.request.form.get("expires", None)
+    token = flask.session.form.get("token", None)
+    if c_uuid is None or expires is None or token is None:
+        flask.g.user = None
+        return
+    else:
+        flask.g.user = server1.api.auth.load_logged_in_user(c_uuid, expires, token, db)
+
+
+def login_required(view):
+    @functools.wraps(view)
+    def wrapped_view(**kwargs):
+        if flask.g.user is None:
+            flask.abort(400)
+
+        return view(**kwargs)
+
+    return wrapped_view

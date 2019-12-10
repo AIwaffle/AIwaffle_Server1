@@ -25,35 +25,43 @@
 |---------+--------+----------------------------------------|
 | uuid    | string | The uuid of the user                   |
 | expires | float  | The timestamp when the session expires |
-| token   | string | The token of the session              |
+| token   | string | The token of the session               |
 ** Model
+*** General
+    POST /api/model/*
+**** Form data
+| Name    | Format | Description                            |
+|---------+--------+----------------------------------------|
+| uuid    | string | The uuid of the user                   |
+| expires | float  | The timestamp when the session expires |
+| token   | string | The token of the session               |
 *** Forward the model
-    GET /api/model/forward
+    POST /api/model/forward
 **** Response
 | Name | Format  | Description     |
 |------+---------+-----------------|
 |      | int[][] | Predicted value |
 *** Backward the model
-    GET /api/model/backward
+    POST /api/model/backward
 **** Response
 | Name | Format  | Description         |
 |------+---------+---------------------|
 |      | int[][] | The weight matrix   |
 |      | int[][] | The gradient matrix |
 *** Evaluate the model
-    GET /api/model/evaluate
+    POST /api/model/evaluate
 **** Response
 | Name | Format | Description              |
 |------+--------+--------------------------|
 |      | int    | The result of evaluation |
 *** Get the loss of the model
-    GET /api/model/loss
+    POST /api/model/loss
 **** Response
 | Name | Format | Description           |
 |------+--------+-----------------------|
 |      | int    | The loss of the model |
 *** Get the model
-    GET /api/model/model
+    POST /api/model/model
 **** Response
 | Name | Format  | Description               |
 |------+---------+---------------------------|
