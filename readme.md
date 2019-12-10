@@ -16,7 +16,7 @@ Models
  - **/auth/logout** logout for user
  - **/model/** the model view (TODO)
 #### API
-See [doc/api.md](/doc/api.org) for details
+See [doc/api.md](/doc/api.md) for details
 #### Other routes
  - **/static** static files
 ### Extra server
