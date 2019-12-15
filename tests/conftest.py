@@ -52,10 +52,21 @@ class AuthActions:
 
 
 class APIAuthActions:
-    # TODO: Complete APIAuthActions
-    pass
+    def __init__(self, client):
+        self._client = client
+
+    def login(self, username="test_u1", password="a"):
+        return self._client.post("/api/auth/login", data={"username": username, "password": password})
+
+    def logout(self):
+        return self._client.get("/api/auth/logout")
 
 
 @pytest.fixture
 def auth(client):
     return AuthActions(client)
+
+
+@pytest.fixture
+def api_auth(client):
+    return APIAuthActions(client)
