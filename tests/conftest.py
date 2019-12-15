@@ -51,15 +51,12 @@ class AuthActions:
         return self._client.get("/auth/logout")
 
 
-class APIAuthActions:
+class APIModelActions:
     def __init__(self, client):
         self._client = client
 
-    def login(self, username="test_u1", password="a"):
-        return self._client.post("/api/auth/login", data={"username": username, "password": password})
-
-    def logout(self):
-        return self._client.get("/api/auth/logout")
+    def new(self):
+        return self._client.get("/api/model/new")
 
 
 @pytest.fixture
@@ -68,5 +65,5 @@ def auth(client):
 
 
 @pytest.fixture
-def api_auth(client):
-    return APIAuthActions(client)
+def api_model(client):
+    return APIModelActions(client)

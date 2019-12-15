@@ -18,22 +18,26 @@ class Handler(socketserver.StreamRequestHandler):
         self.server.logger.debug("Data sent: {}".format(res))
 
     def parse(self, data: str) -> str:
-        assert isinstance(self.server.model, model.Model)
         args, kw = json.loads(data)
         print(args, kw)
         if len(args) == 0:
             return ""
         command = args[0]
-        if command == "forward":
-            return json.dumps(self.server.model.forward())
+        session_id = kw["sid"]
+        if command == "new":
+            if session_id in self.server.models:
+                return ""
+            self.server.models[session_id] = model.Model(self.server.data)
+        elif command == "forward":
+            return json.dumps(self.server.models[session_id].forward())
         elif command == "backward":
-            return json.dumps(self.server.model.backward())
+            return json.dumps(self.server.models[session_id].backward())
         elif command == "loss":
-            return json.dumps(self.server.model.loss())
+            return json.dumps(self.server.models[session_id].loss())
         elif command == "evaluate":
-            return json.dumps(self.server.model.evaluate())
+            return json.dumps(self.server.models[session_id].evaluate())
         elif command == "data":
-            return json.dumps(self.server.model.get_data())
+            return json.dumps(self.server.models[session_id].get_data())
         return ""
 
 
@@ -44,7 +48,7 @@ class Server(socketserver.UnixStreamServer):
         Initializes the server
         """
         self.logger = logging.getLogger("server1_model1")
-        data = data_gen.generate_data(100, 1, 0, noise=0.2)
-        self.model = model.Model(data)
+        self.data = data_gen.generate_data(100, 1, 0, noise=0.2)
+        self.models = dict()
         self.logger.debug("Activated server")
         super(Server, self).server_activate()
