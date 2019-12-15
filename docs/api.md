@@ -1,21 +1,21 @@
 
 # Table of Contents
 
-1.  [API Documentation](#org5aacb20)
-    1.  [User](#org2e79e20)
-        1.  [Register a new user](#orgf2a0d7d)
-        2.  [Login an existing user](#orgac94874)
-    2.  [Model](#org279ba27)
-        1.  [New session](#orga3365a7)
-        2.  [General for all the following](#org788d8aa)
-        3.  [Forward the model](#org33fde04)
-        4.  [Backward the model](#orgf9ea7bd)
-        5.  [Evaluate the model](#org6802cc6)
-        6.  [Get the loss of the model](#org9fd5757)
-        7.  [Get the model](#org50eb6da)
+1.  [API Documentation](#org1d13e10)
+    1.  [User](#orga61740e)
+        1.  [Register a new user](#org0c3a474)
+        2.  [Login an existing user](#orgb69fc98)
+    2.  [Model](#org2a1ff18)
+        1.  [New session](#org076eeb0)
+        2.  [General for all the following](#org5e96ceb)
+        3.  [Forward the model](#orgb9431ba)
+        4.  [Backward the model](#org2dc017a)
+        5.  [Evaluate the model](#org6ef7196)
+        6.  [Get the loss of the model](#org7dd6926)
+        7.  [Get the model](#orge6b223a)
 
 
-<a id="org5aacb20"></a>
+<a id="org1d13e10"></a>
 
 # API Documentation
 
@@ -23,12 +23,12 @@ For each API, we use POST to deliver form data, and use json for passing of
 data structures. The response is a json string.
 
 
-<a id="org2e79e20"></a>
+<a id="orga61740e"></a>
 
 ## User
 
 
-<a id="orgf2a0d7d"></a>
+<a id="org0c3a474"></a>
 
 ### Register a new user
 
@@ -114,7 +114,7 @@ POST /api/auth/register
     </table>
 
 
-<a id="orgac94874"></a>
+<a id="orgb69fc98"></a>
 
 ### Login an existing user
 
@@ -170,12 +170,12 @@ POST /api/auth/login
     </table>
 
 
-<a id="org279ba27"></a>
+<a id="org2a1ff18"></a>
 
 ## Model
 
 
-<a id="orga3365a7"></a>
+<a id="org076eeb0"></a>
 
 ### New session
 
@@ -211,7 +211,7 @@ GET /api/model/new
     </table>
 
 
-<a id="org788d8aa"></a>
+<a id="org5e96ceb"></a>
 
 ### General for all the following
 
@@ -239,7 +239,7 @@ POST /api/model/\*
     
     <tbody>
     <tr>
-    <td class="org-left">&#xa0;</td>
+    <td class="org-left">session<sub>id</sub></td>
     <td class="org-left">string</td>
     <td class="org-left">The id of the model session</td>
     </tr>
@@ -247,7 +247,7 @@ POST /api/model/\*
     </table>
 
 
-<a id="org33fde04"></a>
+<a id="orgb9431ba"></a>
 
 ### Forward the model
 
@@ -283,7 +283,7 @@ POST /api/model/forward
     </table>
 
 
-<a id="orgf9ea7bd"></a>
+<a id="org2dc017a"></a>
 
 ### Backward the model
 
@@ -326,7 +326,7 @@ POST /api/model/backward
     </table>
 
 
-<a id="org6802cc6"></a>
+<a id="org6ef7196"></a>
 
 ### Evaluate the model
 
@@ -362,7 +362,7 @@ POST /api/model/evaluate
     </table>
 
 
-<a id="org9fd5757"></a>
+<a id="org7dd6926"></a>
 
 ### Get the loss of the model
 
@@ -398,7 +398,7 @@ POST /api/model/loss
     </table>
 
 
-<a id="org50eb6da"></a>
+<a id="orge6b223a"></a>
 
 ### Get the model
 

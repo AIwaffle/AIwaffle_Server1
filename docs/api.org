@@ -36,9 +36,9 @@
 *** General for all the following
     POST /api/model/*
 **** Form data
-| Name    | Format | Description                            |
-|---------+--------+----------------------------------------|
-|         | string | The id of the model session            |
+| Name       | Format | Description                            |
+|------------+--------+----------------------------------------|
+| session_id | string | The id of the model session            |
 *** Forward the model
     POST /api/model/forward
 **** Response
