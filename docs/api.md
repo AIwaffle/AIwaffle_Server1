@@ -1,21 +1,22 @@
 
 # Table of Contents
 
-1.  [API Documentation](#org1d13e10)
-    1.  [User](#orga61740e)
-        1.  [Register a new user](#org0c3a474)
-        2.  [Login an existing user](#orgb69fc98)
-    2.  [Model](#org2a1ff18)
-        1.  [New session](#org076eeb0)
-        2.  [General for all the following](#org5e96ceb)
-        3.  [Forward the model](#orgb9431ba)
-        4.  [Backward the model](#org2dc017a)
-        5.  [Evaluate the model](#org6ef7196)
-        6.  [Get the loss of the model](#org7dd6926)
-        7.  [Get the model](#orge6b223a)
+1.  [API Documentation](#org51cb485)
+    1.  [User](#org10d7b6c)
+        1.  [Register a new user](#orgcce3137)
+        2.  [Login an existing user](#org1a2e977)
+    2.  [Model](#org01fc33e)
+        1.  [New session](#orgb6d5430)
+        2.  [General for all the following](#org96e534f)
+        3.  [Forward the model](#orga6fabfc)
+        4.  [Backward the model](#orgedb2ea8)
+        5.  [Optimize the model](#orgdb0696f)
+        6.  [Get the loss of the model](#orgbd3cf19)
+        7.  [Get the model](#org47fce46)
+        8.  [Iterate one step](#org2c96456)
 
 
-<a id="org1d13e10"></a>
+<a id="org51cb485"></a>
 
 # API Documentation
 
@@ -23,12 +24,12 @@ For each API, we use POST to deliver form data, and use json for passing of
 data structures. The response is a json string.
 
 
-<a id="orga61740e"></a>
+<a id="org10d7b6c"></a>
 
 ## User
 
 
-<a id="org0c3a474"></a>
+<a id="orgcce3137"></a>
 
 ### Register a new user
 
@@ -114,7 +115,7 @@ POST /api/auth/register
     </table>
 
 
-<a id="orgb69fc98"></a>
+<a id="org1a2e977"></a>
 
 ### Login an existing user
 
@@ -170,12 +171,12 @@ POST /api/auth/login
     </table>
 
 
-<a id="org2a1ff18"></a>
+<a id="org01fc33e"></a>
 
 ## Model
 
 
-<a id="org076eeb0"></a>
+<a id="orgb6d5430"></a>
 
 ### New session
 
@@ -211,13 +212,13 @@ GET /api/model/new
     </table>
 
 
-<a id="org5e96ceb"></a>
+<a id="org96e534f"></a>
 
 ### General for all the following
 
 POST /api/model/\*
 
-1.  Form data
+1.  JSON data
 
     <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
     
@@ -247,13 +248,42 @@ POST /api/model/\*
     </table>
 
 
-<a id="orgb9431ba"></a>
+<a id="orga6fabfc"></a>
 
 ### Forward the model
 
 POST /api/model/forward
 
-1.  Response
+1.  JSON data
+
+    <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+    
+    
+    <colgroup>
+    <col  class="org-left" />
+    
+    <col  class="org-left" />
+    
+    <col  class="org-left" />
+    </colgroup>
+    <thead>
+    <tr>
+    <th scope="col" class="org-left">Name</th>
+    <th scope="col" class="org-left">Format</th>
+    <th scope="col" class="org-left">Description</th>
+    </tr>
+    </thead>
+    
+    <tbody>
+    <tr>
+    <td class="org-left">X</td>
+    <td class="org-left">int[][]</td>
+    <td class="org-left">The input value</td>
+    </tr>
+    </tbody>
+    </table>
+
+2.  Response
 
     <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
     
@@ -283,13 +313,13 @@ POST /api/model/forward
     </table>
 
 
-<a id="org2dc017a"></a>
+<a id="orgedb2ea8"></a>
 
 ### Backward the model
 
 POST /api/model/backward
 
-1.  Response
+1.  JSON data
 
     <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
     
@@ -311,26 +341,55 @@ POST /api/model/backward
     
     <tbody>
     <tr>
-    <td class="org-left">&#xa0;</td>
-    <td class="org-left">int[][]</td>
+    <td class="org-left">Y</td>
+    <td class="org-left">int[]</td>
+    <td class="org-left">The real value</td>
+    </tr>
+    </tbody>
+    </table>
+
+2.  Response
+
+    <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+    
+    
+    <colgroup>
+    <col  class="org-left" />
+    
+    <col  class="org-left" />
+    
+    <col  class="org-left" />
+    </colgroup>
+    <thead>
+    <tr>
+    <th scope="col" class="org-left">Name</th>
+    <th scope="col" class="org-left">Format</th>
+    <th scope="col" class="org-left">Description</th>
+    </tr>
+    </thead>
+    
+    <tbody>
+    <tr>
+    <td class="org-left">params</td>
+    <td class="org-left">int[][][]</td>
     <td class="org-left">The weight matrix</td>
     </tr>
     
     
     <tr>
-    <td class="org-left">&#xa0;</td>
-    <td class="org-left">int[][]</td>
+    <td class="org-left">grads</td>
+    <td class="org-left">int[][][]</td>
     <td class="org-left">The gradient matrix</td>
     </tr>
     </tbody>
     </table>
 
 
-<a id="org6ef7196"></a>
+<a id="orgdb0696f"></a>
 
-### Evaluate the model
+### Optimize the model
 
-POST /api/model/evaluate
+POST /api/model/optimize
 
 1.  Response
 
@@ -354,21 +413,57 @@ POST /api/model/evaluate
     
     <tbody>
     <tr>
-    <td class="org-left">&#xa0;</td>
-    <td class="org-left">int</td>
-    <td class="org-left">The result of evaluation</td>
+    <td class="org-left">params</td>
+    <td class="org-left">int[][][]</td>
+    <td class="org-left">The weight matrix</td>
+    </tr>
+    
+    
+    <tr>
+    <td class="org-left">grads</td>
+    <td class="org-left">int[][][]</td>
+    <td class="org-left">The gradient matrix</td>
     </tr>
     </tbody>
     </table>
 
 
-<a id="org7dd6926"></a>
+<a id="orgbd3cf19"></a>
 
 ### Get the loss of the model
 
 POST /api/model/loss
 
-1.  Response
+1.  JSON data
+
+    <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+    
+    
+    <colgroup>
+    <col  class="org-left" />
+    
+    <col  class="org-left" />
+    
+    <col  class="org-left" />
+    </colgroup>
+    <thead>
+    <tr>
+    <th scope="col" class="org-left">Name</th>
+    <th scope="col" class="org-left">Format</th>
+    <th scope="col" class="org-left">Description</th>
+    </tr>
+    </thead>
+    
+    <tbody>
+    <tr>
+    <td class="org-left">Y</td>
+    <td class="org-left">int[]</td>
+    <td class="org-left">The real value</td>
+    </tr>
+    </tbody>
+    </table>
+
+2.  Response
 
     <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
     
@@ -398,7 +493,7 @@ POST /api/model/loss
     </table>
 
 
-<a id="orge6b223a"></a>
+<a id="org47fce46"></a>
 
 ### Get the model
 
@@ -426,51 +521,102 @@ POST /api/model/model
     
     <tbody>
     <tr>
-    <td class="org-left">data</td>
-    <td class="org-left">int[][]</td>
-    <td class="org-left">The random generated data</td>
-    </tr>
-    
-    
-    <tr>
-    <td class="org-left">X</td>
-    <td class="org-left">int[][]</td>
-    <td class="org-left">The input</td>
-    </tr>
-    
-    
-    <tr>
-    <td class="org-left">Y</td>
-    <td class="org-left">int[][]</td>
-    <td class="org-left">The output</td>
-    </tr>
-    
-    
-    <tr>
-    <td class="org-left">n</td>
-    <td class="org-left">int</td>
-    <td class="org-left">X.shape[0]</td>
-    </tr>
-    
-    
-    <tr>
-    <td class="org-left">m</td>
-    <td class="org-left">int</td>
-    <td class="org-left">X.shape[1]</td>
-    </tr>
-    
-    
-    <tr>
-    <td class="org-left">W</td>
-    <td class="org-left">int[][]</td>
+    <td class="org-left">params</td>
+    <td class="org-left">int[][][]</td>
     <td class="org-left">The weight matrix</td>
     </tr>
     
     
     <tr>
-    <td class="org-left">A</td>
+    <td class="org-left">grads</td>
+    <td class="org-left">int[][][]</td>
+    <td class="org-left">The gradient matrix</td>
+    </tr>
+    </tbody>
+    </table>
+
+
+<a id="org2c96456"></a>
+
+### Iterate one step
+
+POST /api/model/iter
+
+1.  JSON data
+
+    <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+    
+    
+    <colgroup>
+    <col  class="org-left" />
+    
+    <col  class="org-left" />
+    
+    <col  class="org-left" />
+    </colgroup>
+    <thead>
+    <tr>
+    <th scope="col" class="org-left">Name</th>
+    <th scope="col" class="org-left">Format</th>
+    <th scope="col" class="org-left">Description</th>
+    </tr>
+    </thead>
+    
+    <tbody>
+    <tr>
+    <td class="org-left">X</td>
     <td class="org-left">int[][]</td>
-    <td class="org-left">The predicted value</td>
+    <td class="org-left">The input value</td>
+    </tr>
+    
+    
+    <tr>
+    <td class="org-left">Y</td>
+    <td class="org-left">int[]</td>
+    <td class="org-left">The real value</td>
+    </tr>
+    </tbody>
+    </table>
+
+2.  Response
+
+    <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+    
+    
+    <colgroup>
+    <col  class="org-left" />
+    
+    <col  class="org-left" />
+    
+    <col  class="org-left" />
+    </colgroup>
+    <thead>
+    <tr>
+    <th scope="col" class="org-left">Name</th>
+    <th scope="col" class="org-left">Format</th>
+    <th scope="col" class="org-left">Description</th>
+    </tr>
+    </thead>
+    
+    <tbody>
+    <tr>
+    <td class="org-left">params</td>
+    <td class="org-left">int[][][]</td>
+    <td class="org-left">The weight matrix</td>
+    </tr>
+    
+    
+    <tr>
+    <td class="org-left">grads</td>
+    <td class="org-left">int[][][]</td>
+    <td class="org-left">The gradient matrix</td>
+    </tr>
+    
+    
+    <tr>
+    <td class="org-left">output</td>
+    <td class="org-left">int[][]</td>
+    <td class="org-left">Predicted value</td>
     </tr>
     </tbody>
     </table>
