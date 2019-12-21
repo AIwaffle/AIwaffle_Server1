@@ -3,7 +3,6 @@ import logging
 import socketserver
 
 import server1_extra.model as model
-import AIwaffle.MLsource.LogisticRegressionModel.DataGenerator as data_gen
 
 
 class Handler(socketserver.StreamRequestHandler):
@@ -27,18 +26,29 @@ class Handler(socketserver.StreamRequestHandler):
         if command == "new":
             if session_id in self.server.models:
                 return ""
-            self.server.models[session_id] = model.Model(self.server.data)
-        elif command == "forward":
-            return json.dumps(self.server.models[session_id].forward())
+            self.server.models[session_id] = model.Model([2, 4, 3])
+            return ""
+        if session_id not in self.server.models:
+            self.server.logger.error("sid does not exist")
+        if command == "forward":
+            x = kw["X"]
+            return json.dumps(self.server.models[session_id].forward(x))
         elif command == "backward":
-            return json.dumps(self.server.models[session_id].backward())
+            y = kw["Y"]
+            return json.dumps(self.server.models[session_id].backward(y))
+        elif command == "optimize":
+            return json.dumps(self.server.models[session_id].optimize())
         elif command == "loss":
-            return json.dumps(self.server.models[session_id].loss())
-        elif command == "evaluate":
-            return json.dumps(self.server.models[session_id].evaluate())
+            y = kw["Y"]
+            print(y)
+            return json.dumps(self.server.models[session_id].loss(y))
         elif command == "data":
             return json.dumps(self.server.models[session_id].get_data())
-        return ""
+        elif command == "iter":
+            x = kw["X"]
+            y = kw["Y"]
+            return json.dumps(self.server.models[session_id].iter_(x, y))
+        self.server.logger.error("Unknown command")
 
 
 class Server(socketserver.UnixStreamServer):
@@ -48,7 +58,6 @@ class Server(socketserver.UnixStreamServer):
         Initializes the server
         """
         self.logger = logging.getLogger("server1_model1")
-        self.data = data_gen.generate_data(100, 1, 0, noise=0.2)
         self.models = dict()
         self.logger.debug("Activated server")
         super(Server, self).server_activate()

@@ -1,41 +1,42 @@
+import torch
 import numpy as np
 
-import AIwaffle.MLsource.LogisticRegressionModel.functional as m_model
+import AIwaffle.MLsource.SimpleClassificationModel.SimpleClassificationNetwork as SCN
 
 
 class Model:
-    def __init__(self, data):
-        self.data = data
-        self.X = self.data.T[0:2, :]
-        self.Y = self.data.T[2, :]
-        self.Y = self.Y.reshape((1, -1))
-        self.n = self.X.shape[0]
-        self.m = self.X.shape[1]
-        self.W = np.random.randn(1, self.n + 1)
-        self.X = np.vstack((np.ones((1, self.m)), self.X))
-        self.dW = None
-        self.A = None
+    def __init__(self, size_list, learning_rate=0.01):
+        self.obj = SCN.SimpleClassificationNetwork(size_list, learning_rate)
 
-    def forward(self) -> list:
-        self.A = m_model.forward(self.X, self.W)
-        return self.A.tolist()
+    def forward(self, x: list) -> list:
+        res = self.obj.forward(torch.tensor(x))
+        return list(map(lambda a: a.tolist(), res))
 
-    def backward(self) -> tuple:
-        self.W, self.dW = m_model.backward(self.W, self.A, self.Y, self.X, 0.01)
-        return self.W.tolist(), self.dW.tolist()
+    def backward(self, y: list) -> dict:
+        self.obj.compute_loss(torch.tensor(y))
+        self.obj.backward()
+        return self.get_data()
 
-    def loss(self) -> int:
-        return m_model.compute_loss(self.A, self.Y)
+    def optimize(self) -> dict:
+        self.obj.optimize()
+        return self.get_data()
 
-    def evaluate(self) -> int:
-        return m_model.evaluate(self.X, self.W, self.Y)
+    def loss(self, y: list) -> float:
+        return self.obj.compute_loss(torch.tensor(y))
 
     def get_data(self) -> dict:
-        attrs = ["data", "X", "Y", "n", "m", "W", "A"]
-        res = dict()
-        for attr in attrs:
-            val = self.__getattribute__(attr)
-            if isinstance(val, np.ndarray):
-                val = val.tolist()
-            res.update({attr: val})
+        params = self.obj.get_params()
+        params = list(map(lambda a: a.tolist(), params))
+        grads = self.obj.get_grads()
+        grads = list(map(lambda a: a.tolist(), grads))
+        return {
+            "params": params,
+            "grads": grads,
+        }
+
+    def iter_(self, x: list, y: list) -> dict:
+        output = self.forward(x)
+        self.backward(y)
+        res = self.get_data()
+        res.update({"output": output})
         return res

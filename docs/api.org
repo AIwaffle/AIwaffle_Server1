@@ -48,10 +48,10 @@
 *** Backward the model
     POST /api/model/backward
 **** Response
-| Name | Format  | Description         |
-|------+---------+---------------------|
-|      | int[][] | The weight matrix   |
-|      | int[][] | The gradient matrix |
+| Name | Format    | Description         |
+|------+-----------+---------------------|
+|      | int[][][] | The weight matrix   |
+|      | int[][][] | The gradient matrix |
 *** Evaluate the model
     POST /api/model/evaluate
 **** Response
@@ -67,12 +67,12 @@
 *** Get the model
     POST /api/model/model
 **** Response
-| Name | Format  | Description               |
-|------+---------+---------------------------|
-| data | int[][] | The random generated data |
-| X    | int[][] | The input                 |
-| Y    | int[][] | The output                |
-| n    | int     | X.shape[0]                |
-| m    | int     | X.shape[1]                |
-| W    | int[][] | The weight matrix         |
-| A    | int[][] | The predicted value       |
+| Name | Format    | Description               |
+|------+-----------+---------------------------|
+| data | int[][]   | The random generated data |
+| X    | int[][]   | The input                 |
+| Y    | int[][]   | The output                |
+| n    | int       | X.shape[0]                |
+| m    | int       | X.shape[1]                |
+| W    | int[][][] | The weight matrix         |
+| A    | int[][]   | The predicted value       |

@@ -14,5 +14,4 @@ def model(*args, **kw):
         res = rfile.readline().strip()
         wfile.close()
         rfile.close()
-        print(res)
         return res
