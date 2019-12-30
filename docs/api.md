@@ -1,22 +1,22 @@
 
 # Table of Contents
 
-1.  [API Documentation](#org51cb485)
-    1.  [User](#org10d7b6c)
-        1.  [Register a new user](#orgcce3137)
-        2.  [Login an existing user](#org1a2e977)
-    2.  [Model](#org01fc33e)
-        1.  [New session](#orgb6d5430)
-        2.  [General for all the following](#org96e534f)
-        3.  [Forward the model](#orga6fabfc)
-        4.  [Backward the model](#orgedb2ea8)
-        5.  [Optimize the model](#orgdb0696f)
-        6.  [Get the loss of the model](#orgbd3cf19)
-        7.  [Get the model](#org47fce46)
-        8.  [Iterate one step](#org2c96456)
+1.  [API Documentation](#org84fe6ec)
+    1.  [User](#org298d2ae)
+        1.  [Register a new user](#orgabde7d7)
+        2.  [Login an existing user](#org3293df4)
+    2.  [Model](#org0edbd65)
+        1.  [New session](#org2233b5e)
+        2.  [General for all the following](#orgbe6ea0a)
+        3.  [Forward the model](#org02fa337)
+        4.  [Backward the model](#orgaa17cba)
+        5.  [Optimize the model](#org68ab131)
+        6.  [Get the loss of the model](#org6c83084)
+        7.  [Get the model](#orgc30fc3b)
+        8.  [Iterate one step](#orgd823592)
 
 
-<a id="org51cb485"></a>
+<a id="org84fe6ec"></a>
 
 # API Documentation
 
@@ -24,12 +24,12 @@ For each API, we use POST to deliver form data, and use json for passing of
 data structures. The response is a json string.
 
 
-<a id="org10d7b6c"></a>
+<a id="org298d2ae"></a>
 
 ## User
 
 
-<a id="orgcce3137"></a>
+<a id="orgabde7d7"></a>
 
 ### Register a new user
 
@@ -115,7 +115,7 @@ POST /api/auth/register
     </table>
 
 
-<a id="org1a2e977"></a>
+<a id="org3293df4"></a>
 
 ### Login an existing user
 
@@ -171,12 +171,12 @@ POST /api/auth/login
     </table>
 
 
-<a id="org01fc33e"></a>
+<a id="org0edbd65"></a>
 
 ## Model
 
 
-<a id="orgb6d5430"></a>
+<a id="org2233b5e"></a>
 
 ### New session
 
@@ -212,7 +212,7 @@ GET /api/model/new
     </table>
 
 
-<a id="org96e534f"></a>
+<a id="orgbe6ea0a"></a>
 
 ### General for all the following
 
@@ -248,7 +248,7 @@ POST /api/model/\*
     </table>
 
 
-<a id="orga6fabfc"></a>
+<a id="org02fa337"></a>
 
 ### Forward the model
 
@@ -313,7 +313,7 @@ POST /api/model/forward
     </table>
 
 
-<a id="orgedb2ea8"></a>
+<a id="orgaa17cba"></a>
 
 ### Backward the model
 
@@ -385,7 +385,7 @@ POST /api/model/backward
     </table>
 
 
-<a id="orgdb0696f"></a>
+<a id="org68ab131"></a>
 
 ### Optimize the model
 
@@ -428,7 +428,7 @@ POST /api/model/optimize
     </table>
 
 
-<a id="orgbd3cf19"></a>
+<a id="org6c83084"></a>
 
 ### Get the loss of the model
 
@@ -493,7 +493,7 @@ POST /api/model/loss
     </table>
 
 
-<a id="org47fce46"></a>
+<a id="orgc30fc3b"></a>
 
 ### Get the model
 
@@ -536,7 +536,7 @@ POST /api/model/model
     </table>
 
 
-<a id="org2c96456"></a>
+<a id="orgd823592"></a>
 
 ### Iterate one step
 
@@ -564,16 +564,9 @@ POST /api/model/iter
     
     <tbody>
     <tr>
-    <td class="org-left">X</td>
-    <td class="org-left">int[][]</td>
-    <td class="org-left">The input value</td>
-    </tr>
-    
-    
-    <tr>
-    <td class="org-left">Y</td>
-    <td class="org-left">int[]</td>
-    <td class="org-left">The real value</td>
+    <td class="org-left">learning<sub>rate</sub></td>
+    <td class="org-left">float</td>
+    <td class="org-left">The learning rate (optional)</td>
     </tr>
     </tbody>
     </table>
@@ -600,23 +593,44 @@ POST /api/model/iter
     
     <tbody>
     <tr>
-    <td class="org-left">params</td>
-    <td class="org-left">int[][][]</td>
+    <td class="org-left">W</td>
+    <td class="org-left">float[][][]</td>
     <td class="org-left">The weight matrix</td>
     </tr>
     
     
     <tr>
-    <td class="org-left">grads</td>
-    <td class="org-left">int[][][]</td>
+    <td class="org-left">dW</td>
+    <td class="org-left">float[][][]</td>
     <td class="org-left">The gradient matrix</td>
     </tr>
     
     
     <tr>
-    <td class="org-left">output</td>
-    <td class="org-left">int[][]</td>
+    <td class="org-left">A</td>
+    <td class="org-left">float[][]</td>
     <td class="org-left">Predicted value</td>
+    </tr>
+    
+    
+    <tr>
+    <td class="org-left">loss</td>
+    <td class="org-left">float[]</td>
+    <td class="org-left">The loss record for every few steps (50 for default)</td>
+    </tr>
+    
+    
+    <tr>
+    <td class="org-left">eval</td>
+    <td class="org-left">float[]</td>
+    <td class="org-left">The eval record for every few steps</td>
+    </tr>
+    
+    
+    <tr>
+    <td class="org-left">avg<sub>loss</sub></td>
+    <td class="org-left">float</td>
+    <td class="org-left">The average loss</td>
     </tr>
     </tbody>
     </table>
