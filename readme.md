@@ -1,4 +1,6 @@
 # AIwaffle_server1
+Version 0.0.4
+
 Backend server for [IDl0T/AIwaffle](https://github.com/IDl0T/AIwaffle)
 ## Components
 ### Web server
@@ -14,7 +16,7 @@ Models
  - **/auth/register** register page for user
  - **/auth/login** login page for user
  - **/auth/logout** logout for user
- - **/model/** the model view (TODO)
+ - **/model/** the model view
 #### API
 See [docs/api.md](docs/api.md) for details
 #### Other routes
@@ -25,15 +27,6 @@ An internal server that runs a something unrelated to web
 Using UNIX socket
 #### Communication
 Sending and receiving JSON objects
-#### Functions
- - A numpy model
-## Development notes
-### TODOs
- - [x] TODO: Implement model api
- - [x] TODO: Complete model tests
- - [x] TODO: Complete general tests
- - [x] TODO: Complete login for model API
- - [ ] TODO: Complete test api auth
 ## License and copyright
 Licensed under the MIT license
 
