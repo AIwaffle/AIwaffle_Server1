@@ -87,13 +87,15 @@
 *** Iterate one step
     POST /api/model/iter
 **** JSON data
-| Name   | Format  | Description     |
-|--------+---------+-----------------|
-| X      | int[][] | The input value |
-| Y      | int[]   | The real value  |
+| Name          | Format | Description                  |
+|---------------+--------+------------------------------|
+| learning_rate | float  | The learning rate (optional) |
 **** Response
-| Name   | Format    | Description         |
-|--------+-----------+---------------------|
-| params | int[][][] | The weight matrix   |
-| grads  | int[][][] | The gradient matrix |
-| output | int[][]   | Predicted value     |
+| Name     | Format      | Description                                          |
+|----------+-------------+------------------------------------------------------|
+| W        | float[][][] | The weight matrix                                    |
+| dW       | float[][][] | The gradient matrix                                  |
+| A        | float[][]   | Predicted value                                      |
+| loss     | float[]     | The loss record for every few steps (50 for default) |
+| eval     | float[]     | The eval record for every few steps                  |
+| avg_loss | float       | The average loss                                     |
