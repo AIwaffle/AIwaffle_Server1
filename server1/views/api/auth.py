@@ -1,5 +1,5 @@
-import functools
-
+"""This module provides views with url prefix /api/auth
+"""
 import flask
 
 import server1.api.auth
@@ -11,33 +11,56 @@ bp = flask.Blueprint("api_auth", __name__, url_prefix="/api/auth")
 
 @bp.route("/register", methods=("POST",))
 def register():
-    username = flask.request.form.get("username", None)
-    password = flask.request.form.get("password", None)
+    """Register a new user
 
-    if not username or not password:
+    POST /api/auth/register
+
+    POST json data:
+        username(str): the username of the new user
+        password(str): the password of the new user
+
+    Returns: a str, the uuid of the user
+
+    Raises: flask.abort(400) when username or password is not provided or
+    Raises: flask.abort(409) when user already exists
+    """
+    username = flask.request.json.get("username", None)
+    password = flask.request.json.get("password", None)
+    if not all((username, password)):
         flask.abort(400)
-
     db = server1.db.get_db()
-
     c_uuid = server1.api.auth.register(username, password, db)
-
     if c_uuid:
-        return {"success": True, "uuid": c_uuid}
+        return c_uuid
     else:
-        error = "User {} is already registered.".format(username)
-        return {"success": False, "reason": error}, 400
+        flask.abort(409, "User already exists")
 
 
 @bp.route("/login", methods=("POST",))
 def login():
-    username = flask.request.form.get("username", None)
-    password = flask.request.form.get("password", None)
+    """Login an existing user
+
+    POST /api/auth/login
+
+    POST json data:
+        username(str): the username of the user
+        password(str): the password of the user
+
+    Returns: a json object
+        uuid(str): the uuid of the user
+        expires(float): the expire date of the user
+        token(str): the login token
+        All of these three are necessary for api login and verification
+
+    Raises: flask.abort(400) when username or password is not provided or
+        when the (username, password) is invalid
+    """
+    username = flask.request.json.get("username", None)
+    password = flask.request.json.get("password", None)
 
     if not username or not password:
         flask.abort(400)
-
     db = server1.db.get_db()
-
     res = server1.api.auth.login(username, password, db,
                                  flask.current_app.config["SESSION_EXPIRES"])
     if not res:

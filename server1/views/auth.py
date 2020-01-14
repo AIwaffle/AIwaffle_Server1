@@ -1,3 +1,5 @@
+"""This module provides views with url prefix /auth
+"""
 import functools
 
 import flask
@@ -11,6 +13,22 @@ bp = flask.Blueprint("auth", __name__, url_prefix="/auth")
 
 @bp.route("/register", methods=("GET", "POST"))
 def register():
+    """Register a new user
+
+    GET /auth/register
+
+    Returns: the register page
+
+    POST /auth/register
+
+    POST form data:
+        username(str): the username of the new user
+        password(str): the password of the new user
+
+    Returns:
+        flask.redirect(auth.login) if the register is success
+        the register page with error message if the register fails
+    """
     if flask.request.method == "POST":
         username = flask.request.form.get("username", None)
         password = flask.request.form.get("password", None)
@@ -34,6 +52,24 @@ def register():
 
 @bp.route("/login", methods=("GET", "POST"))
 def login():
+    """Login the user
+
+    GET /auth/login
+
+    Returns: the login page
+
+    POST /auth/login
+
+    POST form data:
+        username(str): the username
+        password(str): the password
+
+    Returns:
+        flask.redirect(index) if success
+            also sets cookie for the user
+            that is necessary for load_logged_in_user
+        login web page with error if fails
+    """
     if flask.request.method == "POST":
         username = flask.request.form.get("username", None)
         password = flask.request.form.get("password", None)
@@ -62,12 +98,21 @@ def login():
 
 @bp.route("/logout", methods=("GET", "POST"))
 def logout():
+    """Logout the user
+
+    GET /auth/logout
+
+    Returns: flask.redirect(index)
+    """
     flask.session.clear()
     return flask.redirect(flask.url_for("index"))
 
 
-@bp.before_app_request
 def load_logged_in_user():
+    """Load a logged in user from cookie
+
+    Load the user to flask.g.user
+    """
     db = server1.db.get_db()
     c_uuid = flask.session.get("uuid", None)
     expires = flask.session.get("expires", None)
@@ -80,6 +125,11 @@ def load_logged_in_user():
 
 
 def login_required(view):
+    """Login is required for the view
+
+    A wrapper
+    """
+
     @functools.wraps(view)
     def wrapped_view(**kwargs):
         if flask.g.user is None:
@@ -88,3 +138,6 @@ def login_required(view):
         return view(**kwargs)
 
     return wrapped_view
+
+
+bp.before_app_request(load_logged_in_user)

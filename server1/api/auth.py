@@ -22,6 +22,17 @@ def register(username, password, db_session):
 
 
 def login(username, password, db_session, session_expires):
+    """
+
+    Args:
+        username ():
+        password ():
+        db_session ():
+        session_expires ():
+
+    Returns:
+
+    """
     user = server1.models.User.query.filter(server1.models.User.username == username).first()
 
     if user is None:
@@ -43,6 +54,7 @@ def login(username, password, db_session, session_expires):
 def load_logged_in_user(c_uuid, expires, token, db_session):
     user = server1.models.User.query.filter(server1.models.User.uuid == c_uuid).first()
     e_token = hashlib.sha512(user.uuid.encode() + user.password.encode() + user.salt + expires.encode()).hexdigest()
+    # TODO: `Expires` not used
     if token == e_token:
         return user
     return None

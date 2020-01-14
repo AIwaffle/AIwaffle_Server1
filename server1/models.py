@@ -1,9 +1,16 @@
+import datetime
+import json
+
 import sqlalchemy
 
 from server1.db import Base
 
 
 class User(Base):
+    """The user database object
+
+    Should NEVER be passed outside the backend!
+    """
     __tablename__ = "users"
 
     id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True)
@@ -20,5 +27,41 @@ class User(Base):
         self.username = username
         self.password = password
 
+    def __str__(self):
+        raise NotImplementedError("User object should never be passed outside the backend!")
+
+    def __dict__(self):
+        raise NotImplementedError("User object should never be passed outside the backend!")
+
     def __repr__(self):
         return "<User uuid={}, username={}>".format(self.uuid, self.username)
+
+
+class Post(Base):
+    __tablename__ = "posts"
+
+    id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True)
+
+    author_uuid = sqlalchemy.Column(sqlalchemy.String, sqlalchemy.ForeignKey("users.uuid"), nullable=False)
+    created = sqlalchemy.Column(sqlalchemy.DateTime, nullable=False, default=datetime.datetime.utcnow)
+
+    title = sqlalchemy.Column(sqlalchemy.String, nullable=False)
+    body = sqlalchemy.Column(sqlalchemy.String)
+
+    def __init__(self, author_uuid, created, title, body):
+        self.author_uuid = author_uuid
+        self.created = created
+        self.title = title
+        self.body = body
+
+    def __dict__(self) -> dict:
+        return {
+            "id": self.id,
+            "author_uuid": self.author_uuid,
+            "created": self.created,
+            "title": self.title,
+            "body": self.body
+        }
+
+    def __str__(self) -> str:
+        return json.dumps(self.__dict__())
