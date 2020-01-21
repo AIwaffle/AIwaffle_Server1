@@ -1,14 +1,14 @@
 
 # Table of Contents
 
-1.  [Blog documentation](#org2927f35)
-    1.  [Blog base url](#org4c74767)
-        1.  [Index](#orgbae99d4)
-        2.  [Create](#org47b586c)
-        3.  [Delete](#org6a461a3)
+1.  [Blog documentation](#org440a559)
+    1.  [Blog base url](#org8ad4f74)
+        1.  [Index](#org7d6198f)
+        2.  [Create](#org30730da)
+        3.  [Delete](#org4a0243b)
 
 
-<a id="org2927f35"></a>
+<a id="org440a559"></a>
 
 # Blog documentation
 
@@ -16,38 +16,46 @@ For each page, we use GET to deliver the html page, and use POST form data for
 actions.
 
 
-<a id="org4c74767"></a>
+<a id="org8ad4f74"></a>
 
 ## Blog base url
 
 /blog
 
 
-<a id="orgbae99d4"></a>
+<a id="org7d6198f"></a>
 
 ### Index
 
 1.  GET
 
     GET *blog*
+    
     Returns the blog page
+    
     Jinja templates are used for rendering posts
-    See /server1/templates/blog/index.html for details
+    
+    See /server1/templates/blog/index.html for examples
+    
+    Or you can use api to fetch the posts
 
 
-<a id="org47b586c"></a>
+<a id="org30730da"></a>
 
 ### Create
 
 1.  GET
 
     GET /blog/create
+    
     Returns the create page
 
 2.  POST
 
     POST /blog/create
+    
     Cookies are automatically used for getting username and passwords
+    
     Form data:
     
     <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
@@ -85,7 +93,7 @@ actions.
     </table>
 
 
-<a id="org6a461a3"></a>
+<a id="org4a0243b"></a>
 
 ### Delete
 

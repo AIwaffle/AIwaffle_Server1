@@ -6,16 +6,24 @@
 *** Index
 **** GET
     GET /blog/
+    
     Returns the blog page
+    
     Jinja templates are used for rendering posts
-    See /server1/templates/blog/index.html for details
+    
+    See /server1/templates/blog/index.html for examples
+    
+    Or you can use api to fetch the posts
 *** Create
 **** GET
      GET /blog/create
+     
      Returns the create page
 **** POST
      POST /blog/create
+     
      Cookies are automatically used for getting username and passwords
+     
      Form data:
 | Name  | Format | Description           |
 |-------+--------+-----------------------|
