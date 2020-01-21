@@ -12,13 +12,16 @@ SQLAlchemy + SQLite
 Models
  - Users: stores user information
 #### Site map
- - **/** index page (TODO)
- - **/auth/register** register page for user
- - **/auth/login** login page for user
- - **/auth/logout** logout for user
+ - **/** Index page
+ - **/auth/** the user login/register pages
+ - **/blog/** the blogs page
  - **/model/** the model view
-#### API
-See [docs/api.md](docs/api.md) for details
+#### Documentation
+Auth: TODO
+
+Blog: [docs/blog.md](docs/blog.md)
+
+API: [docs/api.md](docs/api.md)
 #### Other routes
  - **/static** static files
 ### Extra server
@@ -30,7 +33,7 @@ Sending and receiving JSON objects
 ## License and copyright
 Licensed under the MIT license
 
-Copyright 2019 <jimmy-zx, DanielDAIDLaw>
+Copyright 2019 <jimmy-zx>
 ### Model
  - [jimmy-zx/AIwaffle](https://github.com/jimmy-zx/AIwaffle)
 forked from [IDl0T/AIwaffle](https://github.com/IDl0T/AIwaffle)

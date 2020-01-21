@@ -1,22 +1,28 @@
 
 # Table of Contents
 
-1.  [API Documentation](#org84fe6ec)
-    1.  [User](#org298d2ae)
-        1.  [Register a new user](#orgabde7d7)
-        2.  [Login an existing user](#org3293df4)
-    2.  [Model](#org0edbd65)
-        1.  [New session](#org2233b5e)
-        2.  [General for all the following](#orgbe6ea0a)
-        3.  [Forward the model](#org02fa337)
-        4.  [Backward the model](#orgaa17cba)
-        5.  [Optimize the model](#org68ab131)
-        6.  [Get the loss of the model](#org6c83084)
-        7.  [Get the model](#orgc30fc3b)
-        8.  [Iterate one step](#orgd823592)
+1.  [API Documentation](#org8e25341)
+    1.  [User](#org90f9491)
+        1.  [Register a new user](#org9e26952)
+        2.  [Login an existing user](#org51f232f)
+    2.  [Blog](#orgc404233)
+        1.  [Get all blogs](#org594b6f3)
+        2.  [Get one post](#org513a80f)
+        3.  [Create](#org6e3ee22)
+        4.  [Delete](#org5d264c6)
+        5.  [JSON data](#org09d2967)
+    3.  [Model](#org1d5b181)
+        1.  [New session](#org340d049)
+        2.  [General for all the following](#orgaeaeaf1)
+        3.  [Forward the model](#orgbee0559)
+        4.  [Backward the model](#org6be52f9)
+        5.  [Optimize the model](#orge9efc35)
+        6.  [Get the loss of the model](#org0816a8f)
+        7.  [Get the model](#org44b44eb)
+        8.  [Iterate one step](#org5f2b295)
 
 
-<a id="org84fe6ec"></a>
+<a id="org8e25341"></a>
 
 # API Documentation
 
@@ -24,12 +30,12 @@ For each API, we use POST to deliver form data, and use json for passing of
 data structures. The response is a json string.
 
 
-<a id="org298d2ae"></a>
+<a id="org90f9491"></a>
 
 ## User
 
 
-<a id="orgabde7d7"></a>
+<a id="org9e26952"></a>
 
 ### Register a new user
 
@@ -115,7 +121,7 @@ POST /api/auth/register
     </table>
 
 
-<a id="org3293df4"></a>
+<a id="org51f232f"></a>
 
 ### Login an existing user
 
@@ -171,12 +177,259 @@ POST /api/auth/login
     </table>
 
 
-<a id="org0edbd65"></a>
+<a id="orgc404233"></a>
+
+## Blog
+
+
+<a id="org594b6f3"></a>
+
+### Get all blogs
+
+GET /api/blog/all
+
+1.  Response
+
+    A json dict, with post<sub>id</sub> as key and post object as value.
+    
+    Post object:
+    
+    <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+    
+    
+    <colgroup>
+    <col  class="org-left" />
+    
+    <col  class="org-left" />
+    
+    <col  class="org-left" />
+    </colgroup>
+    <thead>
+    <tr>
+    <th scope="col" class="org-left">Name</th>
+    <th scope="col" class="org-left">Format</th>
+    <th scope="col" class="org-left">Description</th>
+    </tr>
+    </thead>
+    
+    <tbody>
+    <tr>
+    <td class="org-left">id</td>
+    <td class="org-left">int</td>
+    <td class="org-left">The id of the post</td>
+    </tr>
+    
+    
+    <tr>
+    <td class="org-left">author<sub>uuid</sub></td>
+    <td class="org-left">string</td>
+    <td class="org-left">The uuid of the author</td>
+    </tr>
+    
+    
+    <tr>
+    <td class="org-left">created</td>
+    <td class="org-left">datetime: isoformat</td>
+    <td class="org-left">The created time</td>
+    </tr>
+    
+    
+    <tr>
+    <td class="org-left">title</td>
+    <td class="org-left">string</td>
+    <td class="org-left">The title of the post</td>
+    </tr>
+    
+    
+    <tr>
+    <td class="org-left">body</td>
+    <td class="org-left">string</td>
+    <td class="org-left">The body of the post</td>
+    </tr>
+    </tbody>
+    </table>
+
+
+<a id="org513a80f"></a>
+
+### Get one post
+
+POST /api/blog/get
+
+1.  JSON data
+
+    <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+    
+    
+    <colgroup>
+    <col  class="org-left" />
+    
+    <col  class="org-left" />
+    
+    <col  class="org-left" />
+    </colgroup>
+    <thead>
+    <tr>
+    <th scope="col" class="org-left">Name</th>
+    <th scope="col" class="org-left">Format</th>
+    <th scope="col" class="org-left">Description</th>
+    </tr>
+    </thead>
+    
+    <tbody>
+    <tr>
+    <td class="org-left">id</td>
+    <td class="org-left">int</td>
+    <td class="org-left">The id of the post</td>
+    </tr>
+    </tbody>
+    </table>
+
+2.  Response
+
+    The post object(json), when the post is found
+    
+    404 when the post is not found
+
+
+<a id="org6e3ee22"></a>
+
+### Create
+
+POST /api/blog/create
+
+1.  JSON data
+
+    <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+    
+    
+    <colgroup>
+    <col  class="org-left" />
+    
+    <col  class="org-left" />
+    
+    <col  class="org-left" />
+    </colgroup>
+    <thead>
+    <tr>
+    <th scope="col" class="org-left">Name</th>
+    <th scope="col" class="org-left">Format</th>
+    <th scope="col" class="org-left">Description</th>
+    </tr>
+    </thead>
+    
+    <tbody>
+    <tr>
+    <td class="org-left">uuid</td>
+    <td class="org-left">string</td>
+    <td class="org-left">The uuid of the user</td>
+    </tr>
+    
+    
+    <tr>
+    <td class="org-left">expires</td>
+    <td class="org-left">float</td>
+    <td class="org-left">The expire time of the session</td>
+    </tr>
+    
+    
+    <tr>
+    <td class="org-left">token</td>
+    <td class="org-left">string</td>
+    <td class="org-left">The token of the session</td>
+    </tr>
+    
+    
+    <tr>
+    <td class="org-left">title</td>
+    <td class="org-left">string</td>
+    <td class="org-left">The title of the post</td>
+    </tr>
+    
+    
+    <tr>
+    <td class="org-left">body</td>
+    <td class="org-left">string</td>
+    <td class="org-left">The body of the post</td>
+    </tr>
+    </tbody>
+    </table>
+
+2.  Response
+
+    The id of the post when success
+
+
+<a id="org5d264c6"></a>
+
+### Delete
+
+POST /api/blog/delete
+
+
+<a id="org09d2967"></a>
+
+### JSON data
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Name</th>
+<th scope="col" class="org-left">Format</th>
+<th scope="col" class="org-left">Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td class="org-left">uuid</td>
+<td class="org-left">string</td>
+<td class="org-left">The uuid of the user</td>
+</tr>
+
+
+<tr>
+<td class="org-left">expires</td>
+<td class="org-left">float</td>
+<td class="org-left">The expire time of the session</td>
+</tr>
+
+
+<tr>
+<td class="org-left">token</td>
+<td class="org-left">string</td>
+<td class="org-left">The token of the session</td>
+</tr>
+
+
+<tr>
+<td class="org-left">id</td>
+<td class="org-left">int</td>
+<td class="org-left">The id of the post</td>
+</tr>
+</tbody>
+</table>
+
+1.  Response
+
+    true when the post was successfully deleted
+
+
+<a id="org1d5b181"></a>
 
 ## Model
 
 
-<a id="org2233b5e"></a>
+<a id="org340d049"></a>
 
 ### New session
 
@@ -212,7 +465,7 @@ GET /api/model/new
     </table>
 
 
-<a id="orgbe6ea0a"></a>
+<a id="orgaeaeaf1"></a>
 
 ### General for all the following
 
@@ -248,7 +501,7 @@ POST /api/model/\*
     </table>
 
 
-<a id="org02fa337"></a>
+<a id="orgbee0559"></a>
 
 ### Forward the model
 
@@ -313,7 +566,7 @@ POST /api/model/forward
     </table>
 
 
-<a id="orgaa17cba"></a>
+<a id="org6be52f9"></a>
 
 ### Backward the model
 
@@ -385,7 +638,7 @@ POST /api/model/backward
     </table>
 
 
-<a id="org68ab131"></a>
+<a id="orge9efc35"></a>
 
 ### Optimize the model
 
@@ -428,7 +681,7 @@ POST /api/model/optimize
     </table>
 
 
-<a id="org6c83084"></a>
+<a id="org0816a8f"></a>
 
 ### Get the loss of the model
 
@@ -493,7 +746,7 @@ POST /api/model/loss
     </table>
 
 
-<a id="orgc30fc3b"></a>
+<a id="org44b44eb"></a>
 
 ### Get the model
 
@@ -536,7 +789,7 @@ POST /api/model/model
     </table>
 
 
-<a id="orgd823592"></a>
+<a id="org5f2b295"></a>
 
 ### Iterate one step
 

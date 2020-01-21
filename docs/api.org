@@ -26,6 +26,53 @@
 | uuid    | string | The uuid of the user                   |
 | expires | float  | The timestamp when the session expires |
 | token   | string | The token of the session               |
+** Blog
+***  Get all blogs
+    GET /api/blog/all
+**** Response
+    A json dict, with post_id as key and post object as value.
+
+    Post object:
+| Name        | Format              | Description            |
+|-------------+---------------------+------------------------|
+| id          | int                 | The id of the post     |
+| author_uuid | string              | The uuid of the author |
+| created     | datetime: isoformat | The created time       |
+| title       | string              | The title of the post  |
+| body        | string              | The body of the post   |
+*** Get one post
+    POST /api/blog/get
+**** JSON data
+| Name | Format | Description        |
+|------+--------+--------------------|
+| id   | int    | The id of the post |
+**** Response
+     The post object(json), when the post is found
+     
+     404 when the post is not found
+*** Create
+    POST /api/blog/create
+**** JSON data
+| Name    | Format | Description                    |
+|---------+--------+--------------------------------|
+| uuid    | string | The uuid of the user           |
+| expires | float  | The expire time of the session |
+| token   | string | The token of the session       |
+| title   | string | The title of the post          |
+| body    | string | The body of the post           |
+**** Response 
+     The id of the post when success
+*** Delete
+    POST /api/blog/delete
+*** JSON data
+| Name    | Format | Description                    |
+|---------+--------+--------------------------------|
+| uuid    | string | The uuid of the user           |
+| expires | float  | The expire time of the session |
+| token   | string | The token of the session       |
+| id      | int    | The id of the post             |
+**** Response
+     true when the post was successfully deleted
 ** Model
 *** New session
     GET /api/model/new

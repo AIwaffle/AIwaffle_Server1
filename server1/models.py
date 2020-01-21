@@ -58,7 +58,7 @@ class Post(Base):
         return {
             "id": self.id,
             "author_uuid": self.author_uuid,
-            "created": self.created,
+            "created": self.created.isoformat(),
             "title": self.title,
             "body": self.body
         }
