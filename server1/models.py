@@ -27,12 +27,6 @@ class User(Base):
         self.username = username
         self.password = password
 
-    def __str__(self):
-        raise NotImplementedError("User object should never be passed outside the backend!")
-
-    def __dict__(self):
-        raise NotImplementedError("User object should never be passed outside the backend!")
-
     def __repr__(self):
         return "<User uuid={}, username={}>".format(self.uuid, self.username)
 

@@ -10,7 +10,6 @@ import server1.models
 
 def register(username, password, db_session):
     uf = server1.models.User.query.filter(server1.models.User.username == username).first()
-    print(server1.models.User.query.all())
     if uf is not None:
         return False
     salt = os.urandom(4)
