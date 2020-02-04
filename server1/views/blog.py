@@ -59,10 +59,9 @@ def create():
 @login_required
 def update(c_id):
     # TODO: Update
-    raise NotImplemented
-    # db = server1.db.get_db()
-    # post = server1.views.api.blog.get_post(c_id, db, True, flask.g.user.uuid)
-    # return flask.render_template("blog/update.html", post=post)
+    db = server1.db.get_db()
+    post = server1.views.api.blog.get_post(c_id, db, True, flask.g.user.uuid)
+    return flask.render_template("blog/update.html", post=post)
 
 
 @bp.route('/<int:c_id>/delete', methods=('POST',))

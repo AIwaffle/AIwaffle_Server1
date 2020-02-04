@@ -48,14 +48,14 @@ class Post(Base):
         self.title = title
         self.body = body
 
-    def to_dict(self) -> dict:
-        return {
-            "id": self.id,
-            "author_uuid": self.author_uuid,
-            "created": self.created.isoformat(),
-            "title": self.title,
-            "body": self.body
-        }
+    # def to_dict(self) -> dict:
+    #     return {
+    #         "id": self.id,
+    #         "author_uuid": self.author_uuid,
+    #         "created": self.created.isoformat(),
+    #         "title": self.title,
+    #         "body": self.body
+    #     }
 
-    def __str__(self) -> str:
-        return json.dumps(self.to_dict(), default=str)
+    # def __str__(self) -> str:
+    #     return json.dumps(self.to_dict(), default=str)
