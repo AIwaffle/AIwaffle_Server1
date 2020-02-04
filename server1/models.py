@@ -48,7 +48,7 @@ class Post(Base):
         self.title = title
         self.body = body
 
-    def __dict__(self) -> dict:
+    def to_dict(self) -> dict:
         return {
             "id": self.id,
             "author_uuid": self.author_uuid,
@@ -58,4 +58,4 @@ class Post(Base):
         }
 
     def __str__(self) -> str:
-        return json.dumps(self.__dict__())
+        return json.dumps(self.to_dict(), default=str)
