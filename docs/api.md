@@ -1,22 +1,22 @@
 
 # Table of Contents
 
-1.  [API Documentation](#org33f8616)
-    1.  [User](#org2533591)
-        1.  [Register a new user](#orga0de7c8)
-        2.  [Login an existing user](#org5dcf286)
-    2.  [Blog](#org98fc326)
-        1.  [Get all blogs](#org2c53463)
-        2.  [Get one post](#org179128e)
-        3.  [Create](#orgc6ded0a)
-        4.  [Delete](#orgeef90b8)
-        5.  [JSON data](#orgd059009)
-    3.  [Model](#org6e1d6fc)
-        1.  [New session](#org90ea787)
-        2.  [Iterate one step](#org0ada64a)
+1.  [API Documentation](#org2d22a4f)
+    1.  [User](#org1a3cc8b)
+        1.  [Register a new user](#orge0e0dc4)
+        2.  [Login an existing user](#org71e0a77)
+    2.  [Blog](#orgcf2191c)
+        1.  [Get all blogs](#org8b8a8f3)
+        2.  [Get one post](#org4230519)
+        3.  [Create](#orgc53a73d)
+        4.  [Delete](#org03f6166)
+        5.  [JSON data](#org9a4843d)
+    3.  [Model](#org2faf58d)
+        1.  [New session](#orgdf66709)
+        2.  [Iterate one step](#org99a337c)
 
 
-<a id="org33f8616"></a>
+<a id="org2d22a4f"></a>
 
 # API Documentation
 
@@ -24,12 +24,12 @@ For each API, we use POST to deliver form data, and use json for passing of
 data structures. The response is a json string.
 
 
-<a id="org2533591"></a>
+<a id="org1a3cc8b"></a>
 
 ## User
 
 
-<a id="orga0de7c8"></a>
+<a id="orge0e0dc4"></a>
 
 ### Register a new user
 
@@ -115,7 +115,7 @@ POST /api/auth/register
     </table>
 
 
-<a id="org5dcf286"></a>
+<a id="org71e0a77"></a>
 
 ### Login an existing user
 
@@ -171,12 +171,12 @@ POST /api/auth/login
     </table>
 
 
-<a id="org98fc326"></a>
+<a id="orgcf2191c"></a>
 
 ## Blog
 
 
-<a id="org2c53463"></a>
+<a id="org8b8a8f3"></a>
 
 ### Get all blogs
 
@@ -215,7 +215,7 @@ GET /api/blog/all
     
     
     <tr>
-    <td class="org-left">author\\<sub>uuid</sub></td>
+    <td class="org-left">author_ uuid</td>
     <td class="org-left">string</td>
     <td class="org-left">The uuid of the author</td>
     </tr>
@@ -244,7 +244,7 @@ GET /api/blog/all
     </table>
 
 
-<a id="org179128e"></a>
+<a id="org4230519"></a>
 
 ### Get one post
 
@@ -286,7 +286,7 @@ POST /api/blog/get
     404 when the post is not found
 
 
-<a id="orgc6ded0a"></a>
+<a id="orgc53a73d"></a>
 
 ### Create
 
@@ -354,14 +354,14 @@ POST /api/blog/create
     The id of the post when success
 
 
-<a id="orgeef90b8"></a>
+<a id="org03f6166"></a>
 
 ### Delete
 
 POST /api/blog/delete
 
 
-<a id="orgd059009"></a>
+<a id="org9a4843d"></a>
 
 ### JSON data
 
@@ -418,12 +418,12 @@ POST /api/blog/delete
     true when the post was successfully deleted
 
 
-<a id="org6e1d6fc"></a>
+<a id="org2faf58d"></a>
 
 ## Model
 
 
-<a id="org90ea787"></a>
+<a id="orgdf66709"></a>
 
 ### New session
 
@@ -459,7 +459,7 @@ POST /api/model/new
     </table>
 
 
-<a id="org0ada64a"></a>
+<a id="org99a337c"></a>
 
 ### Iterate one step
 
@@ -487,14 +487,14 @@ POST /api/model/iter
     
     <tbody>
     <tr>
-    <td class="org-left">session\\<sub>id</sub></td>
+    <td class="org-left">session_ id</td>
     <td class="org-left">string</td>
     <td class="org-left">The id of the model session</td>
     </tr>
     
     
     <tr>
-    <td class="org-left">learning\\<sub>rate</sub></td>
+    <td class="org-left">learning_ rate</td>
     <td class="org-left">float</td>
     <td class="org-left">The learning rate (optional)</td>
     </tr>
@@ -558,7 +558,7 @@ POST /api/model/iter
     
     
     <tr>
-    <td class="org-left">avg\\<sub>loss</sub></td>
+    <td class="org-left">avg_ loss</td>
     <td class="org-left">float</td>
     <td class="org-left">The average loss</td>
     </tr>

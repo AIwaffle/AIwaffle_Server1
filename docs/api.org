@@ -33,13 +33,13 @@
     A json dict, with post\_id as key and post object as value.
 
     Post object:
-| Name        | Format              | Description            |
-|-------------+---------------------+------------------------|
-| id          | int                 | The id of the post     |
-| author\_uuid | string              | The uuid of the author |
-| created     | datetime: isoformat | The created time       |
-| title       | string              | The title of the post  |
-| body        | string              | The body of the post   |
+| Name                | Format              | Description            |
+|---------------------+---------------------+------------------------|
+| id                  | int                 | The id of the post     |
+| author\under{}uuid  | string              | The uuid of the author |
+| created             | datetime: isoformat | The created time       |
+| title               | string              | The title of the post  |
+| body                | string              | The body of the post   |
 *** Get one post
     POST /api/blog/get
 **** JSON data
@@ -83,10 +83,10 @@
 *** Iterate one step
     POST /api/model/iter
 **** JSON data
-| Name          | Format | Description                  |
-|---------------+--------+------------------------------|
-| session\_id   | string | The id of the model session  |
-| learning\_rate | float  | The learning rate (optional) |
+| Name                  | Format | Description                  |
+|-----------------------+--------+------------------------------|
+| session\under{}id     | string | The id of the model session  |
+| learning\under{}rate  | float  | The learning rate (optional) |
 **** Response
 | Name     | Format      | Description                                          |
 |----------+-------------+------------------------------------------------------|
@@ -95,4 +95,4 @@
 | A        | float[][]   | Predicted value                                      |
 | loss     | float[]     | The loss record for every few steps (50 for default) |
 | eval     | float[]     | The eval record for every few steps                  |
-| avg\_loss | float       | The average loss                                     |
+| avg\under{} loss | float       | The average loss                                     |
