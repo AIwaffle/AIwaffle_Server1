@@ -33,7 +33,7 @@ Sending and receiving JSON objects
 ## License and copyright
 Licensed under the MIT license
 
-Copyright 2019 <jimmy-zx>
+Copyright 2019-2020
 ### Model
  - [jimmy-zx/AIwaffle](https://github.com/jimmy-zx/AIwaffle)
 forked from [IDl0T/AIwaffle](https://github.com/IDl0T/AIwaffle)

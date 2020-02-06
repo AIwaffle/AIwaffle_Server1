@@ -75,67 +75,17 @@
      true when the post was successfully deleted
 ** Model
 *** New session
-    GET /api/model/new
+    POST /api/model/new
 **** Response
 | Name | Format | Description                         |
 |------+--------+-------------------------------------|
 |      | string | The id of the created model session |
-*** General for all the following
-    POST /api/model/*
-**** JSON data
-| Name       | Format | Description                            |
-|------------+--------+----------------------------------------|
-| session_id | string | The id of the model session            |
-*** Forward the model
-    POST /api/model/forward
-**** JSON data    
-| Name | Format  | Description     |
-|------+---------+-----------------|
-| X    | int[][] | The input value |
-**** Response
-| Name | Format  | Description     |
-|------+---------+-----------------|
-|      | int[][] | Predicted value |
-*** Backward the model
-    POST /api/model/backward
-**** JSON data
-| Name | Format | Description    |
-|------+--------+----------------|
-| Y    | int[]  | The real value |
-**** Response
-| Name   | Format    | Description         |
-|--------+-----------+---------------------|
-| params | int[][][] | The weight matrix   |
-| grads  | int[][][] | The gradient matrix |
-*** Optimize the model
-    POST /api/model/optimize
-**** Response
-| Name   | Format    | Description         |
-|--------+-----------+---------------------|
-| params | int[][][] | The weight matrix   |
-| grads  | int[][][] | The gradient matrix |
-*** Get the loss of the model
-    POST /api/model/loss
-**** JSON data
-| Name | Format | Description    |
-|------+--------+----------------|
-| Y    | int[]  | The real value |
-**** Response
-| Name | Format | Description           |
-|------+--------+-----------------------|
-|      | int    | The loss of the model |
-*** Get the model
-    POST /api/model/model
-**** Response
-| Name   | Format    | Description         |
-|--------+-----------+---------------------|
-| params | int[][][] | The weight matrix   |
-| grads  | int[][][] | The gradient matrix |
 *** Iterate one step
     POST /api/model/iter
 **** JSON data
 | Name          | Format | Description                  |
 |---------------+--------+------------------------------|
+| session_id    | string | The id of the model session  |
 | learning_rate | float  | The learning rate (optional) |
 **** Response
 | Name     | Format      | Description                                          |
