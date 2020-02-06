@@ -30,13 +30,13 @@
 ***  Get all blogs
     GET /api/blog/all
 **** Response
-    A json dict, with post_id as key and post object as value.
+    A json dict, with post\_id as key and post object as value.
 
     Post object:
 | Name        | Format              | Description            |
 |-------------+---------------------+------------------------|
 | id          | int                 | The id of the post     |
-| author_uuid | string              | The uuid of the author |
+| author\_uuid | string              | The uuid of the author |
 | created     | datetime: isoformat | The created time       |
 | title       | string              | The title of the post  |
 | body        | string              | The body of the post   |
@@ -85,8 +85,8 @@
 **** JSON data
 | Name          | Format | Description                  |
 |---------------+--------+------------------------------|
-| session_id    | string | The id of the model session  |
-| learning_rate | float  | The learning rate (optional) |
+| session\_id   | string | The id of the model session  |
+| learning\_rate | float  | The learning rate (optional) |
 **** Response
 | Name     | Format      | Description                                          |
 |----------+-------------+------------------------------------------------------|
@@ -95,4 +95,4 @@
 | A        | float[][]   | Predicted value                                      |
 | loss     | float[]     | The loss record for every few steps (50 for default) |
 | eval     | float[]     | The eval record for every few steps                  |
-| avg_loss | float       | The average loss                                     |
+| avg\_loss | float       | The average loss                                     |
