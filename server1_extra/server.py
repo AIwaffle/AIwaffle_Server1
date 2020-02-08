@@ -15,7 +15,8 @@ class Handler(socketserver.StreamRequestHandler):
         self.server.logger.debug("Data received: {}".format(data))
         res = self.parse(data.decode())
         self.wfile.write(res.encode())
-        self.server.logger.debug("Data sent: {}".format(res))
+        # self.server.logger.debug("Data sent: {}".format(res))
+        self.server.logger.debug("Data sent")
 
     def parse(self, data: str) -> str:
         args, kw = json.loads(data)
@@ -25,6 +26,7 @@ class Handler(socketserver.StreamRequestHandler):
         if command == "new":
             session_id = uuid.uuid4().__str__()
             self.server.models[session_id] = model.Model()
+            self.server.logger.debug("Created new model: {}".format(session_id))
             return json.dumps(dict(code=200, session_id=session_id))
         session_id = kw.get("session_id", None)
         if session_id not in self.server.models:
