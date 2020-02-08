@@ -21,7 +21,7 @@ class Handler(socketserver.StreamRequestHandler):
     def parse(self, data: str) -> str:
         args, kw = json.loads(data)
         if len(args) == 0:
-            return ""
+            return json.dumps({"code": 400})
         command = args[0]
         if command == "new":
             session_id = uuid.uuid4().__str__()
