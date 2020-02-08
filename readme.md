@@ -39,4 +39,5 @@ Copyright 2019-2020
 forked from [IDl0T/AIwaffle](https://github.com/IDl0T/AIwaffle)
 ### Front end
  - [AlienKevin/elm-neural-net](https://github.com/AlienKevin/elm-neural-net)
+ - [AlienKevin/AIWaffle-website](https://github.com/AlienKevin/AIWaffle-website)
  - [Flask example](https://github.com/pallets/flask)

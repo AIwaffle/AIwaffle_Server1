@@ -16,6 +16,16 @@ def index():
     return flask.render_template("index.html")
 
 
+@bp.route("/dist/<path:path>")
+def dist(path):
+    return flask.send_from_directory("../AIWaffle-website/dist", path)
+
+
+@bp.route("/assets/<path:path>")
+def assets(path):
+    return flask.send_from_directory("../AIWaffle-website/assets", path)
+
+
 @bp.route("/teapot")
 def teapot():
     """Easter egg
