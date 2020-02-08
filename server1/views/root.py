@@ -13,7 +13,8 @@ def index():
 
     Returns: the index page
     """
-    return flask.render_template("index.html")
+    # return flask.render_template("index.html")
+    return flask.send_from_directory("../AIWaffle-website/dist", "index.html")
 
 
 @bp.route("/dist/<path:path>")
