@@ -7,8 +7,11 @@ if __name__ == "__main__":
     logger = logging.getLogger("server1_extra")
     logger.setLevel(logging.DEBUG)
     ch = logging.StreamHandler()
-    ch.setLevel(logging.DEBUG)
+    ch.setLevel(logging.INFO)
     logger.addHandler(ch)
+    fh = logging.FileHandler("server1_extra.log")
+    fh.setLevel(logging.DEBUG)
+    logger.addHandler(fh)
 
     address = os.path.join(os.curdir, "instance", "ext_sock")
 
