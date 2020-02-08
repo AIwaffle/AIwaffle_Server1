@@ -80,9 +80,8 @@
 | Name | Format | Description                         |
 |------+--------+-------------------------------------|
 |      | string | The id of the created model session |
-*** Iterate one step
+*** Iterate several steps
     POST /api/model/iter
-    Generates 100 random data sets and iterate over them
 **** JSON data
 | Name                 | Format | Description                                |
 |----------------------+--------+--------------------------------------------|
