@@ -83,16 +83,19 @@
 *** Iterate one step
     POST /api/model/iter
 **** JSON data
-| Name                  | Format | Description                  |
-|-----------------------+--------+------------------------------|
-| session\under{}id     | string | The id of the model session  |
-| learning\under{}rate  | float  | The learning rate (optional) |
+| Name                 | Format | Description                                |
+|----------------------+--------+--------------------------------------------|
+| session\under{}id    | string | The id of the model session                |
+| epoch_num            | int    | The number of epochs (optional, default=1) |
+| learning\under{}rate | float  | The learning rate (optional, default=0.01) |
 **** Response
-| Name     | Format      | Description                                          |
-|----------+-------------+------------------------------------------------------|
-| W        | float[][][] | The weight matrix                                    |
-| dW       | float[][][] | The gradient matrix                                  |
-| A        | float[][]   | Predicted value                                      |
-| loss     | float[]     | The loss record for every few steps (50 for default) |
-| eval     | float[]     | The eval record for every few steps                  |
-| avg\under{} loss | float       | The average loss                                     |
+| Name             | Format      | Description                              |
+|------------------+-------------+------------------------------------------|
+| X                | float[][]   | The input data matrix                    |
+| Y                | float[][]   | The output data matrix                   |
+| W                | float[][][] | The weight matrix                        |
+| dW               | float[][][] | The gradient matrix                      |
+| A                | float[][][] | Predicted value with length of epoch_num |
+| loss             | float[]     | The loss record for every epochs         |
+| eval             | float[]     | The eval record for every epochs         |
+| avg\under{} loss | float       | The average loss                         |

@@ -56,7 +56,7 @@ class APIModelActions:
         self._client = client
 
     def new(self):
-        return self._client.get("/api/model/new")
+        return self._client.post("/api/model/new")
 
 
 @pytest.fixture

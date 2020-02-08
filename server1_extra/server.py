@@ -1,3 +1,4 @@
+import uuid
 import json
 import logging
 import socketserver
@@ -18,22 +19,25 @@ class Handler(socketserver.StreamRequestHandler):
 
     def parse(self, data: str) -> str:
         args, kw = json.loads(data)
-        print(args, kw)
         if len(args) == 0:
             return ""
         command = args[0]
-        session_id = kw["sid"]
         if command == "new":
-            if session_id in self.server.models:
-                return ""
+            session_id = uuid.uuid4().__str__()
             self.server.models[session_id] = model.Model()
-            return ""
+            return json.dumps(dict(code=200, session_id=session_id))
+        session_id = kw.get("session_id", None)
         if session_id not in self.server.models:
-            self.server.logger.error("sid does not exist")
+            self.server.logger.error("session_id does not exist")
+            return json.dumps({"code": 404})
         if command == "iterate":
-            learning_rate = kw.get("learning_rate", 0.01)
-            return json.dumps(self.server.models[session_id].iterate(learning_rate))
+            learning_rate = float(kw.get("learning_rate", 0.01))
+            epoch_num = int(kw.get("epoch_num", 1))
+            res = self.server.models[session_id].iterate(learning_rate, epoch_num)
+            res.update({"code": 200})
+            return json.dumps(res)
         self.server.logger.error("Unknown command")
+        return json.dumps({"code": 500})
 
 
 class Server(socketserver.UnixStreamServer):
