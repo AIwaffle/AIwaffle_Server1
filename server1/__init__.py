@@ -1,10 +1,19 @@
+import logging
 import os
 
 import flask
+import flask.logging
 
 
 def create_app(test_config=None):
     app = flask.Flask(__name__, instance_relative_config=True)
+    assert isinstance(app.logger, logging.Logger)
+    app.logger.removeHandler(flask.logging.default_handler)
+    fh = logging.FileHandler(os.path.join(os.curdir, "instance", "server.log"))
+    fh.setLevel(logging.DEBUG)
+    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    fh.setFormatter(formatter)
+    app.logger.addHandler(fh)
 
     app.config.from_mapping(
         SECRET_KEY="dev",

@@ -6,11 +6,13 @@ import server1_extra.server
 if __name__ == "__main__":
     logger = logging.getLogger("server1_extra")
     logger.setLevel(logging.DEBUG)
+    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
     ch = logging.StreamHandler()
     ch.setLevel(logging.INFO)
     logger.addHandler(ch)
-    fh = logging.FileHandler("server1_extra.log")
+    fh = logging.FileHandler(os.path.join(os.curdir, "instance", "server1_extra.log"))
     fh.setLevel(logging.DEBUG)
+    fh.setFormatter(formatter)
     logger.addHandler(fh)
 
     address = os.path.join(os.curdir, "instance", "ext_sock")

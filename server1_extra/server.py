@@ -65,5 +65,8 @@ class Server(socketserver.UnixStreamServer):
         """
         self.logger = logging.getLogger("server1_extra")
         self.models = dict()
-        self.logger.info("Activated server")
+        self.logger.debug("Activated server")
         super(Server, self).server_activate()
+
+    def handle_error(self, request, client_address):
+        self.logger.error("Exception caught when processing request")
