@@ -1,5 +1,5 @@
 # AIwaffle_server1
-Version 0.1.0
+Version 0.1.1
 
 Backend server for [IDl0T/AIwaffle](https://github.com/IDl0T/AIwaffle)
 ## Components

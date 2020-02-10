@@ -10,4 +10,11 @@ def test_forward(client, api_model):
     )
     assert response2.status_code == 200
     resp = json.loads(response2.data)
-    assert len(resp) == 8
+    assert len(resp) == 7
+    assert 'accuracy' in resp
+    assert 'loss' in resp
+    assert 'X' in resp
+    assert 'Y' in resp
+    assert 'avg_loss' in resp
+    assert 'W' in resp
+    assert 'dW' in resp
