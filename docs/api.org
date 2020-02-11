@@ -95,7 +95,6 @@
 | Y                | float[][]   | The output data matrix                          |
 | W                | float[][][] | The weight matrix                               |
 | dW               | float[][][] | The gradient matrix                             |
-| A                | float[][][] | Predicted value with length of epoch\under{}num |
 | loss             | float[]     | The loss record for every epochs                |
 | accuracy         | float[]     | The accuracy record for every epochs            |
 | avg\under{}loss  | float       | The average loss                                |
