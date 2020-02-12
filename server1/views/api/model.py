@@ -1,7 +1,5 @@
 """This module provides views with url prefix /api/model
 """
-import uuid
-
 import flask
 
 import server1.api.model

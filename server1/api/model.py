@@ -10,6 +10,7 @@ import server1_extra.server
 # Helper variable to store the models
 # This variable is only used when config["USE_EXTRA_SERVER"] is False
 MODEL_FACTORY = None
+LOGGER = None
 
 
 def model(*args, **kw):
@@ -26,9 +27,11 @@ def model(*args, **kw):
             rfile.close()
             return json.loads(res)
     global MODEL_FACTORY
+    global LOGGER
     if MODEL_FACTORY is None:
-        logger = logging.getLogger("server1_extra")
-        logger.info("Created server1_extra instance")
-        MODEL_FACTORY = server1_extra.server.ModelFactory(logger)
+        if LOGGER is None:
+            LOGGER = logging.getLogger(__name__)
+        LOGGER.info("Created server1_extra instance")
+        MODEL_FACTORY = server1_extra.server.ModelFactory(LOGGER)
 
     return json.loads(MODEL_FACTORY.parse(data))
