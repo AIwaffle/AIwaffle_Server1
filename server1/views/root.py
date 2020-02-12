@@ -19,6 +19,7 @@ def index():
 
 @bp.route("/dist/<path:path>")
 def dist(path):
+    flask.current_app.logger.debug("Sending statis file `{}`".format(path))
     return flask.send_from_directory("../AIWaffle-website/dist", path)
 
 
