@@ -98,3 +98,4 @@
 | loss            | float[epoch]                    | The loss record for every epochs     |
 | accuracy        | float[epoch]                    | The accuracy record for every epochs |
 | avg\under{}loss | float                           | The average loss                     |
+| A               | float[output node][data num]    | The predicted value                  |

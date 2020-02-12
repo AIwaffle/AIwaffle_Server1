@@ -50,7 +50,7 @@ class ModelFactory:
             epoch_num = int(kw.get("epoch_num", 1))
             res = self.models[session_id].iterate(learning_rate, epoch_num)
             res.update({"code": 200})
-            self.logger.debug("Iterated model {}".format(session_id))
+            self.logger.debug("Iterated model {} for {} epochs".format(session_id, epoch_num))
             return json.dumps(res)
         self.logger.error("Unknown command: possibly caused by backend")
         return json.dumps({"code": 500})
