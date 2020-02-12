@@ -11,7 +11,8 @@ def test_forward(client):
     )
     assert response2.status_code == 200
     resp = json.loads(response2.data)
-    assert len(resp) == 7
+    assert len(resp) == 8
+    assert 'A' in resp
     assert 'accuracy' in resp
     assert 'loss' in resp
     assert 'X' in resp
