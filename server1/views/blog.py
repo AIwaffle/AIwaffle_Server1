@@ -79,5 +79,5 @@ def delete(c_id):
     """
     db = server1.db.get_db()
     server1.views.api.blog.get_post(c_id, db, True, flask.g.user.uuid)
-    res = server1.api.blog.delete_post(c_id, db)
+    server1.api.blog.delete_post(c_id, db)
     return flask.redirect(flask.url_for("blog.index"))

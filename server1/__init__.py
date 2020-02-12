@@ -7,20 +7,10 @@ import flask.logging
 
 def create_app(test_config=None):
     app = flask.Flask(__name__, instance_relative_config=True)
-    assert isinstance(app.logger, logging.Logger)
-    app.logger.setLevel(logging.DEBUG)
-    app.logger.handlers.clear()
-    fh = logging.FileHandler(os.path.join(os.curdir, "instance", "server1.log"))
-    fh.setLevel(logging.DEBUG)
-    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-    fh.setFormatter(formatter)
-    app.logger.addHandler(fh)
 
     module_logger = logging.getLogger(__name__)
 
     assert module_logger is app.logger
-
-    app.logger.info("Created new app instance")
 
     app.config.from_mapping(
         SECRET_KEY="dev",
@@ -38,6 +28,17 @@ def create_app(test_config=None):
         os.makedirs(app.instance_path)
     except OSError:
         pass
+
+    assert isinstance(app.logger, logging.Logger)
+    app.logger.setLevel(logging.DEBUG)
+    app.logger.handlers.clear()
+    fh = logging.FileHandler(os.path.join(os.curdir, "instance", "server1.log"))
+    fh.setLevel(logging.DEBUG)
+    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    fh.setFormatter(formatter)
+    app.logger.addHandler(fh)
+
+    app.logger.info("Created new app instance")
 
     import server1.db
     server1.db.init_app(app)
