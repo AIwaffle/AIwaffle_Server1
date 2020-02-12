@@ -19,7 +19,7 @@ def create_app(test_config=None):
         USE_EXTRA_SERVER=True,
     )
 
-    if test_config:
+    if test_config is not None:
         app.config.from_mapping(test_config)
     else:
         app.config.from_pyfile("config.py")
