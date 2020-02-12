@@ -1,9 +1,10 @@
 import json
 
 
-def test_forward(client, api_model):
-    response1 = api_model.new()
-    session_data = {"session_id": response1.data.decode()}
+def test_forward(client):
+    response1 = client.post(
+        "/api/model/new"
+    )
     response2 = client.post(
         "/api/model/iter",
         data=dict(session_id=response1.data.decode())

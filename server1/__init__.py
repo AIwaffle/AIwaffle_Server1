@@ -15,10 +15,13 @@ def create_app(test_config=None):
     fh.setFormatter(formatter)
     app.logger.addHandler(fh)
 
+    app.logger.info("Created new app instance")
+
     app.config.from_mapping(
         SECRET_KEY="dev",
         SQLALCHEMY_DATABASE_URI="sqlite://",
         SESSION_EXPIRES=60 * 60,
+        USE_EXTRA_SERVER=True,
     )
 
     if test_config:
@@ -33,6 +36,18 @@ def create_app(test_config=None):
 
     import server1.db
     server1.db.init_app(app)
+
+    if not app.config["USE_EXTRA_SERVER"]:
+        logger = logging.getLogger("server1_extra")
+        logger.setLevel(logging.DEBUG)
+        formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+        ch = logging.StreamHandler()
+        ch.setLevel(logging.INFO)
+        logger.addHandler(ch)
+        fh = logging.FileHandler(os.path.join(os.curdir, "instance", "server1_extra.log"))
+        fh.setLevel(logging.DEBUG)
+        fh.setFormatter(formatter)
+        logger.addHandler(fh)
 
     import server1.views
     for bp in server1.views.bps:

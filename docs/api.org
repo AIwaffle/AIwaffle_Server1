@@ -89,12 +89,12 @@
 | epoch_num            | int    | The number of epochs (optional, default=1) |
 | learning\under{}rate | float  | The learning rate (optional, default=0.01) |
 **** Response
-| Name             | Format      | Description                                     |
-|------------------+-------------+-------------------------------------------------|
-| X                | float[][]   | The input data matrix                           |
-| Y                | float[][]   | The output data matrix                          |
-| W                | float[][][] | The weight matrix                               |
-| dW               | float[][][] | The gradient matrix                             |
-| loss             | float[]     | The loss record for every epochs                |
-| accuracy         | float[]     | The accuracy record for every epochs            |
-| avg\under{}loss  | float       | The average loss                                |
+| Name            | Format                          | Description                          |
+|-----------------+---------------------------------+--------------------------------------|
+| X               | float[input node][data num]     | The input data matrix                |
+| Y               | float[output node][data num]    | The output data matrix               |
+| W               | float[layer][current][previous] | The weight matrix                    |
+| dW              | float[layer][current][previous] | The gradient matrix                  |
+| loss            | float[epoch]                    | The loss record for every epochs     |
+| accuracy        | float[epoch]                    | The accuracy record for every epochs |
+| avg\under{}loss | float                           | The average loss                     |

@@ -1,22 +1,22 @@
 
 # Table of Contents
 
-1.  [API Documentation](#org9365b4c)
-    1.  [User](#orgff5ece7)
-        1.  [Register a new user](#orge381720)
-        2.  [Login an existing user](#orgaec3295)
-    2.  [Blog](#org386ad53)
-        1.  [Get all blogs](#org1d4ff32)
-        2.  [Get one post](#org6779d66)
-        3.  [Create](#orga8fc229)
-        4.  [Delete](#orged2a3ad)
-        5.  [JSON data](#orgc750cc0)
-    3.  [Model](#org02f644d)
-        1.  [New session](#org11c9782)
-        2.  [Iterate several steps](#org0d7d115)
+1.  [API Documentation](#org69f6501)
+    1.  [User](#org2c9c042)
+        1.  [Register a new user](#org9e5e8fc)
+        2.  [Login an existing user](#org3e6e051)
+    2.  [Blog](#org59289ed)
+        1.  [Get all blogs](#orgfa8e9bd)
+        2.  [Get one post](#orgdf46c28)
+        3.  [Create](#orga3f2d1c)
+        4.  [Delete](#orgd1203af)
+        5.  [JSON data](#org650527c)
+    3.  [Model](#org4785209)
+        1.  [New session](#org6ad80bc)
+        2.  [Iterate several steps](#orgd272321)
 
 
-<a id="org9365b4c"></a>
+<a id="org69f6501"></a>
 
 # API Documentation
 
@@ -24,12 +24,12 @@ For each API, we use POST to deliver form data, and use json for passing of
 data structures. The response is a json string.
 
 
-<a id="orgff5ece7"></a>
+<a id="org2c9c042"></a>
 
 ## User
 
 
-<a id="orge381720"></a>
+<a id="org9e5e8fc"></a>
 
 ### Register a new user
 
@@ -115,7 +115,7 @@ POST /api/auth/register
     </table>
 
 
-<a id="orgaec3295"></a>
+<a id="org3e6e051"></a>
 
 ### Login an existing user
 
@@ -171,12 +171,12 @@ POST /api/auth/login
     </table>
 
 
-<a id="org386ad53"></a>
+<a id="org59289ed"></a>
 
 ## Blog
 
 
-<a id="org1d4ff32"></a>
+<a id="orgfa8e9bd"></a>
 
 ### Get all blogs
 
@@ -244,7 +244,7 @@ GET /api/blog/all
     </table>
 
 
-<a id="org6779d66"></a>
+<a id="orgdf46c28"></a>
 
 ### Get one post
 
@@ -286,7 +286,7 @@ POST /api/blog/get
     404 when the post is not found
 
 
-<a id="orga8fc229"></a>
+<a id="orga3f2d1c"></a>
 
 ### Create
 
@@ -354,14 +354,14 @@ POST /api/blog/create
     The id of the post when success
 
 
-<a id="orged2a3ad"></a>
+<a id="orgd1203af"></a>
 
 ### Delete
 
 POST /api/blog/delete
 
 
-<a id="orgc750cc0"></a>
+<a id="org650527c"></a>
 
 ### JSON data
 
@@ -418,12 +418,12 @@ POST /api/blog/delete
     true when the post was successfully deleted
 
 
-<a id="org02f644d"></a>
+<a id="org4785209"></a>
 
 ## Model
 
 
-<a id="org11c9782"></a>
+<a id="org6ad80bc"></a>
 
 ### New session
 
@@ -459,7 +459,7 @@ POST /api/model/new
     </table>
 
 
-<a id="org0d7d115"></a>
+<a id="orgd272321"></a>
 
 ### Iterate several steps
 
@@ -531,42 +531,42 @@ POST /api/model/iter
     <tbody>
     <tr>
     <td class="org-left">X</td>
-    <td class="org-left">float[][]</td>
+    <td class="org-left">float[input node][data num]</td>
     <td class="org-left">The input data matrix</td>
     </tr>
     
     
     <tr>
     <td class="org-left">Y</td>
-    <td class="org-left">float[][]</td>
+    <td class="org-left">float[output node][data num]</td>
     <td class="org-left">The output data matrix</td>
     </tr>
     
     
     <tr>
     <td class="org-left">W</td>
-    <td class="org-left">float[][][]</td>
+    <td class="org-left">float[layer][current][previous]</td>
     <td class="org-left">The weight matrix</td>
     </tr>
     
     
     <tr>
     <td class="org-left">dW</td>
-    <td class="org-left">float[][][]</td>
+    <td class="org-left">float[layer][current][previous]</td>
     <td class="org-left">The gradient matrix</td>
     </tr>
     
     
     <tr>
     <td class="org-left">loss</td>
-    <td class="org-left">float[]</td>
+    <td class="org-left">float[epoch]</td>
     <td class="org-left">The loss record for every epochs</td>
     </tr>
     
     
     <tr>
     <td class="org-left">accuracy</td>
-    <td class="org-left">float[]</td>
+    <td class="org-left">float[epoch]</td>
     <td class="org-left">The accuracy record for every epochs</td>
     </tr>
     
