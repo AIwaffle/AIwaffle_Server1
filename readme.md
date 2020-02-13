@@ -35,15 +35,15 @@ An internal server that runs a something unrelated to web
 
 Could be integrated to the web server
 ## TODO List
- - [ ] Add statistics
+### Version 0.1.4
+ - [x] Add statistics
  - [ ] Add production documentation
  - [ ] Finish posts view & documentation
- - [ ] Version 0.1.4
+### Version 0.2.0
  - [ ] Finish auth documentation
  - [ ] Finish backend documentation
- - [ ] Release Version 0.2.0
+### Version 0.2.1
  - [ ] Automatic deploy
- - [ ] Release Version 0.2.1
 ## License and copyright
 Licensed under the MIT license
 

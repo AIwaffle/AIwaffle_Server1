@@ -1,22 +1,25 @@
 
 # Table of Contents
 
-1.  [API Documentation](#orge7202ce)
-    1.  [User](#orgd31c649)
-        1.  [Register a new user](#org7f77355)
-        2.  [Login an existing user](#orgd64fd97)
-    2.  [Blog](#orge4e060e)
-        1.  [Get all blogs](#orga5448da)
-        2.  [Get one post](#orgfe5a74f)
-        3.  [Create](#org5a673ef)
-        4.  [Delete](#org8ce3319)
-        5.  [JSON data](#org43a69ff)
-    3.  [Model](#org6b25d0e)
-        1.  [New session](#org6642a5f)
-        2.  [Iterate several steps](#org5d96ee5)
+1.  [API Documentation](#org06577a3)
+    1.  [User](#orgaf5df99)
+        1.  [Register a new user](#org7870a7b)
+        2.  [Login an existing user](#org1f87d59)
+    2.  [Blog](#org1561286)
+        1.  [Get all blogs](#org828be15)
+        2.  [Get one post](#org8c3bdc1)
+        3.  [Create](#org1eec5d9)
+        4.  [Delete](#org4548f76)
+        5.  [JSON data](#org8bb108f)
+    3.  [Model](#orgf22bb5d)
+        1.  [New session](#orgae6a7b3)
+        2.  [Iterate several steps](#org95febbe)
+    4.  [Statistics](#org100ca3a)
+        1.  [Get total access](#org127e09d)
+        2.  [Response](#org4c9ca00)
 
 
-<a id="orge7202ce"></a>
+<a id="org06577a3"></a>
 
 # API Documentation
 
@@ -24,12 +27,12 @@ For each API, we use POST to deliver form data, and use json for passing of
 data structures. The response is a json string.
 
 
-<a id="orgd31c649"></a>
+<a id="orgaf5df99"></a>
 
 ## User
 
 
-<a id="org7f77355"></a>
+<a id="org7870a7b"></a>
 
 ### Register a new user
 
@@ -115,7 +118,7 @@ POST /api/auth/register
     </table>
 
 
-<a id="orgd64fd97"></a>
+<a id="org1f87d59"></a>
 
 ### Login an existing user
 
@@ -171,12 +174,12 @@ POST /api/auth/login
     </table>
 
 
-<a id="orge4e060e"></a>
+<a id="org1561286"></a>
 
 ## Blog
 
 
-<a id="orga5448da"></a>
+<a id="org828be15"></a>
 
 ### Get all blogs
 
@@ -244,7 +247,7 @@ GET /api/blog/all
     </table>
 
 
-<a id="orgfe5a74f"></a>
+<a id="org8c3bdc1"></a>
 
 ### Get one post
 
@@ -286,7 +289,7 @@ POST /api/blog/get
     404 when the post is not found
 
 
-<a id="org5a673ef"></a>
+<a id="org1eec5d9"></a>
 
 ### Create
 
@@ -354,14 +357,14 @@ POST /api/blog/create
     The id of the post when success
 
 
-<a id="org8ce3319"></a>
+<a id="org4548f76"></a>
 
 ### Delete
 
 POST /api/blog/delete
 
 
-<a id="org43a69ff"></a>
+<a id="org8bb108f"></a>
 
 ### JSON data
 
@@ -418,12 +421,12 @@ POST /api/blog/delete
     true when the post was successfully deleted
 
 
-<a id="org6b25d0e"></a>
+<a id="orgf22bb5d"></a>
 
 ## Model
 
 
-<a id="org6642a5f"></a>
+<a id="orgae6a7b3"></a>
 
 ### New session
 
@@ -459,7 +462,7 @@ POST /api/model/new
     </table>
 
 
-<a id="org5d96ee5"></a>
+<a id="org95febbe"></a>
 
 ### Iterate several steps
 
@@ -585,4 +588,48 @@ POST /api/model/iter
     </tr>
     </tbody>
     </table>
+
+
+<a id="org100ca3a"></a>
+
+## Statistics
+
+
+<a id="org127e09d"></a>
+
+### Get total access
+
+GET /api/statistics/total
+
+
+<a id="org4c9ca00"></a>
+
+### Response
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Name</th>
+<th scope="col" class="org-left">Format</th>
+<th scope="col" class="org-left">Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">int</td>
+<td class="org-left">The total access number</td>
+</tr>
+</tbody>
+</table>
 
