@@ -37,6 +37,8 @@ Could be integrated to the web server
 ## TODO List
 ### Version 0.1.4
  - [x] Add statistics
+ - [x] Tests for statistics
+ - [ ] Documentation for statistics
  - [ ] Add production documentation
  - [ ] Finish posts view & documentation
 ### Version 0.2.0

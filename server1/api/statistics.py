@@ -11,7 +11,6 @@ def update_total(id_, db_session):
         record = server1.models.Statistics.query.filter(server1.models.Statistics.id == id_).first()
     record.access_total += 1
     db_session.commit()
-    print(record.access_total)
 
 
 def get_total(id_, db_session) -> int:
