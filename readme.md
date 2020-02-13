@@ -32,6 +32,15 @@ API: [docs/api.md](docs/api.md)
 An internal server that runs a something unrelated to web
 
 Could be integrated to the web server
+## Release notes
+### Version 0.1.4
+ - Added statistics
+ 
+   Records the total requests on the server
+   
+   Could be accessed via ```/api/statistics/total```
+   
+   See the api documentation for details
 ## TODO List
 ### Version 0.1.5
  - [ ] Documentation for statistics
