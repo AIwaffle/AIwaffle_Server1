@@ -35,9 +35,6 @@ An internal server that runs a something unrelated to web
 
 Could be integrated to the web server
 ## TODO List
-### Version 0.1.4
- - [x] Add statistics
- - [x] Tests for statistics
 ### Version 0.1.5
  - [ ] Documentation for statistics
  - [ ] Add production documentation
