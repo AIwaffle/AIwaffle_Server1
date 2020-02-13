@@ -36,7 +36,9 @@ An internal server that runs a something unrelated to web
 Could be integrated to the web server
 ## TODO List
  - [ ] Add statistics
+ - [ ] Add production documentation
  - [ ] Finish posts view & documentation
+ - [ ] Finish auth documentation
  - [ ] Finish backend documentation
  - [ ] Release Version 0.2.0
  - [ ] Automatic deploy

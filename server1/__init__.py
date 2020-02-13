@@ -57,6 +57,7 @@ def create_app(test_config=None):
 
     @app.before_request
     def before():
+        # TODO: Statistics
         pass
 
     @app.errorhandler(404)
