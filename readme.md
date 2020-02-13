@@ -78,19 +78,22 @@ Could be integrated to the web server
  - Completed documentation for statistics
  - Updated tests
  - Added production deployment documentation
+ 
 <details>
     <summary>Older versions</summary>
     
-    <p>
-    #### Version 0.1.4
-     - Added statistics support
-     
-       Records the total requests on the server
+<p>
+
+### Version 0.1.4
+- Added statistics support
+
+    Records the total requests on the server
        
-       Could be accessed via ```/api/statistics/total```
+    Could be accessed via ```/api/statistics/total```
        
-       See the api documentation for details
-    </p>
+    See the api documentation for details
+
+</p>
 </details>
 
 ## TODO List
