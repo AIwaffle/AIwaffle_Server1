@@ -1,5 +1,5 @@
 # AIwaffle_server1
-Version 0.1.3
+Version 0.1.4
 
 Dev branch
 
@@ -38,6 +38,7 @@ Could be integrated to the web server
 ### Version 0.1.4
  - [x] Add statistics
  - [x] Tests for statistics
+### Version 0.1.5
  - [ ] Documentation for statistics
  - [ ] Add production documentation
  - [ ] Finish posts view & documentation
