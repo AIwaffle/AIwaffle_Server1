@@ -1,6 +1,6 @@
 # AIwaffle_server1
 
-Version 0.1.4
+Version 0.1.5
 
 [![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fjimmy-zx%2FAIwaffle_Server1%2Fbadge%3Fref%3Dmaster&style=flat)](https://actions-badge.atrox.dev/jimmy-zx/AIwaffle_Server1/goto?ref=master)
 
@@ -114,5 +114,4 @@ Copyright 2019-2020
 forked from [IDl0T/AIwaffle](https://github.com/IDl0T/AIwaffle)
 ### Front end
  - [AlienKevin/AIWaffle-website](https://github.com/AlienKevin/AIWaffle-website)
- - [AlienKevin/elm-neural-net](https://github.com/AlienKevin/elm-neural-net)
  - [Flask example](https://github.com/pallets/flask)
