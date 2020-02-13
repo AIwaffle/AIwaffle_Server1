@@ -12,12 +12,14 @@ Using Flask framework
 SQLAlchemy + SQLite
 
 Models
- - Users: stores user information
+ - Users: stores user auth information
+ - Posts: stores post information
 #### Site map
  - **/** Index page
  - **/auth/** the user login/register pages
- - **/blog/** the blogs page
+ - **/blog/** the blog page
  - **/model/** the model view
+ - **/api/** restful api
 #### Documentation
 Auth: TODO
 
@@ -28,10 +30,14 @@ API: [docs/api.md](docs/api.md)
  - **/static** static files
 ### Extra server
 An internal server that runs a something unrelated to web
-#### Network
-Using UNIX socket
-#### Communication
-Sending and receiving JSON objects
+
+Could be integrated to the web server
+## TODO List
+ - [ ] Finish posts view & documentation
+ - [ ] Finish backend documentation
+ - [ ] Release Version 0.2.0
+ - [ ] Automatic deploy
+ - [ ] Release Version 0.2.1
 ## License and copyright
 Licensed under the MIT license
 
@@ -40,6 +46,6 @@ Copyright 2019-2020
  - [jimmy-zx/AIwaffle](https://github.com/jimmy-zx/AIwaffle)
 forked from [IDl0T/AIwaffle](https://github.com/IDl0T/AIwaffle)
 ### Front end
- - [AlienKevin/elm-neural-net](https://github.com/AlienKevin/elm-neural-net)
  - [AlienKevin/AIWaffle-website](https://github.com/AlienKevin/AIWaffle-website)
+ - [AlienKevin/elm-neural-net](https://github.com/AlienKevin/elm-neural-net)
  - [Flask example](https://github.com/pallets/flask)
