@@ -38,6 +38,7 @@ Could be integrated to the web server
  - [ ] Add statistics
  - [ ] Add production documentation
  - [ ] Finish posts view & documentation
+ - [ ] Version 0.1.4
  - [ ] Finish auth documentation
  - [ ] Finish backend documentation
  - [ ] Release Version 0.2.0

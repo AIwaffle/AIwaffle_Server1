@@ -55,3 +55,6 @@ class Statistics(Base):
 
     access_total = sqlalchemy.Column(sqlalchemy.Integer, default=0)
 
+    def __init__(self, id_):
+        self.id = id_
+

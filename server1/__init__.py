@@ -49,19 +49,17 @@ def create_app(test_config=None):
     for bp in server1.views.bps:
         app.register_blueprint(bp)
 
-    app.add_url_rule("/", endpoint="index")
+    import server1.views.error
+    for handler in server1.views.error.handlers:
+        app.register_error_handler(*handler)
+
+    import server1.special
+    app.before_request(server1.special.before_request)
 
     @app.route("/test")
     def test():
         return {"success": True}
 
-    @app.before_request
-    def before():
-        # TODO: Statistics
-        pass
-
-    @app.errorhandler(404)
-    def handle404(e):
-        return flask.send_from_directory("../AIWaffle-website/dist", "index.html"), 404
+    app.add_url_rule("/", endpoint="index")
 
     return app
