@@ -74,23 +74,24 @@ Could be integrated to the web server
     ```
 
 ## Release notes
-### Version 0.1.5
+### Latest: Version 0.1.5
  - Completed documentation for statistics
  - Updated tests
  - Added production deployment documentation
-### Version 0.1.4
- - Added statistics support
- 
-   Records the total requests on the server
-   
-   Could be accessed via ```/api/statistics/total```
-   
-   See the api documentation for details
+<details>
+    <summary>Older versions</summary>
+    
+    #### Version 0.1.4
+     - Added statistics support
+     
+       Records the total requests on the server
+       
+       Could be accessed via ```/api/statistics/total```
+       
+       See the api documentation for details
+</details>
+
 ## TODO List
-### Version 0.1.5
- - [x] Documentation for statistics
- - [x] Update tests
- - [x] Add production documentation
 ### Version 0.1.6
  - [ ] Finish posts view
 ### Version 0.2.0
