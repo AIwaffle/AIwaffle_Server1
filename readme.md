@@ -81,6 +81,7 @@ Could be integrated to the web server
 <details>
     <summary>Older versions</summary>
     
+    <p>
     #### Version 0.1.4
      - Added statistics support
      
@@ -89,6 +90,7 @@ Could be integrated to the web server
        Could be accessed via ```/api/statistics/total```
        
        See the api documentation for details
+    </p>
 </details>
 
 ## TODO List
