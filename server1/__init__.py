@@ -55,6 +55,10 @@ def create_app(test_config=None):
     def test():
         return {"success": True}
 
+    @app.before_request
+    def before():
+        pass
+
     @app.errorhandler(404)
     def handle404(e):
         return flask.send_from_directory("../AIWaffle-website/dist", "index.html"), 404
