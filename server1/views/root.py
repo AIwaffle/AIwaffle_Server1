@@ -34,7 +34,8 @@ def assets(path):
 
 @bp.route("/tutorial/<path:path>")
 def tutorial(path):
-    return flask.send_from_directory("../AIWaffle-website/", "tutorial.html")
+    flask.current_app.logger.debug("Sending tutorial file {}".format(path))
+    return flask.send_from_directory("../AIWaffle-website/dist", "tutorial.html")
 
 
 @bp.route("/teapot")
