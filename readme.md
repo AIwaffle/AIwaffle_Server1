@@ -78,17 +78,23 @@ Could be integrated to the web server
     ```
 
 ## Release notes
-### Latest: Version 0.1.5
+
+### Latest
+
+####  Version 0.1.5
+
  - Completed documentation for statistics
  - Updated tests
  - Added production deployment documentation
  
+### Older versions
+
 <details>
-    <summary>Older versions</summary>
+    <summary>Click to expand</summary>
     
 <p>
 
-### Version 0.1.4
+#### Version 0.1.4
 - Added statistics support
 
     Records the total requests on the server
@@ -101,22 +107,35 @@ Could be integrated to the web server
 </details>
 
 ## TODO List
+
 ### Version 0.1.6
+
  - [x] Update routing
+ - [x] Fix routing
  - [ ] Finish posts view
+ 
 ### Version 0.2.0
+
  - [ ] Finish auth documentation
  - [ ] Finish backend documentation
  - [ ] Finish posts documentation
+ 
 ### Version 0.2.1
+
  - [ ] Automatic deploy
+ 
 ## License and copyright
+
 Licensed under the MIT license
 
 Copyright 2019-2020
+
 ### Model
+
  - [jimmy-zx/AIwaffle](https://github.com/jimmy-zx/AIwaffle)
 forked from [IDl0T/AIwaffle](https://github.com/IDl0T/AIwaffle)
+
 ### Front end
+
  - [AlienKevin/AIWaffle-website](https://github.com/AlienKevin/AIWaffle-website)
  - [Flask example](https://github.com/pallets/flask)
