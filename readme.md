@@ -29,8 +29,10 @@ Models
  - **/blog/** the blog page
  - **/model/** the model view
  - **/api/** restful api
- - **/static** static files
- - All the other routes will be required to **/**
+ - **/static/** static files
+ - **/tutorial/** tutorial web pages
+ - **/home** Index page (same as **/**)
+ - All the other routes (include 404) will be required to **/**
  
 #### Documentation
 
@@ -98,6 +100,7 @@ Could be integrated to the web server
 
 ## TODO List
 ### Version 0.1.6
+ - [x] Update routing
  - [ ] Finish posts view
 ### Version 0.2.0
  - [ ] Finish auth documentation
