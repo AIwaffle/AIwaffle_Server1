@@ -31,7 +31,9 @@ def model(*args, **kw):
     if MODEL_FACTORY is None:
         if LOGGER is None:
             LOGGER = logging.getLogger(__name__)
+        LOGGER.debug("Logger: {}".format(LOGGER))
         LOGGER.info("Created server1_extra instance")
-        MODEL_FACTORY = server1_extra.server.ModelFactory(LOGGER)
+        # Model logs will be recorded into server1_extra.log
+        MODEL_FACTORY = server1_extra.server.ModelFactory()
 
     return json.loads(MODEL_FACTORY.parse(data))

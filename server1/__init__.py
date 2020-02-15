@@ -40,6 +40,7 @@ def create_app(test_config=None):
     fh.setFormatter(formatter)
     app.logger.addHandler(fh)
 
+    assert len(app.logger.handlers) == 1
     app.logger.info("Created new app instance")
 
     import server1.db

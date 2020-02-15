@@ -17,15 +17,24 @@ def index():
     return flask.send_from_directory("../AIWaffle-website/dist", "index.html")
 
 
+@bp.route("/home")
+def home():
+    return flask.send_from_directory("../AIWaffle-website/dist", "index.html")
+
+
 @bp.route("/dist/<path:path>")
 def dist(path):
-    flask.current_app.logger.debug("Sending statis file `{}`".format(path))
     return flask.send_from_directory("../AIWaffle-website/dist", path)
 
 
 @bp.route("/assets/<path:path>")
 def assets(path):
     return flask.send_from_directory("../AIWaffle-website/assets", path)
+
+
+@bp.route("/tutorial/<path:path>")
+def tutorial(path):
+    return flask.send_from_directory("../AIWaffle-website/", "tutorial.html")
 
 
 @bp.route("/teapot")
