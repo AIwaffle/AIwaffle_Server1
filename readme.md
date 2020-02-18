@@ -71,7 +71,7 @@ Could be integrated to the web server
         USE_EXTRA_SERVER=False
         ```
 1. Choose an production server to run the application
-    - Current environment uses waitress
+   - Current environment uses waitress
     ```shell script
     pip3 install waitress
     waitress-run --call 'server1.create_app
@@ -81,11 +81,10 @@ Could be integrated to the web server
 
 ### Latest
 
-####  Version 0.1.5
+#### Version 0.1.6
 
- - Completed documentation for statistics
- - Updated tests
- - Added production deployment documentation
+ - Updated and fixed routing
+ - Updated new submodule
  
 ### Older versions
 
@@ -93,6 +92,12 @@ Could be integrated to the web server
     <summary>Click to expand</summary>
     
 <p>
+
+#### Version 0.1.5
+
+ - Completed documentation for statistics
+ - Updated tests
+ - Added production deployment documentation
 
 #### Version 0.1.4
 - Added statistics support
@@ -108,17 +113,13 @@ Could be integrated to the web server
 
 ## TODO List
 
-### Version 0.1.6
-
- - [x] Update routing
- - [x] Fix routing
- - [ ] Finish posts view
+### Version 0.1.7
+ - [ ] Remove posts view
  
 ### Version 0.2.0
 
  - [ ] Finish auth documentation
  - [ ] Finish backend documentation
- - [ ] Finish posts documentation
  
 ### Version 0.2.1
 
