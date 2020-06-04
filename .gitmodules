@@ -1,6 +1,3 @@
 [submodule "AIwaffle"]
 	path = AIwaffle
 	url = https://github.com/jimmy-zx/AIwaffle.git
-[submodule "AIWaffle-website"]
-	path = AIWaffle-website
-	url = https://github.com/AlienKevin/AIWaffle-website.git
