@@ -5,6 +5,13 @@ import flask
 import flask.logging
 import flask_cors
 
+import server1.special
+from server1 import special
+from server1.login import lm
+from server1.models import db
+from server1.special import handlers
+from server1.views import bps
+
 
 def create_app(test_config=None):
     app = flask.Flask(__name__, instance_relative_config=True)
@@ -17,6 +24,7 @@ def create_app(test_config=None):
     app.config.from_mapping(
         SECRET_KEY="dev",
         SQLALCHEMY_DATABASE_URI="sqlite://",
+        SQLALCHEMY_TRACK_MODIFICATIONS=False,
         SESSION_EXPIRES=60 * 60,
         USE_EXTRA_SERVER=True,
     )
@@ -43,19 +51,18 @@ def create_app(test_config=None):
     assert len(app.logger.handlers) == 1
     app.logger.info("Created new app instance")
 
-    import server1.db
-    server1.db.init_app(app)
+    @app.before_first_request
+    def create_tables():
+        db.create_all()
 
-    import server1.views
-    for bp in server1.views.bps:
+    db.init_app(app)
+    lm.init_app(app)
+
+    for bp in bps:
         app.register_blueprint(bp)
 
-    import server1.views.error
-    for handler in server1.views.error.handlers:
+    for handler in handlers:
         app.register_error_handler(*handler)
-
-    import server1.special
-    app.before_request(server1.special.before_request)
 
     @app.route("/test")
     def test():

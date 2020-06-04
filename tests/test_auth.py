@@ -1,7 +1,6 @@
 import flask
 import pytest
 
-import server1.db
 import server1.models
 
 

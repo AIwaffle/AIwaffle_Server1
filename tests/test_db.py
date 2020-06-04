@@ -1,4 +1,3 @@
-import server1.db
 
 
 def test_get_close_db(app):

@@ -1,8 +1,13 @@
-import server1.db
-import server1.models
-import server1.api.statistics
+"""Special handlers
+"""
+import flask
 
 
-def before_request():
-    db = server1.db.get_db()
-    server1.api.statistics.update_total(0, db)
+def handle404(e):
+    # flask.current_app.logger.debug("{} {} -> index.html 200".format(flask.request.method, flask.request.url))
+    return flask.send_from_directory("../AIWaffle-website/dist", "index.html"), 200
+
+
+handlers = [
+    (404, handle404)
+]

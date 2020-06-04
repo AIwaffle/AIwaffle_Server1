@@ -1,8 +1,10 @@
 click
 flask
 flask-cors
+flask-sqlalchemy
 sqlalchemy
 pytest
 requests
 coverage
 numpy
+setuptools

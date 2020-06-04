@@ -4,7 +4,6 @@ import tempfile
 import pytest
 
 import server1
-import server1.db
 import server1.models
 
 
@@ -18,10 +17,6 @@ def app():
             "USE_EXTRA_SERVER": False,
         }
     )
-
-    with app.app_context():
-        server1.db.init_db()
-        server1.db.get_db()
 
     yield app
 

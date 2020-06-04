@@ -1,12 +1,9 @@
 """This module provides views with url prefix /auth
 """
-import functools
-
 import flask
+import flask_login
 
-import server1.api.auth
-import server1.db
-import server1.models
+from server1.api import auth
 
 bp = flask.Blueprint("auth", __name__, url_prefix="/auth")
 
@@ -38,8 +35,7 @@ def register():
             error = "Field username and password is required."
 
         if error is None:
-            db = server1.db.get_db()
-            c_uuid = server1.api.auth.register(username, password, db)
+            c_uuid = auth.register(username, password)
             if c_uuid:
                 return flask.redirect(flask.url_for("auth.login"))
             else:
@@ -79,16 +75,14 @@ def login():
             error = "Field username and password is required."
 
         if error is None:
-            db = server1.db.get_db()
-            res = server1.api.auth.login(username, password, db,
-                                         flask.current_app.config["SESSION_EXPIRES"])
-            if not res:
+            user = auth.login(
+                username, password,
+            )
+            if not user:
                 error = "Invalid username or password."
             else:
-                flask.session.clear()
-                flask.session["uuid"] = res["uuid"]
-                flask.session["expires"] = res["expires"]
-                flask.session["token"] = res["token"]
+                flask_login.login_user(user)
+                # next = flask.request.args.get('next')
                 return flask.redirect(flask.url_for("index"))
 
         flask.flash(error)
@@ -96,48 +90,14 @@ def login():
     return flask.render_template("auth/login.html")
 
 
-@bp.route("/logout", methods=("GET", "POST"))
+@bp.route("/logout")
+@flask_login.login_required
 def logout():
     """Logout the user
 
-    GET /auth/logout
+    /auth/logout
 
     Returns: flask.redirect(index)
     """
-    flask.session.clear()
+    flask_login.logout_user()
     return flask.redirect(flask.url_for("index"))
-
-
-def load_logged_in_user():
-    """Load a logged in user from cookie
-
-    Load the user to flask.g.user
-    """
-    db = server1.db.get_db()
-    c_uuid = flask.session.get("uuid", None)
-    expires = flask.session.get("expires", None)
-    token = flask.session.get("token", None)
-    if c_uuid is None or expires is None or token is None:
-        flask.g.user = None
-        return
-    else:
-        flask.g.user = server1.api.auth.load_logged_in_user(c_uuid, expires, token, db)
-
-
-def login_required(view):
-    """Login is required for the view
-
-    A wrapper
-    """
-
-    @functools.wraps(view)
-    def wrapped_view(**kwargs):
-        if flask.g.user is None:
-            return flask.redirect(flask.url_for('auth.login'))
-
-        return view(**kwargs)
-
-    return wrapped_view
-
-
-bp.before_app_request(load_logged_in_user)

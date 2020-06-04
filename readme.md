@@ -114,7 +114,16 @@ Could be integrated to the web server
 ## TODO List
 
 ### Version 0.1.7
- - [ ] Remove posts view
+ - [x] Remove posts view
+ - [x] Remove statistics
+ - [x] Switch to flask-sqlalchemy
+ - [x] Add flask-login
+ - [x] Remove front-end submodule
+ - [ ] Change import style
+ - [ ] Fix tests
+
+### Version 0.1.8
+ - [ ] Add external authorization (JWT)
  
 ### Version 0.2.0
 
