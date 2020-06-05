@@ -68,7 +68,7 @@ Could be integrated to the web server
     - A secret key is recommend to config
     - If you don't want an extra\_server, set
         ```python
-        USE_EXTRA_SERVER=False
+    USE_EXTRA_SERVER=False
         ```
 1. Choose an production server to run the application
    - Current environment uses waitress
@@ -119,11 +119,11 @@ Could be integrated to the web server
  - [x] Switch to flask-sqlalchemy
  - [x] Add flask-login
  - [x] Remove front-end submodule
- - [ ] Change import style
+ - [x] Add external authorization (OAuth)
  - [ ] Fix tests
 
 ### Version 0.1.8
- - [ ] Add external authorization (JWT)
+ - [ ] Uniform import style
  
 ### Version 0.2.0
 

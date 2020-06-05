@@ -9,6 +9,7 @@ import server1.special
 from server1 import special
 from server1.login import lm
 from server1.models import db
+from server1.oauth2 import config_oauth
 from server1.special import handlers
 from server1.views import bps
 
@@ -55,9 +56,6 @@ def create_app(test_config=None):
     def create_tables():
         db.create_all()
 
-    db.init_app(app)
-    lm.init_app(app)
-
     for bp in bps:
         app.register_blueprint(bp)
 
@@ -69,5 +67,9 @@ def create_app(test_config=None):
         return {"success": True}
 
     app.add_url_rule("/", endpoint="index")
+
+    db.init_app(app)
+    lm.init_app(app)
+    config_oauth(app)
 
     return app

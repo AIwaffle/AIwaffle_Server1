@@ -8,9 +8,13 @@ import flask
 from server1.models import db, User
 
 
+def get_user(username: str) -> Union[User, None]:
+    return User.query.filter(username == username).first()
+
+
 def register(username: str, password: str) -> Union[str, bool]:
     flask.current_app.logger.debug("Registering new user {}".format(username))
-    uf = User.query.filter(username == username).first()
+    uf = get_user(username)
     if uf is not None:
         flask.current_app.logger.error("User already registered")
         return False
@@ -25,7 +29,7 @@ def register(username: str, password: str) -> Union[str, bool]:
 
 def login(username: str, password: str) -> Union[User, None]:
     flask.current_app.logger.debug("Logging in {}".format(username))
-    user = User.query.filter(username == username).first()
+    user = get_user(username)
 
     if user is None:
         flask.current_app.logger.debug("User does not exist")

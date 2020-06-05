@@ -101,3 +101,15 @@ def logout():
     """
     flask_login.logout_user()
     return flask.redirect(flask.url_for("index"))
+
+
+@bp.route("/current")
+@flask_login.login_required
+def current():
+    """Get current user
+
+    /auth/current
+
+    Returns: the id of the user
+    """
+    return flask_login.current_user.get_id()
