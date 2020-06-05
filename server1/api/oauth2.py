@@ -2,4 +2,4 @@ from server1.models import db, OAuth2AuthorizationCode, OAuth2Client, OAuth2Toke
 
 
 def get_clients(uuid: str) -> list:
-    return OAuth2Client.query.filter(uuid == uuid).all()
+    return OAuth2Client.query.filter_by(uuid=uuid).all()

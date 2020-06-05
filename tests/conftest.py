@@ -4,7 +4,6 @@ import tempfile
 import pytest
 
 import server1
-import server1.models
 
 
 @pytest.fixture

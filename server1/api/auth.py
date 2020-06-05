@@ -9,7 +9,7 @@ from server1.models import db, User
 
 
 def get_user(username: str) -> Union[User, None]:
-    return User.query.filter(username == username).first()
+    return User.query.filter_by(username=username).first()
 
 
 def register(username: str, password: str) -> Union[str, bool]:
