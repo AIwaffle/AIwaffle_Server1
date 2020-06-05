@@ -116,10 +116,12 @@ Could be integrated to the web server
  - [x] Add flask-login
  - [x] Remove front-end submodule
  - [x] Add external authorization (OAuth)
- - [ ] Fix tests
+ - [x] Fix tests
+ - [ ] Add oauth2 tests
 
 ### Version 0.1.8
- - [ ] Uniform import style
+ - [ ] Uniform coding style (Google)
+ - [ ] Support logging configuration
  
 ### Version 0.2.0
 
