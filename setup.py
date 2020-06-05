@@ -7,8 +7,12 @@ setup(
     include_package_data=True,
     zip_safe=False,
     install_requires=[
+        'authlib',
         'click',
         'flask',
+        'flask-cors',
+        'flask-sqlalchemy',
+        'flask-login',
         'sqlalchemy',
         'numpy',
     ],

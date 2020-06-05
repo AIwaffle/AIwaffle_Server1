@@ -32,10 +32,6 @@ Models
  - **/model/** the model view
  - **/api/** restful api
  - **/static/** static files
- - **/tutorial/** tutorial web pages
- - **/home** Index page (same as **/**)
- - All the other routes (include 404) will be required to **/**
- 
 #### Documentation
 
 Auth: TODO
