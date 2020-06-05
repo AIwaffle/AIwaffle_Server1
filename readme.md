@@ -143,9 +143,10 @@ Copyright 2019-2020
 ### Model
 
  - [jimmy-zx/AIwaffle](https://github.com/jimmy-zx/AIwaffle)
-forked from [IDl0T/AIwaffle](https://github.com/IDl0T/AIwaffle)
 
-### Front end
 
- - [AlienKevin/AIWaffle-website](https://github.com/AlienKevin/AIWaffle-website)
- - [Flask example](https://github.com/pallets/flask)
+### Acknowledgements
+
+ - [Flask](https://github.com/pallets/flask)
+ - [example-oauth2-server](https://github.com/authlib/example-oauth2-server)
+ - [AIwaffle/AIwaffle](https://github.com/AIwaffle/AIwaffle)
