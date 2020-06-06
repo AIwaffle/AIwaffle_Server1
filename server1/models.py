@@ -1,3 +1,4 @@
+import hashlib
 import time
 
 import flask_sqlalchemy
@@ -44,7 +45,8 @@ class User(db.Model):
         return self.uuid
 
     def check_password(self, password):
-        return password == self.password
+        salted = hashlib.sha512(password.encode() + self.salt).hexdigest()
+        return salted == self.password
 
     def __repr__(self):
         return "<User {}>".format(self.username)

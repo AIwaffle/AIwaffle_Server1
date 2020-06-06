@@ -20,14 +20,14 @@ from .models import OAuth2Client, OAuth2AuthorizationCode, OAuth2Token
 
 class AuthorizationCodeGrant(grants.AuthorizationCodeGrant):
     TOKEN_ENDPOINT_AUTH_METHODS = [
-        'client_secret_basic',
-        'client_secret_post',
-        'none',
+        "client_secret_basic",
+        "client_secret_post",
+        "none",
     ]
 
     def save_authorization_code(self, code, request):
-        code_challenge = request.data.get('code_challenge')
-        code_challenge_method = request.data.get('code_challenge_method')
+        code_challenge = request.data.get("code_challenge")
+        code_challenge_method = request.data.get("code_challenge_method")
         auth_code = OAuth2AuthorizationCode(
             code=code,
             client_id=request.client.client_id,

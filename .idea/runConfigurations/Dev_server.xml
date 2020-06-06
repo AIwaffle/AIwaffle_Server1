@@ -7,6 +7,7 @@
       <env name="PYTHONUNBUFFERED" value="1" />
       <env name="FLASK_APP" value="server1" />
       <env name="FLASK_DEBUG" value="1" />
+      <env name="AUTHLIB_INSECURE_TRANSPORT" value="1" />
     </envs>
     <option name="SDK_HOME" value="$PROJECT_DIR$/venv/bin/python" />
     <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/" />

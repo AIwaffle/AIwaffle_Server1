@@ -14,8 +14,8 @@ from server1.special import handlers
 from server1.views import bps
 
 
-def create_app(test_config=None):
-    app = flask.Flask(__name__, instance_relative_config=True)
+def create_app(test_config=None, **kwargs):
+    app = flask.Flask(__name__, instance_relative_config=True, **kwargs)
     flask_cors.CORS(app)
 
     module_logger = logging.getLogger(__name__)

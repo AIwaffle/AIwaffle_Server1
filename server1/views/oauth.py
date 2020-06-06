@@ -16,7 +16,7 @@ bp = flask.Blueprint("oauth", __name__, url_prefix="/oauth")
 
 
 def current_user():
-    return auth.get_user(flask_login.current_user.get_id())
+    return auth.get_user(uuid=flask_login.current_user.get_id())
 
 
 """Sample implementation from
@@ -49,7 +49,7 @@ def create_client():
     client = OAuth2Client(
         client_id=client_id,
         client_id_issued_at=client_id_issued_at,
-        user_id=user.id,
+        user_id=user.uuid,
     )
 
     form = flask.request.form

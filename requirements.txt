@@ -11,3 +11,5 @@ numpy
 setuptools
 Authlib
 Werkzeug
+wheel
+beautifulsoup4

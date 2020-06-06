@@ -8,13 +8,13 @@ import flask
 from server1.models import db, User
 
 
-def get_user(username: str) -> Union[User, None]:
-    return User.query.filter_by(username=username).first()
+def get_user(**kwargs) -> Union[User, None]:
+    return User.query.filter_by(**kwargs).first()
 
 
 def register(username: str, password: str) -> Union[str, bool]:
     flask.current_app.logger.debug("Registering new user {}".format(username))
-    uf = get_user(username)
+    uf = get_user(username=username)
     if uf is not None:
         flask.current_app.logger.error("User already registered")
         return False
@@ -29,15 +29,13 @@ def register(username: str, password: str) -> Union[str, bool]:
 
 def login(username: str, password: str) -> Union[User, None]:
     flask.current_app.logger.debug("Logging in {}".format(username))
-    user = get_user(username)
+    user = get_user(username=username)
 
     if user is None:
         flask.current_app.logger.debug("User does not exist")
         return None
 
-    salted = hashlib.sha512(password.encode() + user.salt).hexdigest()
-
-    if salted == user.password:
+    if user.check_password(password):
         return user
     else:
         flask.current_app.logger.debug("No matching user record")

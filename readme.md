@@ -36,7 +36,7 @@ Models
 
 Auth: TODO
 
-Blog: [docs/blog.md](docs/blog.md)
+OAuth2: TODO
 
 API: [docs/api.md](docs/api.md)
 
@@ -47,31 +47,9 @@ An internal server that runs a something unrelated to web
 
 Could be integrated to the web server
 
-## How to deploy
+## Deploy
+TODO
 
-1. Clone this repo
-    ```shell script
-    git clone https://github.com/jimmy-zx/AIwaffle_Server1.git
-    cd AIwaffle_Server1
-    ```
-1. Initialize submodules ```git submodule update --init```
-1. Install dependencies ```pip3 install -r requirements.txt```
-1. Config the server
-    ```shell script
-    mkdir instance
-    $EDITOR instance/config.py
-    ```
-    - A secret key is recommend to config
-    - If you don't want an extra\_server, set
-        ```python
-    USE_EXTRA_SERVER=False
-        ```
-1. Choose an production server to run the application
-   - Current environment uses waitress
-    ```shell script
-    pip3 install waitress
-    waitress-run --call 'server1.create_app
-    ```
 
 ## Release notes
 
@@ -115,9 +93,10 @@ Could be integrated to the web server
  - [x] Switch to flask-sqlalchemy
  - [x] Add flask-login
  - [x] Remove front-end submodule
- - [x] Add external authorization (OAuth)
+ - [x] Add OAuth2 authorization
  - [x] Fix tests
- - [ ] Add oauth2 tests
+ - [x] Fixed oauth2
+ - [x] Add OAuth2 tests
 
 ### Version 0.1.8
  - [ ] Uniform coding style (Google)
@@ -126,6 +105,7 @@ Could be integrated to the web server
 ### Version 0.2.0
 
  - [ ] Finish auth documentation
+ - [ ] Finish OAuth2 documentation
  - [ ] Finish backend documentation
  
 ### Version 0.2.1
