@@ -1,24 +1,24 @@
-import datetime
+import hashlib
+import time
 
-import sqlalchemy
+import flask_sqlalchemy
+from authlib.integrations import sqla_oauth2
 
-from server1.db import Base
+db = flask_sqlalchemy.SQLAlchemy()
 
 
-class User(Base):
+class User(db.Model):
     """The user database object
-
-    Should NEVER be passed outside the backend!
     """
-    __tablename__ = "users"
+    __tablename__ = "user"
 
-    id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
 
-    uuid = sqlalchemy.Column(sqlalchemy.String, unique=True, nullable=False)
-    salt = sqlalchemy.Column(sqlalchemy.Binary, nullable=False)
+    uuid = db.Column(db.String, unique=True, nullable=False)
+    salt = db.Column(db.Binary, nullable=False)
 
-    username = sqlalchemy.Column(sqlalchemy.String, unique=True, nullable=False)
-    password = sqlalchemy.Column(sqlalchemy.String, nullable=False)
+    username = db.Column(db.String, unique=True, nullable=False)
+    password = db.Column(db.String, nullable=False)
 
     def __init__(self, uuid, salt, username, password):
         self.uuid = uuid
@@ -26,35 +26,65 @@ class User(Base):
         self.username = username
         self.password = password
 
+    def __str__(self):
+        return self.username
+
+    def is_authenticated(self):
+        return True
+
+    def is_active(self):
+        return True
+
+    def is_anonymous(self):
+        return True
+
+    def get_id(self):
+        return self.uuid
+
+    def get_user_id(self):
+        return self.uuid
+
+    def check_password(self, password):
+        salted = hashlib.sha512(password.encode() + self.salt).hexdigest()
+        return salted == self.password
+
     def __repr__(self):
-        return "<User uuid={}, username={}>".format(self.uuid, self.username)
+        return "<User {}>".format(self.username)
 
 
-class Post(Base):
-    __tablename__ = "posts"
-
-    id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True)
-
-    author_uuid = sqlalchemy.Column(sqlalchemy.String, sqlalchemy.ForeignKey("users.uuid"), nullable=False)
-    created = sqlalchemy.Column(sqlalchemy.DateTime, nullable=False, default=datetime.datetime.utcnow)
-
-    title = sqlalchemy.Column(sqlalchemy.String, nullable=False)
-    body = sqlalchemy.Column(sqlalchemy.String)
-
-    def __init__(self, author_uuid, created, title, body):
-        self.author_uuid = author_uuid
-        self.created = created
-        self.title = title
-        self.body = body
+"""Sample implementation from
+https://github.com/authlib/example-oauth2-server/blob/master/website/models.py
+"""
 
 
-class Statistics(Base):
-    __tablename__ = "statistics"
+class OAuth2Client(db.Model, sqla_oauth2.OAuth2ClientMixin):
+    __tablename__ = "oauth2_client"
 
-    id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(
+        db.Integer, db.ForeignKey("user.uuid", ondelete="CASCADE"))
+    user = db.relationship("User")
 
-    access_total = sqlalchemy.Column(sqlalchemy.Integer, default=0)
 
-    def __init__(self, id_):
-        self.id = id_
+class OAuth2AuthorizationCode(db.Model, sqla_oauth2.OAuth2AuthorizationCodeMixin):
+    __tablename__ = "oauth2_code"
 
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(
+        db.Integer, db.ForeignKey("user.uuid", ondelete="CASCADE"))
+    user = db.relationship("User")
+
+
+class OAuth2Token(db.Model, sqla_oauth2.OAuth2TokenMixin):
+    __tablename__ = "oauth2_token"
+
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(
+        db.Integer, db.ForeignKey("user.uuid", ondelete="CASCADE"))
+    user = db.relationship("User")
+
+    def is_refresh_token_active(self):
+        if self.revoked:
+            return False
+        expires_at = self.issued_at + self.expires_in * 2
+        return expires_at >= time.time()

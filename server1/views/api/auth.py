@@ -3,7 +3,6 @@
 import flask
 
 import server1.api.auth
-import server1.db
 import server1.models
 
 bp = flask.Blueprint("api_auth", __name__, url_prefix="/api/auth")
@@ -29,7 +28,7 @@ def register():
     if not all((username, password)):
         flask.abort(400)
     db = server1.db.get_db()
-    c_uuid = server1.api.auth.register(username, password, db)
+    c_uuid = server1.api.auth.register(username, password)
     if c_uuid:
         return c_uuid
     else:
@@ -61,7 +60,7 @@ def login():
     if not username or not password:
         flask.abort(400)
     db = server1.db.get_db()
-    res = server1.api.auth.login(username, password, db,
+    res = server1.api.auth.login(username, password,
                                  flask.current_app.config["SESSION_EXPIRES"])
     if not res:
         flask.abort(400)

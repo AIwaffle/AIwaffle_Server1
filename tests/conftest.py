@@ -4,29 +4,23 @@ import tempfile
 import pytest
 
 import server1
-import server1.db
-import server1.models
 
 
 @pytest.fixture
 def app():
-    db_fd, db_path = tempfile.mkstemp()
-    app = server1.create_app(
-        {
-            "TESTING": True,
-            "SQLALCHEMY_DATABASE_URI": "sqlite:///" + db_path,
-            "USE_EXTRA_SERVER": False,
-        }
-    )
-
-    with app.app_context():
-        server1.db.init_db()
-        server1.db.get_db()
-
-    yield app
-
-    os.close(db_fd)
-    os.unlink(db_path)
+    with tempfile.TemporaryDirectory() as temp_dir:
+        os.mkdir(os.path.join(temp_dir, "instance"))
+        app = server1.create_app(
+            test_config={
+                "TESTING": True,
+                "SQLALCHEMY_DATABASE_URI": "sqlite:///{}".format(
+                    os.path.join(temp_dir, "server1.db")
+                ),
+                "USE_EXTRA_SERVER": False,
+            },
+            instance_path=os.path.join(temp_dir, "instance")
+        )
+        yield app
 
 
 @pytest.fixture

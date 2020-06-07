@@ -1,8 +1,15 @@
 click
 flask
 flask-cors
+flask-sqlalchemy
+flask-login
 sqlalchemy
 pytest
 requests
 coverage
 numpy
+setuptools
+Authlib
+Werkzeug
+wheel
+beautifulsoup4

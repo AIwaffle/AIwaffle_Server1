@@ -1,0 +1,12 @@
+<style>pre{white-space:wrap}</style>
+<div>Logged in as <strong>{{user}}</strong> (<a href="{{ url_for('auth.logout') }}">Log Out</a>)</div>
+
+{% for client in clients %}
+<pre>
+{{ client.client_info|tojson }}
+{{ client.client_metadata|tojson }}
+</pre>
+<hr>
+{% endfor %}
+
+<br><a href="{{ url_for('.create_client') }}">Create Client</a>

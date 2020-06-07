@@ -6,19 +6,6 @@ import uuid
 
 import server1_extra.model as model
 
-LOGGER = logging.getLogger(__name__)
-
-if not len(LOGGER.handlers):
-    LOGGER.setLevel(logging.DEBUG)
-    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-    ch = logging.StreamHandler()
-    ch.setLevel(logging.INFO)
-    LOGGER.addHandler(ch)
-    fh = logging.FileHandler(os.path.join(os.curdir, "instance", "server1_extra.log"))
-    fh.setLevel(logging.DEBUG)
-    fh.setFormatter(formatter)
-    LOGGER.addHandler(fh)
-
 
 class ModelFactory:
     """A factory for multiple models
@@ -89,8 +76,7 @@ class Server(socketserver.UnixStreamServer):
     def server_activate(self) -> None:
         """Initializes the server
         """
-        global LOGGER
-        self.logger = LOGGER
+        self.logger = logging.getLogger(__name__)
         self.model_factory = ModelFactory(self.logger)
         self.logger.debug("Activated server")
         super(Server, self).server_activate()

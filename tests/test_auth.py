@@ -1,8 +1,8 @@
 import flask
+import flask_login
 import pytest
 
-import server1.db
-import server1.models
+from server1 import models
 
 
 def test_register(client, app):
@@ -13,8 +13,7 @@ def test_register(client, app):
     assert response.headers["Location"] == "http://localhost/auth/login"
 
     with app.app_context():
-        server1.db.get_db()
-        u = server1.models.User.query.filter(server1.models.User.username == "test_u2").first()
+        u = models.User.query.filter_by(username="test_u2").first()
         assert u is not None
 
 
@@ -38,7 +37,9 @@ def test_login(client, auth):
 
     with client:
         client.get("/")
-        assert flask.g.user.username == "test_u1"
+        uuid = flask_login.current_user.get_id()
+        user = models.User.query.filter_by(uuid=uuid).first()
+        assert user.username == "test_u1"
 
 
 @pytest.mark.parametrize(("username", "password", "message"), (

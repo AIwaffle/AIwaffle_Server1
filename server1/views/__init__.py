@@ -20,17 +20,15 @@ Site map:
 """
 from .api.auth import bp as api_auth_bp
 from .api.model import bp as api_model_bp
-from .api.statistics import bp as api_statistics_bp
 from .auth import bp as auth_bp
 from .root import bp as root_bp
 from .model import bp as model_bp
-from .blog import bp as blog_bp
+from .oauth import bp as oauth_bp
 
 bps = (api_auth_bp,
        api_model_bp,
-       api_statistics_bp,
        auth_bp,
        root_bp,
        model_bp,
-       blog_bp,
+       oauth_bp,
        )

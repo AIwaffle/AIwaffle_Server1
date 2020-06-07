@@ -1,8 +1,10 @@
 # AIwaffle_server1
 
-Version 0.1.6
+Develop branch
 
-[![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fjimmy-zx%2FAIwaffle_Server1%2Fbadge%3Fref%3Dmaster&style=flat)](https://actions-badge.atrox.dev/jimmy-zx/AIwaffle_Server1/goto?ref=master)
+Version 0.1.7
+
+![Python application](https://github.com/AIwaffle/AIwaffle_Server1/workflows/Python%20application/badge.svg?branch=dev)
 
 Backend server for [IDl0T/AIwaffle](https://github.com/IDl0T/AIwaffle)
 
@@ -16,11 +18,10 @@ Using Flask framework
 
 #### Database
 
-SQLAlchemy + SQLite
+SQLite
 
 Models
  - Users: stores user auth information
- - Posts: stores post information
  
 #### Site map
 
@@ -30,15 +31,11 @@ Models
  - **/model/** the model view
  - **/api/** restful api
  - **/static/** static files
- - **/tutorial/** tutorial web pages
- - **/home** Index page (same as **/**)
- - All the other routes (include 404) will be required to **/**
- 
 #### Documentation
 
 Auth: TODO
 
-Blog: [docs/blog.md](docs/blog.md)
+OAuth2: TODO
 
 API: [docs/api.md](docs/api.md)
 
@@ -49,40 +46,24 @@ An internal server that runs a something unrelated to web
 
 Could be integrated to the web server
 
-## How to deploy
+## Deploy
+TODO
 
-1. Clone this repo
-    ```shell script
-    git clone https://github.com/jimmy-zx/AIwaffle_Server1.git
-    cd AIwaffle_Server1
-    ```
-1. Initialize submodules ```git submodule update --init```
-1. Install dependencies ```pip3 install -r requirements.txt```
-1. Config the server
-    ```shell script
-    mkdir instance
-    $EDITOR instance/config.py
-    ```
-    - A secret key is recommend to config
-    - If you don't want an extra\_server, set
-        ```python
-        USE_EXTRA_SERVER=False
-        ```
-1. Choose an production server to run the application
-   - Current environment uses waitress
-    ```shell script
-    pip3 install waitress
-    waitress-run --call 'server1.create_app
-    ```
 
 ## Release notes
 
 ### Latest
 
-#### Version 0.1.6
-
- - Updated and fixed routing
- - Updated new submodule
+### Version 0.1.7
+ - Removed posts view
+ - Removed statistics
+ - Switched to flask-sqlalchemy
+ - Added flask-login
+ - Removed front-end submodule
+ - Added OAuth2 authorization
+ - Fixed tests
+ - Fixed OAuth2
+ - Added OAuth2 tests
  
 ### Older versions
 
@@ -90,6 +71,11 @@ Could be integrated to the web server
     <summary>Click to expand</summary>
     
 <p>
+
+#### Version 0.1.6
+
+ - Updated and fixed routing
+ - Updated new submodule
 
 #### Version 0.1.5
 
@@ -111,13 +97,16 @@ Could be integrated to the web server
 
 ## TODO List
 
-### Version 0.1.7
- - [ ] Remove posts view
+### Version 0.1.8
+ - [ ] Uniform coding style (Google)
+ - [ ] Support logging configuration
  
 ### Version 0.2.0
 
  - [ ] Finish auth documentation
+ - [ ] Finish OAuth2 documentation
  - [ ] Finish backend documentation
+ - [ ] Add deployment note
  
 ### Version 0.2.1
 
@@ -132,9 +121,10 @@ Copyright 2019-2020
 ### Model
 
  - [jimmy-zx/AIwaffle](https://github.com/jimmy-zx/AIwaffle)
-forked from [IDl0T/AIwaffle](https://github.com/IDl0T/AIwaffle)
 
-### Front end
 
- - [AlienKevin/AIWaffle-website](https://github.com/AlienKevin/AIWaffle-website)
- - [Flask example](https://github.com/pallets/flask)
+### Acknowledgements
+
+ - [Flask](https://github.com/pallets/flask)
+ - [example-oauth2-server](https://github.com/authlib/example-oauth2-server)
+ - [AIwaffle/AIwaffle](https://github.com/AIwaffle/AIwaffle)
