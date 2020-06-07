@@ -16,7 +16,6 @@ from server1.views import bps
 
 def create_app(test_config=None, **kwargs):
     app = flask.Flask(__name__, instance_relative_config=True, **kwargs)
-    flask_cors.CORS(app)
 
     module_logger = logging.getLogger(__name__)
 
@@ -27,7 +26,7 @@ def create_app(test_config=None, **kwargs):
         SQLALCHEMY_DATABASE_URI="sqlite://",
         SQLALCHEMY_TRACK_MODIFICATIONS=False,
         SESSION_EXPIRES=60 * 60,
-        USE_EXTRA_SERVER=True,
+        USE_EXTRA_SERVER=False,
     )
 
     if test_config is not None:
@@ -43,18 +42,28 @@ def create_app(test_config=None, **kwargs):
     assert isinstance(app.logger, logging.Logger)
     app.logger.setLevel(logging.DEBUG)
     app.logger.handlers.clear()
-    fh = logging.FileHandler(os.path.join(os.curdir, "instance", "server1.log"))
-    fh.setLevel(logging.DEBUG)
     formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+
+    fh = logging.FileHandler(os.path.join(app.instance_path, "server1.log"))
+    fh.setLevel(logging.DEBUG)
     fh.setFormatter(formatter)
     app.logger.addHandler(fh)
 
-    assert len(app.logger.handlers) == 1
+    # ch = logging.StreamHandler()
+    # ch.setLevel(logging.DEBUG)
+    # ch.setFormatter(formatter)
+    # app.logger.addHandler(ch)
+
+    assert len(app.logger.handlers) >= 1
     app.logger.info("Created new app instance")
 
     @app.before_first_request
     def create_tables():
         db.create_all()
+
+    @app.route("/test")
+    def test():
+        return {"success": True}
 
     for bp in bps:
         app.register_blueprint(bp)
@@ -62,12 +71,9 @@ def create_app(test_config=None, **kwargs):
     for handler in handlers:
         app.register_error_handler(*handler)
 
-    @app.route("/test")
-    def test():
-        return {"success": True}
-
     app.add_url_rule("/", endpoint="index")
 
+    flask_cors.CORS(app)
     db.init_app(app)
     lm.init_app(app)
     config_oauth(app)

@@ -30,10 +30,10 @@ def model(*args, **kw):
     global LOGGER
     if MODEL_FACTORY is None:
         if LOGGER is None:
-            LOGGER = logging.getLogger(__name__)
+            LOGGER = flask.current_app.logger
         LOGGER.debug("Logger: {}".format(LOGGER))
         LOGGER.info("Created server1_extra instance")
         # Model logs will be recorded into server1_extra.log
-        MODEL_FACTORY = server1_extra.server.ModelFactory()
+        MODEL_FACTORY = server1_extra.server.ModelFactory(logger=LOGGER)
 
     return json.loads(MODEL_FACTORY.parse(data))
