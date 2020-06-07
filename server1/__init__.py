@@ -35,7 +35,7 @@ def create_app(test_config=None, **kwargs):
         app.config.from_pyfile("config.py")
 
     try:
-        os.makedirs(app.instance_path)
+        os.mkdir(app.instance_path)
     except OSError:
         pass
 

@@ -17,7 +17,7 @@ jobs:
         python-version: 3.7
     - name: Install package
       run: |
-        pip install -e .
+        pip install -r requirements.txt
     - name: Lint with flake8
       run: |
         pip install flake8
