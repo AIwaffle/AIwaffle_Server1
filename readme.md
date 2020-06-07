@@ -1,8 +1,10 @@
 # AIwaffle_server1
 
+Develop branch
+
 Version 0.1.7
 
-![Python application](https://github.com/AIwaffle/AIwaffle_Server1/workflows/Python%20application/badge.svg)
+![Python application](https://github.com/AIwaffle/AIwaffle_Server1/workflows/Python%20application/badge.svg?branch=dev)
 
 Backend server for [AIwaffle](https://github.com/AIwaffle)
 
