@@ -2,7 +2,7 @@
 
 Develop branch
 
-Version 0.1.6
+Version 0.1.7
 
 ![Python application](https://github.com/AIwaffle/AIwaffle_Server1/workflows/Python%20application/badge.svg?branch=dev)
 
@@ -18,11 +18,10 @@ Using Flask framework
 
 #### Database
 
-SQLAlchemy + SQLite
+SQLite
 
 Models
  - Users: stores user auth information
- - Posts: stores post information
  
 #### Site map
 
@@ -55,10 +54,16 @@ TODO
 
 ### Latest
 
-#### Version 0.1.6
-
- - Updated and fixed routing
- - Updated new submodule
+### Version 0.1.7
+ - Removed posts view
+ - Removed statistics
+ - Switched to flask-sqlalchemy
+ - Added flask-login
+ - Removed front-end submodule
+ - Added OAuth2 authorization
+ - Fixed tests
+ - Fixed OAuth2
+ - Added OAuth2 tests
  
 ### Older versions
 
@@ -66,6 +71,11 @@ TODO
     <summary>Click to expand</summary>
     
 <p>
+
+#### Version 0.1.6
+
+ - Updated and fixed routing
+ - Updated new submodule
 
 #### Version 0.1.5
 
@@ -87,17 +97,6 @@ TODO
 
 ## TODO List
 
-### Version 0.1.7
- - [x] Remove posts view
- - [x] Remove statistics
- - [x] Switch to flask-sqlalchemy
- - [x] Add flask-login
- - [x] Remove front-end submodule
- - [x] Add OAuth2 authorization
- - [x] Fix tests
- - [x] Fixed oauth2
- - [x] Add OAuth2 tests
-
 ### Version 0.1.8
  - [ ] Uniform coding style (Google)
  - [ ] Support logging configuration
@@ -107,6 +106,7 @@ TODO
  - [ ] Finish auth documentation
  - [ ] Finish OAuth2 documentation
  - [ ] Finish backend documentation
+ - [ ] Add deployment note
  
 ### Version 0.2.1
 
