@@ -1,12 +1,10 @@
 # AIwaffle_server1
 
-Develop branch
-
 Version 0.1.7
 
-![Python application](https://github.com/AIwaffle/AIwaffle_Server1/workflows/Python%20application/badge.svg?branch=dev)
+![Python application](https://github.com/AIwaffle/AIwaffle_Server1/workflows/Python%20application/badge.svg)
 
-Backend server for [IDl0T/AIwaffle](https://github.com/IDl0T/AIwaffle)
+Backend server for [AIwaffle](https://github.com/AIwaffle)
 
 ## Components
 
