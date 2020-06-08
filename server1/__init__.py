@@ -22,7 +22,7 @@ def create_app(test_config=None, **kwargs):
     assert module_logger is app.logger
 
     app.config.from_mapping(
-        SECRET_KEY="dev",
+        SECRET_KEY="dev".encode(),
         SQLALCHEMY_DATABASE_URI="sqlite://",
         SQLALCHEMY_TRACK_MODIFICATIONS=False,
         SESSION_EXPIRES=60 * 60,
