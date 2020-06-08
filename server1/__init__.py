@@ -26,7 +26,7 @@ def create_app(test_config=None, **kwargs):
         SQLALCHEMY_DATABASE_URI="sqlite://",
         SQLALCHEMY_TRACK_MODIFICATIONS=False,
         SESSION_EXPIRES=60 * 60,
-        USE_EXTRA_SERVER=False,
+        USE_EXTRA_SERVER=True,
     )
 
     if test_config is not None:

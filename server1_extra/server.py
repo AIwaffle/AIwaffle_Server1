@@ -76,7 +76,8 @@ class Server(socketserver.UnixStreamServer):
     def server_activate(self) -> None:
         """Initializes the server
         """
-        self.logger = logging.getLogger(__name__)
+        if getattr(self, "logger", None) is None:
+            self.logger = logging.getLogger(__name__)
         self.model_factory = ModelFactory(self.logger)
         self.logger.debug("Activated server")
         super(Server, self).server_activate()

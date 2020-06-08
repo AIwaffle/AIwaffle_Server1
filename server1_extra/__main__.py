@@ -11,7 +11,7 @@ if __name__ == "__main__":
     ch.setLevel(logging.INFO)
     logger.addHandler(ch)
     fh = logging.FileHandler(os.path.join(os.curdir, "instance", "server1_extra.log"))
-    fh.setLevel(logging.DEBUG)
+    fh.setLevel(logging.INFO)
     fh.setFormatter(formatter)
     logger.addHandler(fh)
 
@@ -23,6 +23,8 @@ if __name__ == "__main__":
     logger.info("Serving server1_extra on ./instance/ext_sock")
     try:
         with server1_extra.server.Server(address, server1_extra.server.Handler) as server:
+            server.logger = logger
+            server.model_factory.logger = logger
             server.serve_forever()
     except KeyboardInterrupt:
         pass
