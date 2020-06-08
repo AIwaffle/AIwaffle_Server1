@@ -95,9 +95,12 @@ TODO
 </p>
 </details>
 
-## TODO List
+## Upcoming Releases
 
 ### Version 0.1.8
+ - [ ] Add deployment note
+
+### Version 0.1.9
  - [ ] Uniform coding style (Google)
  - [ ] Support logging configuration
  
@@ -106,8 +109,7 @@ TODO
  - [ ] Finish auth documentation
  - [ ] Finish OAuth2 documentation
  - [ ] Finish backend documentation
- - [ ] Add deployment note
- 
+
 ### Version 0.2.1
 
  - [ ] Automatic deploy
