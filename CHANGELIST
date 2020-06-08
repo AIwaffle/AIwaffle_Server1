@@ -1,0 +1,32 @@
+### Version 0.1.7
+
+ - Removed posts view
+ - Removed statistics
+ - Switched to flask-sqlalchemy
+ - Added flask-login
+ - Removed front-end submodule
+ - Added OAuth2 authorization
+ - Fixed tests
+ - Fixed OAuth2
+ - Added OAuth2 tests
+ 
+### Version 0.1.6
+
+ - Updated and fixed routing
+ - Updated new submodule
+
+### Version 0.1.5
+
+ - Completed documentation for statistics
+ - Updated tests
+ - Added production deployment documentation
+
+### Version 0.1.4
+
+ - Added statistics support
+
+   Records the total requests on the server
+      
+   Could be accessed via ```/api/statistics/total```
+      
+   See the api documentation for details

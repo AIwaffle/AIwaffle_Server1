@@ -8,109 +8,54 @@ Version 0.1.7
 
 Backend server for [AIwaffle](https://github.com/AIwaffle)
 
-## Components
 
-### Web server
-
-#### Network
-
-Using Flask framework
-
-#### Database
-
-SQLite
-
-Models
- - Users: stores user auth information
- 
-#### Site map
+## Site map
 
  - **/** Index page
  - **/auth/** the user login/register pages
- - **/blog/** the blog page
+ - **/oauth/** the OAuth2 authorization
  - **/model/** the model view
- - **/api/** restful api
- - **/static/** static files
-#### Documentation
+ 
+## Documentation
 
 Auth: TODO
 
 OAuth2: TODO
 
-API: [docs/api.md](docs/api.md)
-
  
-### Extra server
+## Extra server
 
-An internal server that runs a something unrelated to web
+An internal server that runs a something unrelated to web (e.g.: computation)
 
 Could be integrated to the web server
 
 ## Deploy
 TODO
 
-
-## Release notes
-
-### Latest
-
-### Version 0.1.7
- - Removed posts view
- - Removed statistics
- - Switched to flask-sqlalchemy
- - Added flask-login
- - Removed front-end submodule
- - Added OAuth2 authorization
- - Fixed tests
- - Fixed OAuth2
- - Added OAuth2 tests
- 
-### Older versions
-
-<details>
-    <summary>Click to expand</summary>
-    
-<p>
-
-#### Version 0.1.6
-
- - Updated and fixed routing
- - Updated new submodule
-
-#### Version 0.1.5
-
- - Completed documentation for statistics
- - Updated tests
- - Added production deployment documentation
-
-#### Version 0.1.4
-- Added statistics support
-
-    Records the total requests on the server
-       
-    Could be accessed via ```/api/statistics/total```
-       
-    See the api documentation for details
-
-</p>
-</details>
-
-## Upcoming Releases
+## Upcoming Changes
 
 ### Version 0.1.8
+
+ - [x] Add uWSGI configuration
  - [ ] Add deployment note
+ - [ ] Move OAuth2 APIs to ```/api/oauth```
+ - [ ] Finish documentation for ```/api/oauth```
 
 ### Version 0.1.9
+
  - [ ] Uniform coding style (Google)
  - [ ] Support logging configuration
  
 ### Version 0.2.0
 
  - [ ] Finish auth documentation
- - [ ] Finish OAuth2 documentation
  - [ ] Finish backend documentation
-
+ 
 ### Version 0.2.1
+
+ - [ ] Add RESTful APIs
+
+### Version 0.2.2
 
  - [ ] Automatic deploy
  

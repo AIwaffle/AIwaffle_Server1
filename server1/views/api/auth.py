@@ -1,4 +1,6 @@
 """This module provides views with url prefix /api/auth
+
+This API is broken now. Fix pending.
 """
 import flask
 
