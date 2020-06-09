@@ -20,7 +20,7 @@ Backend server for [AIwaffle](https://github.com/AIwaffle)
 
 Auth: [auth](/docs/auth.md)
 
-OAuth2: TODO
+OAuth2: [oauth2](/docs/oauth2.md)
 
 Model API: [model](/docs/model.md)
 
@@ -74,8 +74,7 @@ Could be integrated to the web server
  - [x] Add uWSGI configuration
  - [x] Add deployment note
  - [x] Update documentation for model api
- - [ ] Move OAuth2 APIs to ```/api/oauth```
- - [ ] Finish documentation for ```/api/oauth```
+ - [x] Finish documentation for OAuth2
 
 ### Version 0.1.9
 

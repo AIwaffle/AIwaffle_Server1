@@ -1,4 +1,6 @@
 * API Documentation
+  Deprecated
+
   For each API, we use POST to deliver form data, and use json for passing of
   data structures. The response is a json string.
 ** User
