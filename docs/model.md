@@ -12,7 +12,7 @@ Name   | Format | Description
 ## Iter the model
 POST ```/api/model/iter```
 
-Request:
+Form data:
 
 Name | Format | Description
 -----|--------|------------
@@ -20,7 +20,7 @@ session_id | uuid | Unique id of the model, created by ```/api/model/new```
 epoch_num | int | The number of epochs (2)
 learning_rate | float | The rate of learning (0.01)
 
-Response:
+Json response:
 
 Name | Format | Description
 -----|--------|------------
