@@ -1,7 +1,5 @@
 # AIwaffle_server1
 
-Develop branch
-
 Version 0.1.8
 
 ![Python application](https://github.com/AIwaffle/AIwaffle_Server1/workflows/Python%20application/badge.svg?branch=dev)
