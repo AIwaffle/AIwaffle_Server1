@@ -1,3 +1,11 @@
+### Version 0.1.8
+
+ - Added uWSGI configuration
+ - Added deployment note
+ - Updated documentation for model api
+ - Finished documentation for OAuth2
+
+
 ### Version 0.1.7
 
  - Removed posts view

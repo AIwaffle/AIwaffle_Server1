@@ -2,7 +2,7 @@
 
 Develop branch
 
-Version 0.1.7
+Version 0.1.8
 
 ![Python application](https://github.com/AIwaffle/AIwaffle_Server1/workflows/Python%20application/badge.svg?branch=dev)
 
@@ -68,13 +68,6 @@ Could be integrated to the web server
       Edit ```uwsgi.ini```
 
 ## Upcoming Changes
-
-### Version 0.1.8
-
- - [x] Add uWSGI configuration
- - [x] Add deployment note
- - [x] Update documentation for model api
- - [x] Finish documentation for OAuth2
 
 ### Version 0.1.9
 
