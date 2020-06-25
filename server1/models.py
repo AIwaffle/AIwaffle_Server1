@@ -45,8 +45,12 @@ class User(db.Model):
         return self.uuid
 
     def check_password(self, password):
-        salted = hashlib.sha512(password.encode() + self.salt).hexdigest()
+        salted = User.salt_password(password, self.salt)
         return salted == self.password
+
+    @staticmethod
+    def salt_password(password, salt):
+        return hashlib.sha512(password.encode() + salt).hexdigest()
 
     def __repr__(self):
         return "<User {}>".format(self.username)

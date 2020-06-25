@@ -1,9 +1,10 @@
-"""This module provides view with url prefix /
+"""/
 """
-import os
-import flask
+from flask import (
+    render_template, abort, Blueprint,
+)
 
-bp = flask.Blueprint("root", __name__)
+bp = Blueprint("root", __name__)
 
 
 @bp.route("/")
@@ -14,8 +15,7 @@ def index():
 
     Returns: the index page
     """
-    print(os.curdir)
-    return flask.render_template("index.html")
+    return render_template("index.html")
     # return flask.send_from_directory("../AIWaffle-website/dist", "index.html")
 
 
@@ -25,4 +25,4 @@ def teapot():
 
     Raises: flask.abort(418)
     """
-    flask.abort(418)
+    abort(418)

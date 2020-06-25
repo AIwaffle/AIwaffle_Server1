@@ -71,21 +71,9 @@ Could be integrated to the web server
 
 ### Version 0.1.9
 
- - [ ] Uniform coding style (Google)
+ - [x] Uniform import style (PEP8)
+ - [x] Finish documentation
  - [ ] Support logging configuration
- 
-### Version 0.2.0
-
- - [ ] Finish auth documentation
- - [ ] Finish backend documentation
- 
-### Version 0.2.1
-
- - [ ] Add RESTful APIs
-
-### Version 0.2.2
-
- - [ ] Automatic deploy
  
 ## License and copyright
 

@@ -1,26 +1,22 @@
+"""The main server application
+"""
 import logging
 import os
 
-import flask
-import flask.logging
 import flask_cors
+from flask import Flask
 
-import server1.special
-from server1 import special
+from server1 import oauth2
 from server1.login import lm
 from server1.models import db
-from server1.oauth2 import config_oauth
 from server1.special import handlers
 from server1.views import bps
 
 
 def create_app(test_config=None, **kwargs):
-    app = flask.Flask(__name__, instance_relative_config=True, **kwargs)
+    app = Flask(__name__, instance_relative_config=True, **kwargs)
 
-    module_logger = logging.getLogger(__name__)
-
-    assert module_logger is app.logger
-
+    # Default config
     app.config.from_mapping(
         SECRET_KEY="dev".encode(),
         SQLALCHEMY_DATABASE_URI="sqlite://",
@@ -37,45 +33,53 @@ def create_app(test_config=None, **kwargs):
     try:
         os.mkdir(app.instance_path)
     except OSError:
-        pass
+        print("Failed to create instance_path!")
 
-    assert isinstance(app.logger, logging.Logger)
     app.logger.setLevel(logging.DEBUG)
     app.logger.handlers.clear()
+
     formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
+    # Log to file
     fh = logging.FileHandler(os.path.join(app.instance_path, "server1.log"))
     fh.setLevel(logging.DEBUG)
     fh.setFormatter(formatter)
     app.logger.addHandler(fh)
 
-    # ch = logging.StreamHandler()
-    # ch.setLevel(logging.DEBUG)
-    # ch.setFormatter(formatter)
-    # app.logger.addHandler(ch)
+    assert len(app.logger.handlers) == 1
 
-    assert len(app.logger.handlers) >= 1
     app.logger.info("Created new app instance")
+
+    # Cross origin source sharing
+    flask_cors.CORS(app)
+
+    # Database
+    db.init_app(app)
 
     @app.before_first_request
     def create_tables():
         db.create_all()
 
+    # Login manager
+    lm.init_app(app)
+
+    # OAuth2
+    oauth2.config_oauth(app)
+
+    # Blueprints
+    for bp in bps:
+        app.register_blueprint(bp)
+
+    # Handlers
+    for handler in handlers:
+        app.register_error_handler(*handler)
+
+    # Test route
     @app.route("/test")
     def test():
         return {"success": True}
 
-    for bp in bps:
-        app.register_blueprint(bp)
-
-    for handler in handlers:
-        app.register_error_handler(*handler)
-
+    # Index
     app.add_url_rule("/", endpoint="index")
-
-    flask_cors.CORS(app)
-    db.init_app(app)
-    lm.init_app(app)
-    config_oauth(app)
 
     return app

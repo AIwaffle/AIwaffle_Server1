@@ -1,42 +1,57 @@
-import hashlib
 import os
 import uuid
 from typing import Union
 
-import flask
+from flask import current_app
 
 from server1.models import db, User
 
 
 def get_user(**kwargs) -> Union[User, None]:
+    """Alias for first user returned by User.query.filter_by
+    """
     return User.query.filter_by(**kwargs).first()
 
 
-def register(username: str, password: str) -> Union[str, bool]:
-    flask.current_app.logger.debug("Registering new user {}".format(username))
-    uf = get_user(username=username)
-    if uf is not None:
-        flask.current_app.logger.error("User already registered")
-        return False
+def register(username: str, password: str) -> Union[User, None]:
+    """Register a user by username and password
+
+    Returns:
+        The user when success
+        None when not success
+    """
+    user = get_user(username=username)
+    if user is not None:
+        current_app.logger.debug("User {} already registered".format(username))
+        return None
+
     salt = os.urandom(4)
-    salted = hashlib.sha512(password.encode() + salt).hexdigest()
+    salted = User.salt_password(password, salt)
     user = User(uuid.uuid4().hex, salt, username, salted)
+
     db.session.add(user)
     db.session.commit()
-    flask.current_app.logger.debug("User registered")
-    return user.uuid
+
+    current_app.logger.info("User {} registered".format(username))
+    return user
 
 
 def login(username: str, password: str) -> Union[User, None]:
-    flask.current_app.logger.debug("Logging in {}".format(username))
+    """Login a user by username and password
+
+    Returns:
+        The user when success
+        None when not success
+    """
     user = get_user(username=username)
 
     if user is None:
-        flask.current_app.logger.debug("User does not exist")
+        current_app.logger.debug("User {} does not exist".format(username))
         return None
 
     if user.check_password(password):
+        current_app.logger.debug("User {} logged in".format(username))
         return user
-    else:
-        flask.current_app.logger.debug("No matching user record")
-        return None
+
+    current_app.logger.debug("No matching user record for user {}".format(username))
+    return None

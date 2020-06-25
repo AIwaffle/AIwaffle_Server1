@@ -34,4 +34,5 @@ Response:
 
 Name | Format | Description
 -----|--------|------------
-(None) | uuid | The uuid of the account
+id | str | The uuid of the account
+username | str | The username of the account

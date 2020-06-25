@@ -1,18 +1,21 @@
-"""This module provides views with url prefix /oauth
+"""/oauth
 """
 import time
 
-import flask
-import flask_login
 import authlib.oauth2
+import flask_login
 from authlib.integrations import flask_oauth2
+from flask import (
+    render_template, request, redirect, url_for, jsonify,
+    Blueprint,
+)
 from werkzeug import security
 
 from server1.api import auth, oauth2
 from server1.models import db, OAuth2Client
 from server1.oauth2 import authorization, require_oauth
 
-bp = flask.Blueprint("oauth", __name__, url_prefix="/oauth")
+bp = Blueprint("oauth", __name__, url_prefix="/oauth")
 
 
 def current_user():
@@ -34,15 +37,15 @@ def root():
     user = current_user()
     clients = oauth2.get_clients(user.uuid)
 
-    return flask.render_template("oauth/home.html", user=user, clients=clients)
+    return render_template("oauth/home.html", user=user, clients=clients)
 
 
 @bp.route("/create_client", methods=("GET", "POST"))
 @flask_login.login_required
 def create_client():
     user = current_user()
-    if flask.request.method == "GET":
-        return flask.render_template("/oauth/create_client.html")
+    if request.method == "GET":
+        return render_template("/oauth/create_client.html")
 
     client_id = security.gen_salt(24)
     client_id_issued_at = int(time.time())
@@ -52,7 +55,7 @@ def create_client():
         user_id=user.uuid,
     )
 
-    form = flask.request.form
+    form = request.form
     client_metadata = {
         "client_name": form["client_name"],
         "client_uri": form["client_uri"],
@@ -71,7 +74,7 @@ def create_client():
 
     db.session.add(client)
     db.session.commit()
-    return flask.redirect(flask.url_for("oauth.root"))
+    return redirect(url_for("oauth.root"))
 
 
 @bp.route("/authorize", methods=["GET", "POST"])
@@ -79,14 +82,14 @@ def create_client():
 def authorize():
     user = current_user()
 
-    if flask.request.method == "GET":
+    if request.method == "GET":
         try:
             grant = authorization.validate_consent_request(end_user=user)
         except authlib.oauth2.OAuth2Error as error:
             return error.error
-        return flask.render_template("oauth/authorize.html", user=user, grant=grant)
+        return render_template("oauth/authorize.html", user=user, grant=grant)
 
-    if flask.request.form["confirm"]:
+    if request.form["confirm"]:
         grant_user = user
     else:
         grant_user = None
@@ -107,4 +110,4 @@ def revoke_token():
 @require_oauth("profile")
 def api_me():
     user = flask_oauth2.current_token.user
-    return flask.jsonify(id=user.id, username=user.username)
+    return jsonify(id=user.id, username=user.username)

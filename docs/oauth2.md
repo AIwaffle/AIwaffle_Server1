@@ -48,4 +48,11 @@ Refer to OAuth2 Documentation for details
 
 GET ```/oauth/api/me```
 
-OAuth2 with scope profile is required
+JSON Response:
+
+Name | Format | Description
+-----|--------|------------
+id | str | The id of the user, in uuid
+username | str | The username
+
+OAuth2 with authorized scope `profile` is required
