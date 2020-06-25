@@ -14,7 +14,7 @@ Backend server for [AIwaffle](https://github.com/AIwaffle)
  - **/** Index page
  - **/auth/** the user login/register pages
  - **/oauth/** the OAuth2 authorization
- - **/model/** the model view
+ - **/api/model/** the model APIs
  
 ## Documentation
 
@@ -69,10 +69,8 @@ Could be integrated to the web server
 
 ## Upcoming Changes
 
-### Version 0.1.9
+### Version 0.1.10
 
- - [x] Uniform import style (PEP8)
- - [x] Finish documentation
  - [ ] Support logging configuration
  
 ## License and copyright

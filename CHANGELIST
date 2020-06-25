@@ -1,3 +1,9 @@
+### Version 0.1.9
+
+ - Uniform import style (PEP8)
+ - Finish documentation
+ - Updated auth api
+ 
 ### Version 0.1.8
 
  - Added uWSGI configuration
