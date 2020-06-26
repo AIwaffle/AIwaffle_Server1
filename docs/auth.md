@@ -30,9 +30,11 @@ POST ```/auth/logout```
 
 GET ```/auth/current```
 
+Login is required
+
 Response:
 
 Name | Format | Description
 -----|--------|------------
-id | str | The uuid of the account
+uuid | str | The uuid of the account
 username | str | The username of the account

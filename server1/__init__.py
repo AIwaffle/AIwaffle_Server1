@@ -30,10 +30,11 @@ def create_app(test_config=None, **kwargs):
     else:
         app.config.from_pyfile("config.py")
 
-    try:
-        os.mkdir(app.instance_path)
-    except OSError:
-        print("Failed to create instance_path!")
+    if not os.path.exists(app.instance_path):
+        try:
+            os.mkdir(app.instance_path)
+        except OSError:
+            print("Failed to create instance_path!")
 
     app.logger.setLevel(logging.DEBUG)
     app.logger.handlers.clear()

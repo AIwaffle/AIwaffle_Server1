@@ -114,9 +114,9 @@ def current():
     GET /auth/current
 
         Returns:
-            dict{id, username}
+            dict{uuid, username}
     """
 
     c_uuid = flask_login.current_user.get_id()
     user = auth.get_user(uuid=c_uuid)
-    return jsonify(id=user.id, username=user.username)
+    return jsonify(uuid=c_uuid, username=user.username)

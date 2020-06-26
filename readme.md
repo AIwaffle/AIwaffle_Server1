@@ -20,6 +20,8 @@ Auth: [auth](/docs/auth.md)
 
 OAuth2: [oauth2](/docs/oauth2.md)
 
+Auth API: [api_auth](/docs/api_auth.md)
+
 Model API: [model](/docs/model.md)
 
  
@@ -68,6 +70,10 @@ Could be integrated to the web server
 ## Upcoming Changes
 
 ### Version 0.1.10
+ - [x] Add API Authentication
+ - [x] Add API Authentication Documentation
+
+### Version 0.1.11
 
  - [ ] Support logging configuration
  

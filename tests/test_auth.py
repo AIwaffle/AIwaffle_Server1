@@ -55,6 +55,12 @@ def test_login_validate_input(client, username, password, message):
     assert message in response.data
 
 
+def test_current(client, auth):
+    auth.login()
+    response = client.get("/auth/current")
+    assert response.json["username"] == "test_u1"
+
+
 def test_logout(client, auth):
     auth.login()
 

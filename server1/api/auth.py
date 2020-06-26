@@ -36,12 +36,13 @@ def register(username: str, password: str) -> Union[User, None]:
     return user
 
 
-def login(username: str, password: str) -> Union[User, None]:
+def login(username: str, password: str) -> Union[User, None, bool]:
     """Login a user by username and password
 
     Returns:
         The user when success
-        None when not success
+        None when user does not exists
+        False when password does not match
     """
     user = get_user(username=username)
 
@@ -53,5 +54,5 @@ def login(username: str, password: str) -> Union[User, None]:
         current_app.logger.debug("User {} logged in".format(username))
         return user
 
-    current_app.logger.debug("No matching user record for user {}".format(username))
-    return None
+    current_app.logger.debug("No matching record for user {}".format(username))
+    return False

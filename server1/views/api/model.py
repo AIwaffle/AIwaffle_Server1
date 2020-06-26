@@ -1,7 +1,7 @@
 """/api/model
 """
 from flask import (
-    request, abort,
+    request, abort, jsonify,
     Blueprint,
 )
 
@@ -46,4 +46,4 @@ def iter_():
     if not isinstance(res, dict):
         abort(400)
     res.__delitem__("code")
-    return res
+    return jsonify(res)
