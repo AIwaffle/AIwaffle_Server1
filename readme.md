@@ -1,6 +1,6 @@
 # AIwaffle_server1
 
-Version 0.1.9
+Version 0.1.10
 
 ![Python application](https://github.com/AIwaffle/AIwaffle_Server1/workflows/Python%20application/badge.svg?branch=dev)
 
@@ -68,10 +68,6 @@ Could be integrated to the web server
       Edit ```uwsgi.ini```
 
 ## Upcoming Changes
-
-### Version 0.1.10
- - [x] Add API Authentication
- - [x] Add API Authentication Documentation
 
 ### Version 0.1.11
 
