@@ -12,7 +12,7 @@ Name | Format | Description | Example
 -----|--------|-------------|--------
 client_name | str | The name of the client | Demo
 client_uri | str | The link to the client | https://example.com/
-grant_types | str | Type of grant to the client | authorization_code
+grant_type | str | Type of grant to the client | authorization_code
 redirect_uri | str | The callback uri of the client | https://example.com/redirect
 response_type | str | The response | code
 scope | str | Scope of data to be granted | profile
