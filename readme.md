@@ -70,7 +70,8 @@ Could be integrated to the web server
 ## Upcoming Changes
 
 ### Version 0.1.11
-
+ - [x] Finish tests for `/api/auth` when `session=1`
+ - [ ] Add language constants
  - [ ] Support logging configuration
  
 ## License and copyright

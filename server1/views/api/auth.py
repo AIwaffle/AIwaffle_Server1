@@ -1,6 +1,4 @@
 """/api/auth
-
-Not implemented
 """
 from typing import Tuple
 
@@ -64,7 +62,7 @@ def login():
     POST json data:
         username(str): the username
         password(str): the password
-    TODO
+        session(bool): whether to store cookies
     """
     username, password = get_info()
 
