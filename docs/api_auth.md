@@ -28,7 +28,7 @@ Name | Format | Description
 -----|--------|------------
 username | str | The username
 password | str | The password
-session | int | Whether to store the login in session, 1 for store
+session | int | Whether to store the login in cookies
 
 Json response:
 

@@ -12,9 +12,9 @@ Name | Format | Description | Example
 -----|--------|-------------|--------
 client_name | str | The name of the client | Demo
 client_uri | str | The link to the client | https://example.com/
-grant_types | str | Type of grant to the client | authorization_code
-redirect_uris | str | The callback uri of the client | https://example.com/redirect
-response_types | str | The response | code
+grant_type | str | Type of grant to the client | authorization_code
+redirect_uri | str | The callback uri of the client | https://example.com/redirect
+response_type | str | The response | code
 scope | str | Scope of data to be granted | profile
 token_endpoint_auth_method | str | client_secret_basic
 

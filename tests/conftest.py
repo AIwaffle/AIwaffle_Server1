@@ -26,7 +26,7 @@ def app():
 @pytest.fixture
 def client(app):
     res = app.test_client()
-    res.post("/auth/register", data={"username": "test_u1", "password": "a"})
+    res.post("/api/auth/register", json={"username": "test_u1", "password": "a"})
     return res
 
 

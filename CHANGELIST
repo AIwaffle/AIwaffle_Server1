@@ -1,3 +1,7 @@
+### Version 0.1.11
+ - Finished tests for `/api/auth` when `session=1`
+ - Updated OAuth pages
+
 ### Version 0.1.10
  - Added API Authentication
  - Added API Authentication Documentation
