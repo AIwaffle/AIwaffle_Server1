@@ -1,22 +1,71 @@
-<p>The application <strong>{{grant.client.client_name}}</strong> is requesting:
-<strong>{{ grant.request.scope }}</strong>
-</p>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Nunito&display=swap');
 
-<p>
-  from You - a.k.a. <strong>{{ user.username }}</strong>
-</p>
+    :root {
+      --light: rgb(247, 203, 55);
+      --dark: rgb(50, 29, 29);
+    }
 
-<form action="" method="post">
-  <label>
-    <input type="checkbox" name="confirm">
-    <span>Consent?</span>
-  </label>
-  {% if not user %}
-  <p>You haven't logged in. Log in with:</p>
-  <div>
-    <input type="text" name="username">
-  </div>
-  {% endif %}
-  <br>
-  <button>Submit</button>
-</form>
+    html {
+      font-family: Nunito, sans-serif;
+      font-size: 1.5em;
+      background: rgb(50, 29, 29);
+    }
+
+    input,
+    button {
+      font-size: 1em;
+    }
+
+    button {
+      border: none;
+      background: var(--dark);
+      color: var(--light);
+      padding: 10px;
+    }
+
+    .center {
+      margin: 0;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      -ms-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+    }
+
+    .card {
+      padding: 1em;
+      color: var(--dark);
+      width: min(400px, 90%);
+      margin: auto;
+      background: var(--light);
+    }
+  </style>
+</head>
+<div class="center card">
+  <p>The application <strong>{{grant.client.client_name}}</strong> is requesting:
+    <strong>{{ grant.request.scope }}</strong>
+  </p>
+
+  <p>
+    from the account <strong>{{ user.username }}</strong>
+  </p>
+
+  <form action="" method="post">
+    <label>
+      <input type="checkbox" name="confirm">
+      <span>Consent?</span>
+    </label>
+    {% if not user %}
+    <p>You haven't logged in. Log in with:</p>
+    <div>
+      <input type="text" name="username">
+    </div>
+    {% endif %}
+    <br>
+    <button>Log in</button>
+  </form>
+</div>
