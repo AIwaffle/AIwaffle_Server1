@@ -1,6 +1,6 @@
 # AIwaffle_server1
 
-Version 0.1.10
+Version 0.1.11
 
 ![Python application](https://github.com/AIwaffle/AIwaffle_Server1/workflows/Python%20application/badge.svg?branch=dev)
 
@@ -69,8 +69,7 @@ Could be integrated to the web server
 
 ## Upcoming Changes
 
-### Version 0.1.11
- - [x] Finish tests for `/api/auth` when `session=1`
+### Version 0.1.12
  - [ ] Add language constants
  - [ ] Support logging configuration
  
