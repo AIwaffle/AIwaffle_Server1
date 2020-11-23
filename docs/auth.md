@@ -24,7 +24,7 @@ password | str | The password of the account
 
 ## Logout
 
-POST ```/auth/logout```
+GET ```/auth/logout```
 
 ## Get current user
 
